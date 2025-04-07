@@ -9,7 +9,7 @@ public class Player : MonoBehaviour
 
     private float _playerSpeed = 30.0f;
 
-    private Vector2 _playerDirection = new Vector2(0, 1);
+    private Vector2 _playerDirection = new Vector2(0, 0);
 
     private bool _isMovePlayer = false;
     private float _snapValue = 0.425f;
@@ -66,13 +66,19 @@ public class Player : MonoBehaviour
             m_Jelly.gameObject.SetActive(false);
             Debug.LogError("AM2222!");
         }
+        else
+        {
+            _isMovePlayer = false;
+            StopCoroutine(PlayerMove());
+            Debug.LogError("Game Over!");
+        }
     }
 
     public IEnumerator PlayerMove()
     {
         while(_isMovePlayer)
         {
-            Vector2 newPos = _playerDirection* _snapValue;
+            Vector2 newPos = _playerDirection * _snapValue;
             m_Transform.position = m_Transform.position + new Vector3(newPos.x, newPos.y, 0.0f);
             yield return new WaitForSeconds((1.0f / 60.0f) * _playerSpeed);
         }
