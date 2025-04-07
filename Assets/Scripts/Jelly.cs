@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Jelly : MonoBehaviour
 {
-    [SerializeField] private List<Sprite> jellyVarList;
+    [SerializeField] private List<Sprite> _jellyVarList;
 
     private SpriteRenderer m_SpriteRenderer;
 
-    private void Awake()
+    private void Start()
     {
         m_SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        m_SpriteRenderer.sprite = jellyVarList[Random.Range(0, jellyVarList.Count - 1)];
+        _jellyVarList.AddRange(Resources.LoadAll<Sprite>("Jelly"));
+        m_SpriteRenderer.sprite = _jellyVarList[Random.Range(0, _jellyVarList.Count - 1)];
     }
 }
