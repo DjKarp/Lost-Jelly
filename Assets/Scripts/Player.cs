@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ public class Player : MonoBehaviour
     private bool _isMovePlayer = false;
     private float _snapValue = 0.5f;
 
+    public event Action<bool> StateGameChanged;
+
     private void Awake()
     {
         m_Transform = transform;
@@ -30,6 +33,7 @@ public class Player : MonoBehaviour
         {
             _isMovePlayer = true;
             m_Animator.SetBool("IsMove", _isMovePlayer);
+            StateGameChanged?.Invoke(true);
             m_SandClock.StartSandClock();
             StartCoroutine(PlayerMove());
         }
@@ -37,17 +41,13 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Jelly m_Jelly = collision.gameObject.GetComponent<Jelly>();
-        if (m_Jelly != null)
+        if (collision.TryGetComponent(out Jelly m_Jelly))
         {
-            m_Jelly.gameObject.SetActive(false);
-            Debug.LogError("AM2222!");
+            CatchJelly(m_Jelly);
         }
         else
         {
-            _isMovePlayer = false;
-            StopCoroutine(PlayerMove());
-            Debug.LogError("Game Over!");
+            StopGame();
         }
     }
 
@@ -62,5 +62,20 @@ public class Player : MonoBehaviour
 
             yield return new WaitForSeconds((1.0f / 60.0f) * _playerSpeed);
         }
-    }    
+    }
+
+    public void CatchJelly(Jelly jelly)
+    {
+        EventManager.CallJellyCatched();
+        jelly.gameObject.SetActive(false);
+        Debug.LogError("AM2222!");
+    }
+
+    private void StopGame()
+    {
+        StateGameChanged?.Invoke(false);
+        _isMovePlayer = false;
+        StopCoroutine(PlayerMove());
+        Debug.LogError("Game Over!");
+    }
 }

@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class Level : MonoBehaviour
 {
     [SerializeField] private Transform _startPositionTR;
+
+    private int _jellyCount = 0;
 
     public Transform StartPosition
     {
@@ -21,9 +24,35 @@ public class Level : MonoBehaviour
         set => _jellyListOnLevel ??= value;
     }
 
+    public int JellyCount
+    {
+        get => _jellyCount;
+    }
+
+    private void Awake()
+    {
+        _jellyCount = JellyListOnLevel.Count;
+    }
+    private void Start()
+    {
+        EventManager.SetJellyCount(_jellyCount);
+        EventManager.JellyCatched.AddListener(CatchJelly);
+    }
+
+
     public void AddedOneJelly(Jelly jelly)
     {
         if (jelly != null && !_jellyListOnLevel.Contains(jelly)) _jellyListOnLevel.Add(jelly);
     }
 
+    public void CatchJelly()
+    {
+        _jellyCount--;
+        EventManager.SetJellyCount(_jellyCount);
+
+        if (_jellyCount <= 0)
+        {
+            Debug.LogError("Winner");
+        }
+    }
 }
