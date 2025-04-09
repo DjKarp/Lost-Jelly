@@ -6,7 +6,8 @@ public class Player : MonoBehaviour
 {
     private Transform m_Transform;
     private Animator m_Animator;
-    [SerializeField] private JoystickMove m_JoystickMove;
+    [SerializeField] private InputManager m_InputManager;
+    [SerializeField] private SandClock m_SandClock;
 
     private float _playerSpeed = 30.0f;
 
@@ -23,13 +24,13 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (m_JoystickMove.GetMoveDirection() != Vector2.zero) 
-            _playerDirection = m_JoystickMove.GetMoveDirection();
+        _playerDirection = m_InputManager.GetMoveDirection();
 
         if (!_isMovePlayer && _playerDirection != Vector2.zero)
         {
             _isMovePlayer = true;
             m_Animator.SetBool("IsMove", _isMovePlayer);
+            m_SandClock.StartSandClock();
             StartCoroutine(PlayerMove());
         }
     }
@@ -54,15 +55,11 @@ public class Player : MonoBehaviour
     {
         while(_isMovePlayer)
         {
-            _playerDirection = _playerDirection.x > 1.0f || _playerDirection.y > 1.0f ? _playerDirection.normalized : _playerDirection;
-            if (_playerDirection.x > _playerDirection.y)
-                _playerDirection.y = 0.0f;
-            else
-                _playerDirection.x = 0.0f;
-
             m_Transform.localScale = new Vector3(Mathf.Abs(m_Transform.localScale.x) * (_playerDirection.x > 0 ? - 1.0f : 1.0f), m_Transform.localScale.y, m_Transform.localScale.z);
-            Vector2 newPos = _playerDirection * _snapValue;
-            m_Transform.position = m_Transform.position + new Vector3(newPos.x, newPos.x != 0 ? 0.0f : newPos.y, 0.0f);
+
+            Vector2 offset = _playerDirection * _snapValue;
+            m_Transform.position = m_Transform.position + new Vector3(offset.x, offset.y, 0.0f);
+
             yield return new WaitForSeconds((1.0f / 60.0f) * _playerSpeed);
         }
     }    

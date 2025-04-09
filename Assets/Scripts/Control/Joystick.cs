@@ -31,12 +31,14 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
     {
         if (_isActiveJoystick)
         {
-            _joystick.color = _colorInactiveJoystick;
+            _joystick.color = _colorActiveJoystick;
+            _joystickFon.color = _colorActiveJoystick;
             _isActiveJoystick = false;
         }
         else
         {
-            _joystick.color = _colorActiveJoystick;
+            _joystick.color = _colorInactiveJoystick;
+            _joystickFon.color = _colorInactiveJoystick;
             _isActiveJoystick = true;
         }
     }
