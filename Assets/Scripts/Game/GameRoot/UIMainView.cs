@@ -5,14 +5,33 @@ using UnityEngine;
 public class UIMainView : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingScreen;
+    [SerializeField] private Transform _UISceneContainerTR;
 
     public void ShowLoadingScreen()
     {
-        gameObject.SetActive(true);
+        _loadingScreen.SetActive(true);
     }
 
     public void HideLoadingScreen()
     {
-        gameObject.SetActive(false);
+        _loadingScreen.SetActive(false);
+    }
+
+    public void AttachSceneUI(GameObject sceneUI)
+    {
+        ClearSceneUI();
+
+        sceneUI.transform.SetParent(_UISceneContainerTR, false);
+        sceneUI.gameObject.SetActive(true);
+    }
+
+    private void ClearSceneUI()
+    {
+        int childCount = _UISceneContainerTR.childCount;
+        
+        for (int i = 0; i < childCount; i++)
+        {
+            Destroy(_UISceneContainerTR.GetChild(i).gameObject);
+        }
     }
 }

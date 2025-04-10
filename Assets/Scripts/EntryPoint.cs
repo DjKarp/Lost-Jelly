@@ -13,6 +13,9 @@ public class EntryPoint : MonoBehaviour
         // Localozation
         // Storage
         // Scene Management
+        yield return new WaitForSeconds(1.0f);
+
+        Debug.LogError("EntryPoint Start");
 
         yield return new WaitForEndOfFrame();
     }

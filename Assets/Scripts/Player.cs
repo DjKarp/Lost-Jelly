@@ -27,14 +27,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        _playerDirection = m_InputManager.GetMoveDirection();
+        if (m_InputManager == null)
+            m_InputManager = FindObjectOfType<InputManager>();
+        else
+            _playerDirection = m_InputManager.GetMoveDirection();
 
         if (!_isMovePlayer && _playerDirection != Vector2.zero)
         {
             _isMovePlayer = true;
             m_Animator.SetBool("IsMove", _isMovePlayer);
             StateGameChanged?.Invoke(true);
+            if (m_SandClock == null)
+                m_SandClock = FindObjectOfType<SandClock>();
             m_SandClock.StartSandClock();
+
             StartCoroutine(PlayerMove());
         }
     }

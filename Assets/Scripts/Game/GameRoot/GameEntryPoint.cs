@@ -34,19 +34,29 @@ public class GameEntryPoint
 #if UNITY_EDITOR
         var sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName == Scenes.GAME)
+        switch(sceneName)
         {
-            m_Coroutines.StartCoroutine(LoadAndStartGame());
-            return;
-        }
+            case Scenes.GAME:
+                m_Coroutines.StartCoroutine(LoadAndStartGame());
+                return;
 
-        if (sceneName != Scenes.BOOTSTRAP)
-        {
-            return;
+            case Scenes.MAIN_MENU:
+                m_Coroutines.StartCoroutine(LoadAndStartMainMenu());
+                return;
+
+            case Scenes.BOOTSTRAP:
+                return;
+
+            default: return;
         }
 #endif
 
         m_Coroutines.StartCoroutine(LoadAndStartGame());
+    }    
+
+    private IEnumerator LoadScene(string sceneName)
+    {
+        yield return SceneManager.LoadSceneAsync(sceneName);
     }
 
     private IEnumerator LoadAndStartGame()
@@ -57,16 +67,31 @@ public class GameEntryPoint
         yield return LoadScene(Scenes.GAME);
 
         yield return new WaitForEndOfFrame();
-        
+
         // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
-        sceneEntryPoint.Run();
+        sceneEntryPoint.Run(m_UIMainView);
+
+        sceneEntryPoint.GoTOMainMenuSceneRequested += () => { m_Coroutines.StartCoroutine(LoadAndStartMainMenu()); };
 
         m_UIMainView.HideLoadingScreen();
     }
 
-    private IEnumerator LoadScene(string sceneName)
+    private IEnumerator LoadAndStartMainMenu()
     {
-        yield return SceneManager.LoadSceneAsync(sceneName);
+        m_UIMainView.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOTSTRAP);
+        yield return LoadScene(Scenes.MAIN_MENU);
+
+        yield return new WaitForEndOfFrame();
+
+        // create DI conteiner
+        var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
+        sceneEntryPoint.Run(m_UIMainView);
+
+        sceneEntryPoint.GoToGamePlaySceneRequested += () => { m_Coroutines.StartCoroutine(LoadAndStartGame()); };
+
+        m_UIMainView.HideLoadingScreen();
     }
 }

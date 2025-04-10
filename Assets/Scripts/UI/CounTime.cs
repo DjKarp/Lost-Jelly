@@ -16,6 +16,8 @@ public class CounTime : MonoBehaviour
 
         StartCoroutine(Timer());
 
+        if (m_Player == null)
+            m_Player = FindFirstObjectByType<Player>();
         m_Player.StateGameChanged += ChangeStateTimer;
     }
 
