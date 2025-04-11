@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using R3;
+using R3.Triggers;
 
 public class Player : MonoBehaviour
 {
@@ -19,10 +21,18 @@ public class Player : MonoBehaviour
 
     public event Action<bool> StateGameChanged;
 
+    
+
     private void Awake()
     {
         m_Transform = transform;
         m_Animator = gameObject.GetComponent<Animator>();
+
+        this.OnCollisionEnter2DAsObservable().Subscribe(x =>
+       {
+           Debug.LogError("Trigger");
+           Debug.LogError(x.gameObject.name);
+       });
     }
 
     private void Update()

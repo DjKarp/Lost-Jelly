@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using R3;
 
 public class GameEntryPoint 
 {
@@ -59,7 +60,7 @@ public class GameEntryPoint
         yield return SceneManager.LoadSceneAsync(sceneName);
     }
 
-    private IEnumerator LoadAndStartGame()
+    private IEnumerator LoadAndStartGame(/*GamePlayEnterParams gamePlayEnterParams*/)
     {
         m_UIMainView.ShowLoadingScreen();
 
@@ -70,14 +71,16 @@ public class GameEntryPoint
 
         // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView);
-
-        sceneEntryPoint.GoTOMainMenuSceneRequested += () => { m_Coroutines.StartCoroutine(LoadAndStartMainMenu()); };
+        sceneEntryPoint.Run(m_UIMainView/*, gamePlayEnterParams*/)
+            .Subscribe(gamePlayExitParams =>
+        {
+            m_Coroutines.StartCoroutine(LoadAndStartMainMenu(gamePlayExitParams.MainMenuEnterParams));
+        });
 
         m_UIMainView.HideLoadingScreen();
     }
 
-    private IEnumerator LoadAndStartMainMenu()
+    private IEnumerator LoadAndStartMainMenu(MainMenuEnterParams mainMenuEnterParams = null)
     {
         m_UIMainView.ShowLoadingScreen();
 
@@ -88,7 +91,7 @@ public class GameEntryPoint
 
         // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView);
+        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams);
 
         sceneEntryPoint.GoToGamePlaySceneRequested += () => { m_Coroutines.StartCoroutine(LoadAndStartGame()); };
 

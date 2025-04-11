@@ -38,3 +38,9 @@ Assets/Plugins/Zenject/
 Assets/Plugins/Zenject.meta
 UserSettings/
 Assets/Plugins/
+Assets/Packages/
+Assets/packages.config
+Assets/packages.config.meta
+Assets/NuGet.config.meta
+Assets/NuGet.config
+Assets/Packages.meta

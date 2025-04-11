@@ -50,6 +50,7 @@ public class CounTime : MonoBehaviour
 
     private void OnDisable()
     {
-        m_Player.StateGameChanged -= ChangeStateTimer;
+        if (m_Player != null)
+            m_Player.StateGameChanged -= ChangeStateTimer;
     }
 }
