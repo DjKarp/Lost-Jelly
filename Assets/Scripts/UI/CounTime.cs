@@ -15,7 +15,7 @@ public class CounTime : MonoBehaviour
 
         StartCoroutine(Timer());
 
-        EventManager.ChangeGameState.AddListener(ChangeStateTimer);
+        EventManager.GameStateChanged.AddListener(ChangeStateTimer);
     }
 
     public IEnumerator Timer()
@@ -47,6 +47,6 @@ public class CounTime : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.ChangeGameState.RemoveListener(ChangeStateTimer);
+        EventManager.GameStateChanged.RemoveListener(ChangeStateTimer);
     }
 }

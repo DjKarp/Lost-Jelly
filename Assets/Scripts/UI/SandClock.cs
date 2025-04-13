@@ -9,7 +9,7 @@ public class SandClock : MonoBehaviour
     private void Awake()
     {
         m_Animator = gameObject.GetComponent<Animator>();
-        EventManager.ChangeGameState.AddListener(StartStopSandClock);
+        EventManager.GameStateChanged.AddListener(StartStopSandClock);
     }
 
     public void StartStopSandClock(bool isStart)    
@@ -19,6 +19,6 @@ public class SandClock : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.ChangeGameState.RemoveListener(StartStopSandClock);
+        EventManager.GameStateChanged.RemoveListener(StartStopSandClock);
     }
 }

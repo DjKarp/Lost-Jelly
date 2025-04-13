@@ -1,10 +1,15 @@
+using UnityEngine;
 using UnityEngine.Events;
 
 public class EventManager
 {
     public static readonly UnityEvent JellyCatched = new UnityEvent();
     public static readonly UnityEvent<int> JellyCount = new UnityEvent<int>();
-    public static readonly UnityEvent<bool> ChangeGameState = new UnityEvent<bool>();
+
+    public static readonly UnityEvent<bool> GameStateChanged = new UnityEvent<bool>();
+
+    public static readonly UnityEvent<Vector2> MoveDirectionChanged = new UnityEvent<Vector2>();
+
 
     static public void CallJellyCatched ()
     {
@@ -18,6 +23,11 @@ public class EventManager
 
     static public void GameStartStop(bool isStart)
     {
-        ChangeGameState?.Invoke(isStart);
+        GameStateChanged?.Invoke(isStart);
+    }
+
+    static public void MoveDirChanged(Vector2 vector2)
+    {
+        MoveDirectionChanged?.Invoke(vector2);
     }
 }

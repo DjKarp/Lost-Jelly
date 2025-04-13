@@ -116,6 +116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5816518122d6984bbc3e30488798baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_InputManager: {fileID: 3007553137186623467}
 --- !u!1 &299921135344958779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,8 +1560,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40a25e379051f6f4d935a3456df9f5e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_JoystickMove: {fileID: 0}
-  m_ButtonOnScreen: {fileID: 0}
+  m_JoystickMove: {fileID: 4806774600410674928}
+  m_ButtonOnScreen: {fileID: 5834761164305849894}
 --- !u!1 &8819945015108335913
 GameObject:
   m_ObjectHideFlags: 0
@@ -1828,4 +1829,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f616a32a891d3749996b2195f60b10d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Player: {fileID: 0}

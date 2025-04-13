@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2991416568045507009}
   - component: {fileID: 338249199213546209}
   - component: {fileID: 8085149308770395051}
+  - component: {fileID: 7541850081315338622}
   - component: {fileID: 1182050016498521301}
   - component: {fileID: 9044906683579096788}
   m_Layer: 0
@@ -121,8 +122,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15a91450fcbaac647b4de4ee61396237, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_InputManager: {fileID: 0}
-  m_SandClock: {fileID: 0}
+--- !u!114 &7541850081315338622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4999481380904720389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0072e842d57f86d44ad7061f577e7466, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!58 &1182050016498521301
 CircleCollider2D:
   m_ObjectHideFlags: 0

@@ -1981,7 +1981,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneUIRootPrefab: {fileID: 1404599243318629552, guid: 52a55805b95fbf942b311468d1307f7c, type: 3}
   _jellyImageList: []
-  m_Player: {fileID: 0}
   _levelPrefab: {fileID: 232448835}
 --- !u!4 &169111279
 Transform:

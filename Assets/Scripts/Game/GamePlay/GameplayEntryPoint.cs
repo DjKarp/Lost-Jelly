@@ -11,7 +11,7 @@ public class GameplayEntryPoint : MonoBehaviour
 
     [SerializeField] private List<Sprite> _jellyImageList;
 
-    [SerializeField] private Player m_Player;
+    private Player m_Player;
     [SerializeField] private Level _levelPrefab;
 
     public Observable<GamePlayExitParams> Run(UIMainView uiMainView, GamePlayEnterParams gamePlayEnterParams)

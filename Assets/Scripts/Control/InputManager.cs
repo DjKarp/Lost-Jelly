@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class InputManager : MonoBehaviour
 {
@@ -11,14 +12,6 @@ public class InputManager : MonoBehaviour
 
     private Vector2 _tempInputDirection;
     private Vector2 _tempJoystickDirection;
-
-    private void Awake()
-    {
-        if (m_JoystickMove == null)
-            m_JoystickMove = gameObject.GetComponentInChildren<JoystickMove>();
-        if (m_ButtonOnScreen == null)
-            m_ButtonOnScreen = gameObject.GetComponentInChildren<ButtonOnScreen>();
-    }
 
     public Vector2 GetMoveDirection()
     {
