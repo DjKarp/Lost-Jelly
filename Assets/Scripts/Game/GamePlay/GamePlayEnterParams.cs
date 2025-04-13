@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GamePlayEnterParams : MonoBehaviour
+public class GamePlayEnterParams : SceneEnterParams
 {
-    // Start is called before the first frame update
-    void Start()
+    public int LevelNumber { get; }
+    public GamePlayEnterParams(int levelNumber) : base(Scenes.GAME)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        LevelNumber = levelNumber;
     }
 }

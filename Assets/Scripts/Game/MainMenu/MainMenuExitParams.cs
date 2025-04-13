@@ -2,17 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainMenuExitParams : MonoBehaviour
+public class MainMenuExitParams
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public SceneEnterParams SceneEnterParams { get; }
 
-    // Update is called once per frame
-    void Update()
+    public MainMenuExitParams(SceneEnterParams sceneEnterParams)
     {
-        
+        SceneEnterParams = sceneEnterParams;
     }
 }

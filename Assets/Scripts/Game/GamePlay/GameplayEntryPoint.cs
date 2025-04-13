@@ -8,15 +8,15 @@ public class GameplayEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIGameplayRootBinder _sceneUIRootPrefab;
 
-    public Observable<GamePlayExitParams> Run(UIMainView uiMainView/*, GamePlayEnterParams gamePlayEnterParams*/)
+    public Observable<GamePlayExitParams> Run(UIMainView uiMainView, GamePlayEnterParams gamePlayEnterParams)
     {
-        Debug.LogError("Load Game Scene");
-
         var uiScene = Instantiate(_sceneUIRootPrefab);
         uiMainView.AttachSceneUI(uiScene.gameObject);
 
         var exitSceneSignalSubject = new Subject<Unit>();
         uiScene.Bind(exitSceneSignalSubject);
+
+        Debug.LogError("Load Game Scene + sceneName = " + gamePlayEnterParams.SceneName + " => levelNumber = " + gamePlayEnterParams.LevelNumber);
 
         var mainMenuEnterParams = new MainMenuEnterParams(1);
         var gamePlayExitParams = new GamePlayExitParams(mainMenuEnterParams);

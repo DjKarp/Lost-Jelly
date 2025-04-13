@@ -38,7 +38,8 @@ public class GameEntryPoint
         switch(sceneName)
         {
             case Scenes.GAME:
-                m_Coroutines.StartCoroutine(LoadAndStartGame());
+                var enterParams = new GamePlayEnterParams(1);
+                m_Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
                 return;
 
             case Scenes.MAIN_MENU:
@@ -52,7 +53,7 @@ public class GameEntryPoint
         }
 #endif
 
-        m_Coroutines.StartCoroutine(LoadAndStartGame());
+        m_Coroutines.StartCoroutine(LoadAndStartMainMenu());
     }    
 
     private IEnumerator LoadScene(string sceneName)
@@ -60,7 +61,7 @@ public class GameEntryPoint
         yield return SceneManager.LoadSceneAsync(sceneName);
     }
 
-    private IEnumerator LoadAndStartGame(/*GamePlayEnterParams gamePlayEnterParams*/)
+    private IEnumerator LoadAndStartGame(GamePlayEnterParams gamePlayEnterParams)
     {
         m_UIMainView.ShowLoadingScreen();
 
@@ -71,7 +72,7 @@ public class GameEntryPoint
 
         // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView/*, gamePlayEnterParams*/)
+        sceneEntryPoint.Run(m_UIMainView, gamePlayEnterParams)
             .Subscribe(gamePlayExitParams =>
         {
             m_Coroutines.StartCoroutine(LoadAndStartMainMenu(gamePlayExitParams.MainMenuEnterParams));
@@ -91,9 +92,19 @@ public class GameEntryPoint
 
         // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams);
+        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams).Subscribe(mainMenuExitParams =>
+        {
+            var targetSceneName = mainMenuExitParams.SceneEnterParams.SceneName;
 
-        sceneEntryPoint.GoToGamePlaySceneRequested += () => { m_Coroutines.StartCoroutine(LoadAndStartGame()); };
+            switch(targetSceneName)
+            {
+                case (Scenes.GAME):
+                    m_Coroutines.StartCoroutine(LoadAndStartGame(mainMenuExitParams.SceneEnterParams.As<GamePlayEnterParams>()));
+                    break;
+            }
+        });
+
+        
 
         m_UIMainView.HideLoadingScreen();
     }
