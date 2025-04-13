@@ -6,6 +6,7 @@ public class UIMainView : MonoBehaviour
 {
     [SerializeField] private GameObject _loadingScreen;
     [SerializeField] private Transform _UISceneContainerTR;
+    [SerializeField] private CountJelly m_CountJelly;
 
     public void ShowLoadingScreen()
     {

@@ -5,12 +5,13 @@ using UnityEngine;
 using R3;
 using R3.Triggers;
 
+[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
 {
     private Transform m_Transform;
     private Animator m_Animator;
     [SerializeField] private InputManager m_InputManager;
-    [SerializeField] private SandClock m_SandClock;
 
     private float _playerSpeed = 30.0f;
 
@@ -43,16 +44,7 @@ public class Player : MonoBehaviour
             _playerDirection = m_InputManager.GetMoveDirection();
 
         if (!_isMovePlayer && _playerDirection != Vector2.zero)
-        {
-            _isMovePlayer = true;
-            m_Animator.SetBool("IsMove", _isMovePlayer);
-            StateGameChanged?.Invoke(true);
-            if (m_SandClock == null)
-                m_SandClock = FindObjectOfType<SandClock>();
-            m_SandClock.StartSandClock();
-
             StartCoroutine(PlayerMove());
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -69,7 +61,11 @@ public class Player : MonoBehaviour
 
     public IEnumerator PlayerMove()
     {
-        while(_isMovePlayer)
+        _isMovePlayer = true;
+        m_Animator.SetBool("IsMove", _isMovePlayer);
+        EventManager.ChangeGameState?.Invoke(_isMovePlayer);
+
+        while (_isMovePlayer)
         {
             m_Transform.localScale = new Vector3(Mathf.Abs(m_Transform.localScale.x) * (_playerDirection.x > 0 ? - 1.0f : 1.0f), m_Transform.localScale.y, m_Transform.localScale.z);
 
@@ -83,14 +79,14 @@ public class Player : MonoBehaviour
     public void CatchJelly(Jelly jelly)
     {
         EventManager.CallJellyCatched();
-        jelly.gameObject.SetActive(false);
+        jelly.Deactivate();
         Debug.LogError("AM2222!");
     }
 
     private void StopGame()
-    {
-        StateGameChanged?.Invoke(false);
+    {        
         _isMovePlayer = false;
+        EventManager.ChangeGameState?.Invoke(_isMovePlayer);
         StopCoroutine(PlayerMove());
         Debug.LogError("Game Over!");
     }

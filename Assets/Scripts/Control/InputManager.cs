@@ -14,8 +14,10 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
-        m_JoystickMove = gameObject.GetComponentInChildren<JoystickMove>();
-        m_ButtonOnScreen = gameObject.GetComponentInChildren<ButtonOnScreen>();
+        if (m_JoystickMove == null)
+            m_JoystickMove = gameObject.GetComponentInChildren<JoystickMove>();
+        if (m_ButtonOnScreen == null)
+            m_ButtonOnScreen = gameObject.GetComponentInChildren<ButtonOnScreen>();
     }
 
     public Vector2 GetMoveDirection()

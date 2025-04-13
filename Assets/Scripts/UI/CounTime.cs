@@ -6,7 +6,6 @@ using TMPro;
 public class CounTime : MonoBehaviour
 {
     private TMP_Text _countTimeText;
-    [SerializeField] private Player m_Player;
     private bool _isTimerGO = false;
     private float _timer = 0.0f;
 
@@ -16,9 +15,7 @@ public class CounTime : MonoBehaviour
 
         StartCoroutine(Timer());
 
-        if (m_Player == null)
-            m_Player = FindFirstObjectByType<Player>();
-        m_Player.StateGameChanged += ChangeStateTimer;
+        EventManager.ChangeGameState.AddListener(ChangeStateTimer);
     }
 
     public IEnumerator Timer()
@@ -38,9 +35,9 @@ public class CounTime : MonoBehaviour
         }
     }
 
-    private void ChangeStateTimer(bool isTimerGo)
+    private void ChangeStateTimer(bool isStart)
     {
-        _isTimerGO = isTimerGo;
+        _isTimerGO = isStart;
     }
 
     private void SetTimerValueOnUI()
@@ -50,7 +47,6 @@ public class CounTime : MonoBehaviour
 
     private void OnDisable()
     {
-        if (m_Player != null)
-            m_Player.StateGameChanged -= ChangeStateTimer;
+        EventManager.ChangeGameState.RemoveListener(ChangeStateTimer);
     }
 }
