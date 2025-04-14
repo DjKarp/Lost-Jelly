@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+using R3;
+using UnityEngine.UI;
 
 public class InputManager : MonoBehaviour
 {
@@ -13,6 +14,20 @@ public class InputManager : MonoBehaviour
     private Vector2 _tempInputDirection;
     private Vector2 _tempJoystickDirection;
 
+    private CompositeDisposable _disposable = new CompositeDisposable();
+    public Subject<Vector2> _subjectInputManager = new();
+
+    private void Start()
+    {
+        m_JoystickMove._subjectJoystick
+            .Subscribe(_ => OnButtonOrJoystickPressed())
+            .AddTo(_disposable);
+
+        m_ButtonOnScreen._subjectButtonOnScreen
+            .Subscribe(_ => OnButtonOrJoystickPressed())
+            .AddTo(_disposable);
+    }
+
     public Vector2 GetMoveDirection()
     {
         _tempInputDirection = _tempJoystickDirection = Vector2.zero;
@@ -22,7 +37,7 @@ public class InputManager : MonoBehaviour
         if (_tempInputDirection == Vector2.zero && _tempJoystickDirection == Vector2.zero)
         {
             _tempJoystickDirection = m_ButtonOnScreen.GetDirection();
-            _direction = _tempJoystickDirection.x != 0 && _tempJoystickDirection.y != 0 ? _tempJoystickDirection : _direction;
+            _direction = _tempJoystickDirection.x != 0 || _tempJoystickDirection.y != 0 ? _tempJoystickDirection : _direction;
         }
         else
         {
@@ -31,5 +46,29 @@ public class InputManager : MonoBehaviour
         }
 
         return _direction;
+    }
+
+    private void OnButtonOrJoystickPressed()
+    {
+        var newDirection = GetMoveDirection();
+        _direction = newDirection;
+        _subjectInputManager.OnNext(_direction);
+    }
+
+    private void OnDisable()
+    {
+        _disposable.Dispose();
+    }
+
+    public void SubscribeOnStart(PressAnyKeyToStart pressAnyKeyToStart)
+    {
+        pressAnyKeyToStart.OnGameplayStart
+            .Subscribe(_ => SwitchOffPanel(false))
+            .AddTo(_disposable);
+    }
+
+    public void SwitchOffPanel(bool isShow)
+    {
+        m_JoystickMove.GetComponent<Image>().raycastTarget = isShow;
     }
 }

@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using R3;
 
 public class MovementHandler : MonoBehaviour
 {
-    private InputManager m_InputManager;
-
     private Vector2 _playerDirection = new Vector2(0, 0);
 
     private bool _isMovePlayer = false;
@@ -16,32 +15,27 @@ public class MovementHandler : MonoBehaviour
 
     public Transform Transform => transform;
 
+    private CompositeDisposable _disposable = new CompositeDisposable();
 
-    private void Awake()
+
+    public void Initialize(InputManager inputManager, PressAnyKeyToStart pressAnyKeyToStart, bool isLeftDirectionForSprite)
     {
-        EventManager.GameStateChanged.AddListener(StartStopMove);
-        EventManager.MoveDirectionChanged.AddListener(ChangeDirectionMove);
-    }
+        inputManager._subjectInputManager
+            .Subscribe(newDir => ChangeDirectionMove(newDir))
+            .AddTo(_disposable);
 
-    private void Update()
-    {
-        if (m_InputManager == null)
-            m_InputManager = FindObjectOfType<InputManager>();
-        else
-            _playerDirection = m_InputManager.GetMoveDirection();
+        pressAnyKeyToStart.OnGameplayStart
+            .Subscribe(_ => StartStopMove(true))
+            .AddTo(_disposable);
 
-        if (!_isMovePlayer && _playerDirection != Vector2.zero)
-            StartCoroutine(PlayerMove());
+        ChangeDirectionSprite(isLeftDirectionForSprite);
     }
 
     public IEnumerator PlayerMove()
     {
-        _isMovePlayer = true;
-        EventManager.GameStateChanged?.Invoke(_isMovePlayer);
-
         while (_isMovePlayer)
         {
-            Transform.localScale = new Vector3(Mathf.Abs(Transform.localScale.x) * (_playerDirection.x > 0 ? -1.0f : 1.0f), Transform.localScale.y, Transform.localScale.z);
+            ChangeDirectionSprite(_playerDirection.x < 0);
 
             Vector2 offset = _playerDirection * _snapValue;
             Transform.position = Transform.position + new Vector3(offset.x, offset.y, 0.0f);
@@ -50,16 +44,29 @@ public class MovementHandler : MonoBehaviour
         }
     }
 
-    private void StartStopMove(bool isStop)
+    private void StartStopMove(bool isStart)
     {
-        if (!isStop)
+        _isMovePlayer = isStart;
+
+        if (_isMovePlayer)
+            StartCoroutine(PlayerMove());
+        else
             StopCoroutine(PlayerMove());
-        /*else
-            StartCoroutine(PlayerMove());*/
+        
+        EventManager.PlayerMove?.Invoke(_isMovePlayer);
+    }
+    public void ChangeDirectionSprite(bool isLeft)
+    {
+        Transform.localScale = new Vector3(Mathf.Abs(Transform.localScale.x) * (!isLeft ? -1.0f : 1.0f), Transform.localScale.y, Transform.localScale.z);
     }
 
     private void ChangeDirectionMove(Vector2 newDir)
     {
+        _playerDirection = newDir;
+    }
 
+    private void OnDisable()
+    {
+        _disposable.Dispose();
     }
 }

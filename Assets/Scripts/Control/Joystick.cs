@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using R3;
 
 public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
@@ -19,6 +20,9 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
     protected Vector2 _joystickDirection;
 
     private Vector2 joystickFonPosition;
+
+    private CompositeDisposable _disposable = new CompositeDisposable();
+    public Subject<Unit> _subjectJoystick = new();
 
     private void Start()
     {
@@ -55,6 +59,8 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
             _joystickDirection = _joystickDirection.magnitude > 1.0f ? _joystickDirection.normalized : _joystickDirection;
 
             _joystick.rectTransform.anchoredPosition = new Vector2(_joystickDirection.x * (_joystickFon.rectTransform.sizeDelta.x / 2.0f), _joystickDirection.y * (_joystickFon.rectTransform.sizeDelta.y / 2.0f));
+
+            _subjectJoystick.OnNext(Unit.Default);
         }
     }
 
@@ -76,5 +82,10 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
 
         _joystickDirection = Vector2.zero;
         _joystick.rectTransform.anchoredPosition = Vector2.zero;
+    }
+
+    private void OnDisable()
+    {
+        _disposable.Dispose();
     }
 }

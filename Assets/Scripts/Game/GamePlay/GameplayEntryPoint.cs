@@ -7,20 +7,23 @@ using R3;
 public class GameplayEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIGameplayRootBinder _sceneUIRootPrefab;
+    [SerializeField] private InputManager _InputManagerPrefab;
+
     private GamePlayEnterParams _gamePlayEnterParams;
 
     [SerializeField] private List<Sprite> _jellyImageList;
-
-    private Player m_Player;
     [SerializeField] private Level _levelPrefab;
+    private Player m_Player;    
+    private MovementHandler _MovementHandler;
+    private UIGameplayRootBinder _UIGameplayRootBinder;
 
     public Observable<GamePlayExitParams> Run(UIMainView uiMainView, GamePlayEnterParams gamePlayEnterParams)
     {
-        var uiScene = Instantiate(_sceneUIRootPrefab);
-        uiMainView.AttachSceneUI(uiScene.gameObject);
+        _UIGameplayRootBinder = Instantiate(_sceneUIRootPrefab);
+        uiMainView.AttachSceneUI(_UIGameplayRootBinder.gameObject);
 
         var exitSceneSignalSubject = new Subject<Unit>();
-        uiScene.Bind(exitSceneSignalSubject);
+        _UIGameplayRootBinder.Bind(exitSceneSignalSubject);
 
         _gamePlayEnterParams = gamePlayEnterParams;
         Debug.LogError("Load Game Scene + sceneName = " + gamePlayEnterParams.SceneName + " => levelNumber = " + gamePlayEnterParams.LevelNumber);
@@ -29,18 +32,29 @@ public class GameplayEntryPoint : MonoBehaviour
         var gamePlayExitParams = new GamePlayExitParams(mainMenuEnterParams);
         var exitToMainMenuSceneSignal = exitSceneSignalSubject.Select(_ => gamePlayExitParams);
 
+        Initialize();
+
         return exitToMainMenuSceneSignal;
     }
 
-    private void Awake()
+    private void Initialize()
     {
+        var inputUI = Instantiate(_InputManagerPrefab);
+        inputUI.transform.SetParent(_UIGameplayRootBinder.transform, false);
+        inputUI.SwitchOffPanel(false);
+        var pressStart = _UIGameplayRootBinder.GetComponentInChildren<PressAnyKeyToStart>();
+        inputUI.SubscribeOnStart(pressStart);
+
         if (_jellyImageList.Count == 0)
             _jellyImageList.AddRange(Resources.LoadAll<Sprite>("Jelly"));
-        //_levelPrefab = Resources.Load("Levels/Level" + _gamePlayEnterParams.LevelNumber) as Level;
+        //var levelPrefab = Resources.Load("Levels/Level" + _gamePlayEnterParams.LevelNumber) as Level;
+        //_levelPrefab = Instantiate(levelPrefab);
         foreach (Jelly jelly in _levelPrefab.JellyListOnLevel)
             jelly.Initialize(_jellyImageList);
 
         GameObject _playerGO = (GameObject) Resources.Load("Player");
         m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();
+        _MovementHandler = m_Player.gameObject.GetComponent<MovementHandler>();
+        _MovementHandler.Initialize(inputUI, pressStart, _levelPrefab.IsLeftDirectionStartPoint);
     }
 }

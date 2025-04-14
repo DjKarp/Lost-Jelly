@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SandClock : MonoBehaviour
 {
     private Animator m_Animator;
@@ -9,7 +10,7 @@ public class SandClock : MonoBehaviour
     private void Awake()
     {
         m_Animator = gameObject.GetComponent<Animator>();
-        EventManager.GameStateChanged.AddListener(StartStopSandClock);
+        EventManager.PlayerMove.AddListener(StartStopSandClock);
     }
 
     public void StartStopSandClock(bool isStart)    
@@ -19,6 +20,6 @@ public class SandClock : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.GameStateChanged.RemoveListener(StartStopSandClock);
+        EventManager.PlayerMove.RemoveListener(StartStopSandClock);
     }
 }

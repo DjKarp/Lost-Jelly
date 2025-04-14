@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class MainMenuEnterParams
 {
-    public int NumberLevelFinish { get; }
+    public int LevelNumber { get; }
 
     public MainMenuEnterParams (int numberLevel)
     {
-        NumberLevelFinish = numberLevel;
+        LevelNumber = numberLevel;
     }
 }

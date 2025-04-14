@@ -17,13 +17,14 @@ public class Player : MonoBehaviour
     {
         m_Animator = gameObject.GetComponent<Animator>();
 
-        EventManager.GameStateChanged.AddListener(StartStopMove);
+        EventManager.PlayerMove.AddListener(StartStopMove);
 
+        /*
         this.OnCollisionEnter2DAsObservable().Subscribe(x =>
        {
            Debug.LogError("Trigger");
            Debug.LogError(x.gameObject.name);
-       });
+       });*/
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
 
         if (!isStart)
         {
-            EventManager.GameStateChanged?.Invoke(false);
+            EventManager.PlayerMove?.Invoke(false);
             Debug.LogError("Game Over!");
         }
     }

@@ -7,7 +7,8 @@ using System;
 public class Level : MonoBehaviour
 {
     [SerializeField] private Transform _startPositionTR;
-
+    [SerializeField] private bool _spriteDirectionOnLeft = true;
+    
     private int _jellyCount = 0;
 
     public Transform StartPosition
@@ -28,6 +29,8 @@ public class Level : MonoBehaviour
     {
         get => _jellyCount;
     }
+
+    public bool IsLeftDirectionStartPoint { get => _spriteDirectionOnLeft; }
 
     private void Awake()
     {

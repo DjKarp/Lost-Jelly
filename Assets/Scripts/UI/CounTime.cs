@@ -2,42 +2,30 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using R3;
 
 public class CounTime : MonoBehaviour
 {
     private TMP_Text _countTimeText;
-    private bool _isTimerGO = false;
     private float _timer = 0.0f;
+    private bool isTimerWork = false;
+    private CompositeDisposable _disposable = new CompositeDisposable();
+    [SerializeField] private PressAnyKeyToStart m_PressAnyKeyToStart;
 
     private void Awake()
     {
         _countTimeText = gameObject.GetComponent<TMP_Text>();
 
-        StartCoroutine(Timer());
+        EventManager.PlayerMove.AddListener(ChangeStateTimer);
 
-        EventManager.GameStateChanged.AddListener(ChangeStateTimer);
-    }
-
-    public IEnumerator Timer()
-    {
-        _timer = 0.0f;
-        SetTimerValueOnUI();
-
-        while (true)
-        {
-            if (_isTimerGO)
-            {
-                _timer += 1.0f;
-                SetTimerValueOnUI();
-            }
-
-            yield return new WaitForSeconds(1.0f);
-        }
+        m_PressAnyKeyToStart.OnGameplayStart
+            .Subscribe(_ => StartTimer())
+            .AddTo(_disposable);
     }
 
     private void ChangeStateTimer(bool isStart)
     {
-        _isTimerGO = isStart;
+        isTimerWork = isStart;
     }
 
     private void SetTimerValueOnUI()
@@ -47,6 +35,25 @@ public class CounTime : MonoBehaviour
 
     private void OnDisable()
     {
-        EventManager.GameStateChanged.RemoveListener(ChangeStateTimer);
+        EventManager.PlayerMove.RemoveListener(ChangeStateTimer);
+        _disposable.Dispose();
+    }
+
+    private void StartTimer()
+    {
+        isTimerWork = true;
+
+        Observable
+            .Interval(System.TimeSpan.FromSeconds(1.0f))
+            .Subscribe(_ => AddTickOnTimer())
+            .AddTo(_disposable);
+    }
+    private void AddTickOnTimer()
+    {
+        if (isTimerWork)
+        {
+            _timer++;
+            SetTimerValueOnUI();
+        }
     }
 }

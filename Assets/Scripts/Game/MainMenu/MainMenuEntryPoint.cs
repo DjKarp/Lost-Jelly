@@ -18,13 +18,13 @@ public class MainMenuEntryPoint : MonoBehaviour
         var exitSignalSubject = new Subject<Unit>();
         uiScene.Bind(exitSignalSubject);
 
-        var gameplayEnterParams = new GamePlayEnterParams(mainMenuEnterParams.NumberLevelFinish);
+        var gameplayEnterParams = new GamePlayEnterParams(mainMenuEnterParams.LevelNumber);
         var mainMenuExitParams = new MainMenuExitParams(gameplayEnterParams);
 
         var exitToGamePlaySceneSignal = exitSignalSubject.Select(x => mainMenuExitParams);
 
 
-        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> " + mainMenuEnterParams?.NumberLevelFinish);
+        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> " + mainMenuEnterParams?.LevelNumber);
 
         return exitToGamePlaySceneSignal;
     }

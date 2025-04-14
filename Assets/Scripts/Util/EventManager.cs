@@ -6,9 +6,7 @@ public class EventManager
     public static readonly UnityEvent JellyCatched = new UnityEvent();
     public static readonly UnityEvent<int> JellyCount = new UnityEvent<int>();
 
-    public static readonly UnityEvent<bool> GameStateChanged = new UnityEvent<bool>();
-
-    public static readonly UnityEvent<Vector2> MoveDirectionChanged = new UnityEvent<Vector2>();
+    public static readonly UnityEvent<bool> PlayerMove = new UnityEvent<bool>();
 
 
     static public void CallJellyCatched ()
@@ -23,11 +21,6 @@ public class EventManager
 
     static public void GameStartStop(bool isStart)
     {
-        GameStateChanged?.Invoke(isStart);
-    }
-
-    static public void MoveDirChanged(Vector2 vector2)
-    {
-        MoveDirectionChanged?.Invoke(vector2);
+        PlayerMove?.Invoke(isStart);
     }
 }

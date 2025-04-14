@@ -70,7 +70,6 @@ public class GameEntryPoint
 
         yield return new WaitForEndOfFrame();
 
-        // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
         sceneEntryPoint.Run(m_UIMainView, gamePlayEnterParams)
             .Subscribe(gamePlayExitParams =>
@@ -90,7 +89,6 @@ public class GameEntryPoint
 
         yield return new WaitForEndOfFrame();
 
-        // create DI conteiner
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
         sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams).Subscribe(mainMenuExitParams =>
         {

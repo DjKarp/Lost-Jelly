@@ -6,7 +6,6 @@ using R3;
 
 public class UIGameplayRootBinder : MonoBehaviour
 {
-    [SerializeField] InputManager m_InputManager;
     private Subject<Unit> _exitSceneSignalSubject;
 
     public void HandleGoToMainMenuButtonClick()
