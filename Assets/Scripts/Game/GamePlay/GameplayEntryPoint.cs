@@ -28,7 +28,7 @@ public class GameplayEntryPoint : MonoBehaviour
         _gamePlayEnterParams = gamePlayEnterParams;
         Debug.LogError("Load Game Scene + sceneName = " + gamePlayEnterParams.SceneName + " => levelNumber = " + gamePlayEnterParams.LevelNumber);
 
-        var mainMenuEnterParams = new MainMenuEnterParams(1);
+        var mainMenuEnterParams = new MainMenuEnterParams(gamePlayEnterParams.LevelNumber);
         var gamePlayExitParams = new GamePlayExitParams(mainMenuEnterParams);
         var exitToMainMenuSceneSignal = exitSceneSignalSubject.Select(_ => gamePlayExitParams);
 
@@ -56,11 +56,16 @@ public class GameplayEntryPoint : MonoBehaviour
 
         GameObject _playerGO = (GameObject) Resources.Load("Player");
         m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();
+        m_Player.Initialize();
         _MovementHandler = m_Player.gameObject.GetComponent<MovementHandler>();
         _MovementHandler.Initialize(inputUI, pressStart, _levelPrefab.IsLeftDirectionStartPoint);
         _levelPrefab.Initialize(m_Player);
 
         var finishScreen = _UIGameplayRootBinder.GetComponentInChildren<FinishScreen>();
-        finishScreen.Initialize(m_Player, _levelPrefab.JellyCount, _levelPrefab._starsTime);
+        finishScreen.Initialize(m_Player, _levelPrefab.JellyCount, _levelPrefab._starsTime, _gamePlayEnterParams.LevelNumber);
+
+        // Test
+        SaveLoadData saveLoadData = new SaveLoadData();
+        saveLoadData.SavedOpenLavelRandom();
     }
 }

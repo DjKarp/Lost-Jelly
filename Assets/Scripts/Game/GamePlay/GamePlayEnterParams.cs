@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GamePlayEnterParams : SceneEnterParams
 {
-    public int LevelNumber { get; }
+    public int LevelNumber { get; set; }
 
     public GamePlayEnterParams(int levelNumber) : base(Scenes.GAME)
     {

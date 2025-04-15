@@ -38,22 +38,12 @@ public class MovementHandler : MonoBehaviour
             .Subscribe(_ => MovePlayer())
             .AddTo(_disposable);
     }
-    /*
-    public IEnumerator PlayerMove()
-    {
-        while (_isMovePlayer)
-        {
-            CMovePlayer();
-
-            yield return new WaitForSeconds(PlayerSpeedOnSecond);
-        }
-    }*/
-
     private void MovePlayer()
     {
         if (_isMovePlayer)
         {
-            ChangeDirectionSprite(_playerDirection.x < 0);
+            if (_playerDirection.x != 0.0f) 
+                ChangeDirectionSprite(_playerDirection.x < 0.0f);
 
             Vector2 offset = _playerDirection * _snapValue;
             Transform.position = Transform.position + new Vector3(offset.x, offset.y, 0.0f);
@@ -63,8 +53,6 @@ public class MovementHandler : MonoBehaviour
     private void StartMove()
     {
         _isMovePlayer = true;
-
-        /*StartCoroutine(PlayerMove());*/
         
         EventManager.GameStartStop(_isMovePlayer);
     }
@@ -72,8 +60,6 @@ public class MovementHandler : MonoBehaviour
     private void StopMove(bool isMove)
     {
         _isMovePlayer = isMove;
-
-        /*StopCoroutine(PlayerMove());*/
     }
     public void ChangeDirectionSprite(bool isLeft)
     {

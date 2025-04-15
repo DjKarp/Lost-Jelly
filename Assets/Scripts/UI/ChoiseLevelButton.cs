@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class ReplayButton : ButtonsUI
+public class ChoiseLevelButton : ButtonsUI
 {
     protected override void ButtonClick()
     {
-        GameEntryPoint._instance.RestartGameScene();
+        GameEntryPoint._instance.LoadLevelSelect();
     }
 }

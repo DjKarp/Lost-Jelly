@@ -5,6 +5,7 @@ using UnityEngine;
 public abstract class SceneEnterParams
 {
     public string SceneName { get; }
+    public bool _isLevelChoiseOpen = false;
 
     public SceneEnterParams(string sceneName)
     {

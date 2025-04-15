@@ -8,24 +8,37 @@ public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private UIMainMenuRootBinder _sceneUIRootPrefab;
 
-    public Observable<MainMenuExitParams> Run(UIMainView uiMainView, MainMenuEnterParams mainMenuEnterParams)
+    private UIMainMenuRootBinder _UIMainMenuRootBinder;
+    private GamePlayEnterParams _gamePlayEnterParams;
+    private MainMenuExitParams _mainMenuExitParams;
+    private MainMenu m_MainMenu;
+
+    public Observable<MainMenuExitParams> Run(UIMainView uiMainView, MainMenuEnterParams mainMenuEnterParams, bool isLevelSelect = false)
     {
         Debug.LogError("Load Main Menu Scene");
 
-        var uiScene = Instantiate(_sceneUIRootPrefab);
-        uiMainView.AttachSceneUI(uiScene.gameObject);
+        _UIMainMenuRootBinder = Instantiate(_sceneUIRootPrefab);
+        uiMainView.AttachSceneUI(_UIMainMenuRootBinder.gameObject);
 
         var exitSignalSubject = new Subject<Unit>();
-        uiScene.Bind(exitSignalSubject);
+        _UIMainMenuRootBinder.Bind(exitSignalSubject);
 
-        var gameplayEnterParams = new GamePlayEnterParams(mainMenuEnterParams.LevelNumber);
-        var mainMenuExitParams = new MainMenuExitParams(gameplayEnterParams);
+        int levelNumber = mainMenuEnterParams != null ? mainMenuEnterParams.LevelNumber : new SaveLoadData().GetLastOpenLevel();
 
-        var exitToGamePlaySceneSignal = exitSignalSubject.Select(x => mainMenuExitParams);
+        _gamePlayEnterParams = new GamePlayEnterParams(levelNumber);
+        _mainMenuExitParams = new MainMenuExitParams(_gamePlayEnterParams);
 
+        var exitToGamePlaySceneSignal = exitSignalSubject.Select(x => _mainMenuExitParams);
 
-        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> " + mainMenuEnterParams?.LevelNumber);
+        Initialize(isLevelSelect);
+        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> " + levelNumber);
 
         return exitToGamePlaySceneSignal;
+    }
+
+    private void Initialize(bool isLevelSelect = false)
+    {
+        m_MainMenu = _UIMainMenuRootBinder.gameObject.GetComponent<MainMenu>();
+        m_MainMenu.Initialize(isLevelSelect);
     }
 }
