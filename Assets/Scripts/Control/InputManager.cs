@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
     private Vector2 _tempJoystickDirection;
 
     private CompositeDisposable _disposable = new CompositeDisposable();
-    public Subject<Vector2> _subjectInputManager = new();
+    public Subject<Vector2> SubjectInputManager = new();
 
     private void Start()
     {
@@ -52,10 +52,10 @@ public class InputManager : MonoBehaviour
     {
         var newDirection = GetMoveDirection();
         _direction = newDirection;
-        _subjectInputManager.OnNext(_direction);
+        SubjectInputManager.OnNext(_direction);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _disposable.Dispose();
     }

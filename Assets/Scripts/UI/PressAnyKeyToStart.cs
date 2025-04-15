@@ -13,7 +13,7 @@ public class PressAnyKeyToStart : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(true);
-        screenButton.onClick.AddListener(() => HideStartGameplayScreen());
+        screenButton.Add(() => HideStartGameplayScreen());
     }
 
     private void HideStartGameplayScreen()

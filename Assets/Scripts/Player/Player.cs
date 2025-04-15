@@ -11,13 +11,13 @@ using R3.Triggers;
 public class Player : MonoBehaviour
 {
     private Animator m_Animator;
-    
+
+    public ReplaySubject<Unit> ReplaySubjectJellyCatch = new ReplaySubject<Unit>();
+    public Subject<bool> FinishLevel = new Subject<bool>();
 
     private void Awake()
     {
         m_Animator = gameObject.GetComponent<Animator>();
-
-        EventManager.PlayerMove.AddListener(StartStopMove);
 
         /*
         this.OnCollisionEnter2DAsObservable().Subscribe(x =>
@@ -33,27 +33,33 @@ public class Player : MonoBehaviour
         {
             CatchJelly(m_Jelly);
         }
-        else
+        else 
         {
             StartStopMove(false);
+
+            if (collision.TryGetComponent(out FinishLevel finishLevel))
+            {
+                FinishLevel?.OnNext(true);
+            }
+            else
+            {
+                EventManager.GameStartStop(false);
+                FinishLevel?.OnNext(false);
+                Debug.LogError("Game Over!");
+            }
+
+            FinishLevel.OnCompleted();
         }
     }
 
     public void CatchJelly(Jelly jelly)
     {
-        EventManager.CallJellyCatched();
+        ReplaySubjectJellyCatch?.OnNext(Unit.Default);
         jelly.Deactivate();
-        Debug.LogError("AM2222!");
     }
 
     private void StartStopMove(bool isStart)
     {
         m_Animator.SetBool("IsMove", isStart);
-
-        if (!isStart)
-        {
-            EventManager.PlayerMove?.Invoke(false);
-            Debug.LogError("Game Over!");
-        }
     }
 }

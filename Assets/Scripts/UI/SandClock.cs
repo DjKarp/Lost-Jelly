@@ -15,10 +15,13 @@ public class SandClock : MonoBehaviour
 
     public void StartStopSandClock(bool isStart)    
     {
-        m_Animator.SetBool("isStartGame", isStart);
+        Debug.LogError("isStart = " + isStart);
+
+        if (m_Animator.GetBool("isStartGame") != isStart) 
+            m_Animator.SetBool("isStartGame", isStart);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         EventManager.PlayerMove.RemoveListener(StartStopSandClock);
     }

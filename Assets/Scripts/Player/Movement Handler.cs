@@ -14,46 +14,66 @@ public class MovementHandler : MonoBehaviour
     public float _playerSpeed => 30;
 
     public Transform Transform => transform;
+    public float PlayerSpeedOnSecond { get => (1.0f / 60.0f) * _playerSpeed; }
 
     private CompositeDisposable _disposable = new CompositeDisposable();
 
 
     public void Initialize(InputManager inputManager, PressAnyKeyToStart pressAnyKeyToStart, bool isLeftDirectionForSprite)
     {
-        inputManager._subjectInputManager
+        inputManager.SubjectInputManager
             .Subscribe(newDir => ChangeDirectionMove(newDir))
             .AddTo(_disposable);
 
         pressAnyKeyToStart.OnGameplayStart
-            .Subscribe(_ => StartStopMove(true))
+            .Subscribe(_ => StartMove())
             .AddTo(_disposable);
 
         ChangeDirectionSprite(isLeftDirectionForSprite);
-    }
 
+        EventManager.PlayerMove.AddListener(StopMove);
+
+        Observable
+            .Interval(TimeSpan.FromSeconds(PlayerSpeedOnSecond))
+            .Subscribe(_ => MovePlayer())
+            .AddTo(_disposable);
+    }
+    /*
     public IEnumerator PlayerMove()
     {
         while (_isMovePlayer)
+        {
+            CMovePlayer();
+
+            yield return new WaitForSeconds(PlayerSpeedOnSecond);
+        }
+    }*/
+
+    private void MovePlayer()
+    {
+        if (_isMovePlayer)
         {
             ChangeDirectionSprite(_playerDirection.x < 0);
 
             Vector2 offset = _playerDirection * _snapValue;
             Transform.position = Transform.position + new Vector3(offset.x, offset.y, 0.0f);
-
-            yield return new WaitForSeconds((1.0f / 60.0f) * _playerSpeed);
         }
     }
 
-    private void StartStopMove(bool isStart)
+    private void StartMove()
     {
-        _isMovePlayer = isStart;
+        _isMovePlayer = true;
 
-        if (_isMovePlayer)
-            StartCoroutine(PlayerMove());
-        else
-            StopCoroutine(PlayerMove());
+        /*StartCoroutine(PlayerMove());*/
         
-        EventManager.PlayerMove?.Invoke(_isMovePlayer);
+        EventManager.GameStartStop(_isMovePlayer);
+    }
+
+    private void StopMove(bool isMove)
+    {
+        _isMovePlayer = isMove;
+
+        /*StopCoroutine(PlayerMove());*/
     }
     public void ChangeDirectionSprite(bool isLeft)
     {
@@ -65,7 +85,7 @@ public class MovementHandler : MonoBehaviour
         _playerDirection = newDir;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _disposable.Dispose();
     }

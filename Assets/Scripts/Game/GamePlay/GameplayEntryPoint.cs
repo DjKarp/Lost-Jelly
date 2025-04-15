@@ -41,20 +41,26 @@ public class GameplayEntryPoint : MonoBehaviour
     {
         var inputUI = Instantiate(_InputManagerPrefab);
         inputUI.transform.SetParent(_UIGameplayRootBinder.transform, false);
+        inputUI.transform.SetSiblingIndex(0);
         inputUI.SwitchOffPanel(false);
+
         var pressStart = _UIGameplayRootBinder.GetComponentInChildren<PressAnyKeyToStart>();
-        inputUI.SubscribeOnStart(pressStart);
+        inputUI.SubscribeOnStart(pressStart);              
 
         if (_jellyImageList.Count == 0)
             _jellyImageList.AddRange(Resources.LoadAll<Sprite>("Jelly"));
         //var levelPrefab = Resources.Load("Levels/Level" + _gamePlayEnterParams.LevelNumber) as Level;
         //_levelPrefab = Instantiate(levelPrefab);
         foreach (Jelly jelly in _levelPrefab.JellyListOnLevel)
-            jelly.Initialize(_jellyImageList);
+            jelly.Initialize(_jellyImageList);        
 
         GameObject _playerGO = (GameObject) Resources.Load("Player");
         m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();
         _MovementHandler = m_Player.gameObject.GetComponent<MovementHandler>();
         _MovementHandler.Initialize(inputUI, pressStart, _levelPrefab.IsLeftDirectionStartPoint);
+        _levelPrefab.Initialize(m_Player);
+
+        var finishScreen = _UIGameplayRootBinder.GetComponentInChildren<FinishScreen>();
+        finishScreen.Initialize(m_Player, _levelPrefab.JellyCount, _levelPrefab._starsTime);
     }
 }

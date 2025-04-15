@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using R3;
 
-public class CounTime : MonoBehaviour
+public class CountTime : MonoBehaviour
 {
     private TMP_Text _countTimeText;
     private float _timer = 0.0f;
@@ -12,7 +12,7 @@ public class CounTime : MonoBehaviour
     private CompositeDisposable _disposable = new CompositeDisposable();
     [SerializeField] private PressAnyKeyToStart m_PressAnyKeyToStart;
 
-    private void Awake()
+    private void Start()
     {
         _countTimeText = gameObject.GetComponent<TMP_Text>();
 
@@ -55,5 +55,10 @@ public class CounTime : MonoBehaviour
             _timer++;
             SetTimerValueOnUI();
         }
+    }
+
+    public int GetTimerValue()
+    {
+        return (int)_timer;
     }
 }

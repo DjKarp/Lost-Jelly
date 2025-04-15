@@ -1,11 +1,11 @@
 
 using UnityEngine;
 using TMPro;
+using R3;
 
 public class CountJelly : MonoBehaviour
 {
-    private TMP_Text _countJellyText;
-
+    private TMP_Text _countJellyText;    
 
     private void Awake()
     {
@@ -16,5 +16,10 @@ public class CountJelly : MonoBehaviour
     private void ChangeCountText(int value)
     {
         _countJellyText.text = value.ToString();
+    }
+
+    private void OnDestroy()
+    {
+        EventManager.JellyCount.RemoveListener(ChangeCountText);
     }
 }

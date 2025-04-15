@@ -84,7 +84,7 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
         _joystick.rectTransform.anchoredPosition = Vector2.zero;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _disposable.Dispose();
     }

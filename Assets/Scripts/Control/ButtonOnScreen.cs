@@ -35,7 +35,7 @@ public class ButtonOnScreen : MonoBehaviour
         return _direction;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _leftButton.RemoveAll();
         _rightButton.RemoveAll();
