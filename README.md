@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="Assets/Art/icon.png" width="128" alt="Snake Puzzle Icon" />
+  <img src="https://raw.githubusercontent.com/DjKarp/Lost-Jelly/main/banner.png" alt="Lost Jelly Banner" />
 </p>
 
 <h1 align="center">🐍 Lost Jelly Remastered - Snake Puzzle</h1>
@@ -7,6 +7,10 @@
 <p align="center">
   <b>Змейка, которой нужно не только двигаться, но и думать.</b><br/>
   Головоломка-аркада на Unity с уникальными уровнями, UI и реактивщиной.
+</p>
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/DjKarp/Lost-Jelly/main/logo.png" alt="Lost Jelly Logo" width="100"/>
 </p>
 
 <p align="center">
