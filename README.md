@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/DjKarp/Lost-Jelly/main/logo.png" alt="Lost Jelly Logo" width="100"/>
+  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/Blocks_01_256x256_Alt_02_006.png" alt="Lost Jelly Logo" width="100"/>
 </p>
 
 <p align="center">
