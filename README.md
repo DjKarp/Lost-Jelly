@@ -57,12 +57,8 @@
 ## 🎥 Демонстрация
 
 <p align="center">
-  [https://pic.rutubelist.ru/video/2025-03-07/e2/2d/e22dbf13980d67430e9f755701cb9876.jpg](https://rutube.ru/video/fb76ec6ad979c4f2e6df7902f307f9d4/)
-
-  [![Смотреть видео]([Pictures/02.png](https://pic.rutubelist.ru/video/2025-03-07/e2/2d/e22dbf13980d67430e9f755701cb9876.jpg))](https://rutube.ru/video/fb76ec6ad979c4f2e6df7902f307f9d4/)
-
+<b>Смотреть видео на RuTube - Кликни по картинке</b><br/>
    [![Смотреть видео](https://pic.rutubelist.ru/video/2025-03-07/e2/2d/e22dbf13980d67430e9f755701cb9876.jpg)](https://rutube.ru/video/fb76ec6ad979c4f2e6df7902f307f9d4/)
-
 </p>
 
 ---
