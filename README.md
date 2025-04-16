@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/banner.png" alt="Lost Jelly Banner" />
+  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/A_2D_digital_illustration_promotional_banner_for_a.png" alt="Lost Jelly Banner" />
 </p>
 
 <h1 align="center">🐍 Lost Jelly Remastered - Snake Puzzle</h1>
