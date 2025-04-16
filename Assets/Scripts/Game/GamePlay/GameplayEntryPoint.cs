@@ -62,10 +62,6 @@ public class GameplayEntryPoint : MonoBehaviour
         _levelPrefab.Initialize(m_Player);
 
         var finishScreen = _UIGameplayRootBinder.GetComponentInChildren<FinishScreen>();
-        finishScreen.Initialize(m_Player, _levelPrefab.JellyCount, _levelPrefab._starsTime, _gamePlayEnterParams.LevelNumber);
-
-        // Test
-        SaveLoadData saveLoadData = new SaveLoadData();
-        saveLoadData.SavedOpenLavelRandom();
+        finishScreen.Initialize(m_Player, _levelPrefab.JellyCount, _levelPrefab._starsTime, _gamePlayEnterParams.LevelNumber);        
     }
 }

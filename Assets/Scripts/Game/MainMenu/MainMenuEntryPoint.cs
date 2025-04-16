@@ -26,12 +26,12 @@ public class MainMenuEntryPoint : MonoBehaviour
         int levelNumber = mainMenuEnterParams != null ? mainMenuEnterParams.LevelNumber : new SaveLoadData().GetLastOpenLevel();
 
         _gamePlayEnterParams = new GamePlayEnterParams(levelNumber);
-        _mainMenuExitParams = new MainMenuExitParams(_gamePlayEnterParams);
+        _mainMenuExitParams = new MainMenuExitParams(_gamePlayEnterParams, levelNumber);
 
         var exitToGamePlaySceneSignal = exitSignalSubject.Select(x => _mainMenuExitParams);
 
         Initialize(isLevelSelect);
-        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> " + levelNumber);
+        Debug.LogError("Main Menu Entry Point: Run Main Menu scene -> LastOpenLevel - " + levelNumber);
 
         return exitToGamePlaySceneSignal;
     }

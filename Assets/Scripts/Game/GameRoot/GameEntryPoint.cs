@@ -69,8 +69,7 @@ public class GameEntryPoint
 
     public void NextLevel(int levelNumber)
     {
-        _lastGamePlayEnterParams.LevelNumber = levelNumber;
-        m_Coroutines.StartCoroutine(LoadAndStartGame(_lastGamePlayEnterParams));
+        m_Coroutines.StartCoroutine(LoadAndStartGame(new GamePlayEnterParams(levelNumber)));
     }
 
     private IEnumerator LoadAndStartGame(GamePlayEnterParams gamePlayEnterParams)
@@ -105,10 +104,11 @@ public class GameEntryPoint
         yield return LoadScene(Scenes.MAIN_MENU);
 
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams, isLevelSelect).Subscribe(mainMenuExitParams =>
+        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams, isLevelSelect)
+            .Subscribe(mainMenuExitParams =>
         {
             var targetSceneName = mainMenuExitParams.SceneEnterParams.SceneName;
-
+            
             switch (targetSceneName)
             {
                 case (Scenes.GAME):

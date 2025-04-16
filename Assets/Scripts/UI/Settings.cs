@@ -7,5 +7,9 @@ public class Settings : MonoBehaviour
     private void OnEnable()
     {
         Debug.LogError("Settings Open!");
+
+        // Test
+        SaveLoadData saveLoadData = new SaveLoadData();
+        saveLoadData.SavedOpenLavelRandom();
     }
 }
