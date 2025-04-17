@@ -49,8 +49,8 @@ public class GameplayEntryPoint : MonoBehaviour
 
         if (_jellyImageList.Count == 0)
             _jellyImageList.AddRange(Resources.LoadAll<Sprite>("Jelly"));
-        //var levelPrefab = Resources.Load("Levels/Level" + _gamePlayEnterParams.LevelNumber) as Level;
-        //_levelPrefab = Instantiate(levelPrefab);
+        var levelPrefab = Resources.Load<Level>("Levels/Level" + _gamePlayEnterParams.LevelNumber);
+        _levelPrefab = Instantiate(levelPrefab);
         foreach (Jelly jelly in _levelPrefab.JellyListOnLevel)
             jelly.Initialize(_jellyImageList);        
 
