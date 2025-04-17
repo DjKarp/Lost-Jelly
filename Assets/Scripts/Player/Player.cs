@@ -15,9 +15,16 @@ public class Player : MonoBehaviour
     public ReplaySubject<Unit> ReplaySubjectJellyCatch = new ReplaySubject<Unit>();
     public Subject<bool> FinishLevel = new Subject<bool>();
 
-    public void Initialize()
+    private JellyBox _jellyBoxPrefab;
+    private JellyBox _tempJellyBox;
+    private List<JellyBox> _jellyBoxes = new List<JellyBox>();
+
+    public void Initialize(bool isLeftDirection)
     {
         m_Animator = gameObject.GetComponent<Animator>();
+
+        _jellyBoxPrefab = Resources.Load<JellyBox>("BoxWhitJelly");
+        _tempJellyBox = Instantiate(_jellyBoxPrefab, transform.position + new Vector3((MovementHandler._snapValue * (isLeftDirection ? 1 : -1)), 0.0f, 0.0f), Quaternion.identity);
 
         this.OnTriggerEnter2DAsObservable()
             .Subscribe(x =>
@@ -40,8 +47,6 @@ public class Player : MonoBehaviour
                         FinishLevel?.OnNext(false);
                         Debug.LogError("Game Over!");
                     }
-
-                    //FinishLevel.OnCompleted();
                 }
             });
     }
@@ -55,5 +60,10 @@ public class Player : MonoBehaviour
     private void StartStopMove(bool isStart)
     {
         m_Animator.SetBool("IsMove", isStart);
+    }
+
+    private void OnDestroy()
+    {
+        FinishLevel.OnCompleted();
     }
 }

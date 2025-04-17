@@ -56,7 +56,7 @@ public class GameplayEntryPoint : MonoBehaviour
 
         GameObject _playerGO = (GameObject) Resources.Load("Player");
         m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();
-        m_Player.Initialize();
+        m_Player.Initialize(_levelPrefab.IsLeftDirectionStartPoint);
         _MovementHandler = m_Player.gameObject.GetComponent<MovementHandler>();
         _MovementHandler.Initialize(inputUI, pressStart, _levelPrefab.IsLeftDirectionStartPoint);
         _levelPrefab.Initialize(m_Player);

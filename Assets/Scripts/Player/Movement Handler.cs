@@ -9,7 +9,7 @@ public class MovementHandler : MonoBehaviour
     private Vector2 _playerDirection = new Vector2(0, 0);
 
     private bool _isMovePlayer = false;
-    private float _snapValue = 0.5f;
+    public static float _snapValue = 0.5f;
 
     public float _playerSpeed => 30;
 
