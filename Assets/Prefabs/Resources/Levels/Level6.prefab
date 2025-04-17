@@ -18797,7 +18797,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 3
       m_TileSpriteIndex: 21
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -18807,7 +18807,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 2
       m_TileSpriteIndex: 20
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -18837,7 +18837,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 1
       m_TileSpriteIndex: 17
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -18847,7 +18847,7 @@ Tilemap:
       serializedVersion: 2
       m_TileIndex: 0
       m_TileSpriteIndex: 16
-      m_TileMatrixIndex: 0
+      m_TileMatrixIndex: 3
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
@@ -18960,7 +18960,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: -766143621, guid: 334231c3c91541846ae9e58dd9c3942a, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 54
+  - m_RefCount: 50
     m_Data:
       e00: 1
       e01: 0
@@ -18998,21 +18998,39 @@ Tilemap:
       e33: 1
   - m_RefCount: 0
     m_Data:
-      e00: -2.0380793e-29
-      e01: NaN
-      e02: -2.8281114e+15
+      e00: -4.935871e-23
+      e01: 1.3e-44
+      e02: 2.7008102e-36
       e03: 0
-      e10: 2.7e-43
+      e10: 2.55e-43
       e11: 7e-45
       e12: 4.5905e-41
       e13: 0
-      e20: 4.6775e-41
+      e20: 1.54956e-40
       e21: 0
-      e22: -2.0380768e-29
+      e22: -4.935866e-23
       e23: 0
       e30: 0
       e31: 7.34684e-40
-      e32: 2.7e-43
+      e32: 2.55e-43
+      e33: 1
+  - m_RefCount: 4
+    m_Data:
+      e00: 1
+      e01: 0
+      e02: 0
+      e03: 1.1159954
+      e10: 0
+      e11: 1
+      e12: 0
+      e13: -0.11544752
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
       e33: 1
   m_TileColorArray:
   - m_RefCount: 58
@@ -30847,7 +30865,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.28298116}
@@ -40608,10 +40626,10 @@ Transform:
   m_Children:
   - {fileID: 9191363747706270766}
   - {fileID: 509328052138674407}
+  - {fileID: 762879649135450324}
   - {fileID: 108207939822419191}
   - {fileID: 7783896499586174014}
   - {fileID: 2119257325834092780}
-  - {fileID: 762879649135450324}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &6599714824535920603

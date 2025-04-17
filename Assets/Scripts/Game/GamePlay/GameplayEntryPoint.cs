@@ -11,8 +11,8 @@ public class GameplayEntryPoint : MonoBehaviour
 
     private GamePlayEnterParams _gamePlayEnterParams;
 
-    [SerializeField] private List<Sprite> _jellyImageList;
-    [SerializeField] private Level _levelPrefab;
+    private List<Sprite> _jellyImageList = new List<Sprite>();
+    private Level _levelPrefab;
     private Player m_Player;    
     private MovementHandler _MovementHandler;
     private UIGameplayRootBinder _UIGameplayRootBinder;
@@ -55,9 +55,9 @@ public class GameplayEntryPoint : MonoBehaviour
             jelly.Initialize(_jellyImageList);        
 
         GameObject _playerGO = (GameObject) Resources.Load("Player");
-        m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();
-        m_Player.Initialize(_levelPrefab.IsLeftDirectionStartPoint);
+        m_Player = Instantiate(_playerGO, _levelPrefab.StartPosition.position, Quaternion.identity).GetComponent<Player>();        
         _MovementHandler = m_Player.gameObject.GetComponent<MovementHandler>();
+        m_Player.Initialize(_levelPrefab.IsLeftDirectionStartPoint, _MovementHandler.NewPositionSubject);
         _MovementHandler.Initialize(inputUI, pressStart, _levelPrefab.IsLeftDirectionStartPoint);
         _levelPrefab.Initialize(m_Player);
 

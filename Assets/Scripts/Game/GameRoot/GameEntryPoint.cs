@@ -45,12 +45,13 @@ public class GameEntryPoint
                 m_Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
                 return;
 
+            case Scenes.BOOTSTRAP:                                  // Added for Srtart from Boostrap
             case Scenes.MAIN_MENU:
                 m_Coroutines.StartCoroutine(LoadAndStartMainMenu());
                 return;
 
-            case Scenes.BOOTSTRAP:
-                return;
+            /*case Scenes.BOOTSTRAP:
+                return;*/
 
             default: return;
         }

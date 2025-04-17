@@ -26,6 +26,12 @@ public class InputManager : MonoBehaviour
         m_ButtonOnScreen._subjectButtonOnScreen
             .Subscribe(_ => OnButtonOrJoystickPressed())
             .AddTo(_disposable);
+
+        Observable
+            .EveryUpdate()
+            .Where(_ => (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f))
+            .Subscribe(_ => OnButtonOrJoystickPressed())
+            .AddTo(_disposable);
     }
 
     public Vector2 GetMoveDirection()

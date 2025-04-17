@@ -17,6 +17,7 @@ public class MovementHandler : MonoBehaviour
     public float PlayerSpeedOnSecond { get => (1.0f / 60.0f) * _playerSpeed; }
 
     private CompositeDisposable _disposable = new CompositeDisposable();
+    public Subject<Vector2> NewPositionSubject = new Subject<Vector2>();
 
 
     public void Initialize(InputManager inputManager, PressAnyKeyToStart pressAnyKeyToStart, bool isLeftDirectionForSprite)
@@ -47,6 +48,9 @@ public class MovementHandler : MonoBehaviour
 
             Vector2 offset = _playerDirection * _snapValue;
             Transform.position = Transform.position + new Vector3(offset.x, offset.y, 0.0f);
+
+            if (offset != Vector2.zero)
+                NewPositionSubject?.OnNext(new Vector2(Transform.position.x, Transform.position.y));
         }
     }
 

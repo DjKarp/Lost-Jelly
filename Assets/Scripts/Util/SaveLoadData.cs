@@ -55,11 +55,11 @@ public class SaveLoadData
     public void SavedOpenLavelRandom()
     {
         PlayerPrefs.DeleteAll();
-        Debug.LogError("Save cleared and Create new!");
+        /*Debug.LogError("Save cleared and Create new!");
         for (int i = 0; i < Random.Range(3, 6); i++)
         {
             SetLastOpenLevel(i);
             SetStarsCount(i, Random.Range(0, 3));
-        }
+        }*/
     }
 }

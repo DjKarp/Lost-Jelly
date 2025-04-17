@@ -22,7 +22,7 @@ public class Door : MonoBehaviour
     public void OpenDoor()
     {
         m_Animator.SetBool("isOpen", true);
-        m_PolygonCollider2D.Deactivate();
+        //m_PolygonCollider2D.Deactivate();
     }
 
     public void OnDestroy()
