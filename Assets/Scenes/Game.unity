@@ -187,8 +187,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _sceneUIRootPrefab: {fileID: 1404599243318629552, guid: 52a55805b95fbf942b311468d1307f7c, type: 3}
   _InputManagerPrefab: {fileID: 7941011889413402464, guid: 3cda4bfb99e7b0247b52617874dcbb52, type: 3}
-  _jellyImageList: []
-  _levelPrefab: {fileID: 0}
 --- !u!4 &169111279
 Transform:
   m_ObjectHideFlags: 0
