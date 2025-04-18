@@ -41,17 +41,21 @@ public class GameEntryPoint
         switch(sceneName)
         {
             case Scenes.GAME:
-                var enterParams = new GamePlayEnterParams(1);
+                var enterParams = new GamePlayEnterParams(new SaveLoadData().GetLastOpenLevel());
                 m_Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
                 return;
 
-            case Scenes.BOOTSTRAP:                                  // Added for Srtart from Boostrap
+            case Scenes.MOVIE:
+                m_Coroutines.StartCoroutine(LoadAndStartMovie());
+                return;
+
+            //case Scenes.BOOTSTRAP:                                  // Added for Srtart from Boostrap
             case Scenes.MAIN_MENU:
                 m_Coroutines.StartCoroutine(LoadAndStartMainMenu());
                 return;
 
-            /*case Scenes.BOOTSTRAP:
-                return;*/
+            case Scenes.BOOTSTRAP:
+                return;
 
             default: return;
         }
@@ -119,6 +123,24 @@ public class GameEntryPoint
         });
 
         
+
+        m_UIMainView.HideLoadingScreen();
+    }
+
+    private IEnumerator LoadAndStartMovie(MainMenuEnterParams mainMenuEnterParams = null)
+    {
+        m_UIMainView.ShowLoadingScreen();
+
+        yield return LoadScene(Scenes.BOOTSTRAP);
+        yield return LoadScene(Scenes.MOVIE);
+
+        MovieEntryPoint sceneMovieEntryPoint = Object.FindObjectOfType<MovieEntryPoint>();
+
+        sceneMovieEntryPoint.Run(m_UIMainView, mainMenuEnterParams)
+            .Subscribe(gameplayExitParams =>
+            {
+                m_Coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.MainMenuEnterParams));
+            });
 
         m_UIMainView.HideLoadingScreen();
     }
