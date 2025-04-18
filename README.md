@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/A_2D_digital_illustration_promotional_banner_for_a.png" alt="Lost Jelly Banner" width="256" height="256"/>
+  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/MainGit/A_2D_digital_illustration_promotional_banner_for_a.png" alt="Lost Jelly Banner" width="256" height="256"/>
 </p>
 
 <h1 align="center">🐍 Lost Jelly Remastered - Snake Puzzle</h1>
@@ -10,7 +10,7 @@
 </p>
 
 <p align="center">
-  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/Blocks_01_256x256_Alt_02_006.png" alt="Lost Jelly Logo" width="100"/>
+  <img src="https://github.com/DjKarp/Lost-Jelly/blob/master/MainGit/Blocks_01_256x256_Alt_02_006.png" alt="Lost Jelly Logo" width="100"/>
 </p>
 
 <p align="center">
