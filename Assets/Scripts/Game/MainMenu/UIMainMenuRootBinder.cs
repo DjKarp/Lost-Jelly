@@ -12,11 +12,6 @@ public class UIMainMenuRootBinder : MonoBehaviour
     {
         _exitSceneSignalSubject?.OnNext(Unit.Default);
     }
-    /*
-    public void HandleGoToGamePlayButtonClickToLevel(int levelNumber)
-    {
-        _exitSceneSignalSubject?.OnNext(levelNumber);
-    }*/
 
     public void Bind(Subject<Unit> exitSceneSignalSubject)
     {
