@@ -1266,7 +1266,7 @@ Transform:
   m_GameObject: {fileID: 3197350367475158925}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.377, y: -4.917, z: 0}
+  m_LocalPosition: {x: 3.377, y: -4.705, z: 0}
   m_LocalScale: {x: 1.2462, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1359,7 +1359,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: -0.0041309004, y: 0.19782706}
+    pivot: {x: -0.0011319538, y: 0.66247684}
     oldSize: {x: 1, y: 0.43243244}
     newSize: {x: 1, y: 0.43243244}
     adaptiveTilingThreshold: 0.5
@@ -2324,7 +2324,7 @@ GameObject:
   m_Layer: 0
   m_Name: StartPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -3177,7 +3177,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 1
+      m_TileSpriteIndex: 47
       m_TileMatrixIndex: 1
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -4267,7 +4267,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 1
       m_TileColorIndex: 1
       m_TileObjectToInstantiateIndex: 65535
@@ -6102,10 +6102,10 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: -1240639278, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -47423838, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: 856489011, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
   - m_RefCount: 1
@@ -6196,8 +6196,8 @@ Tilemap:
     m_Data: {fileID: -212992078, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: -1629711106, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: -47423838, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 0
     m_Data:

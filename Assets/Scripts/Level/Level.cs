@@ -11,6 +11,8 @@ public class Level : MonoBehaviour
     [SerializeField] private bool _spriteDirectionOnLeft = true;
     [SerializeField] public int[] _starsTime = new int[2];
     private Player m_Player;
+    private FlyLeaves _FlyLeaves;
+    private Blicker _Blicker;
     
     private int _jellyCount = 0;
 
@@ -46,6 +48,12 @@ public class Level : MonoBehaviour
         m_Player.ReplaySubjectJellyCatch
             .Subscribe(_ => CatchJelly())
             .AddTo(_disposable);
+
+        _FlyLeaves = new FlyLeaves();
+        _FlyLeaves.Initialize();
+
+        _Blicker = new Blicker();
+        _Blicker.Initialize(JellyListOnLevel);
     }
 
     private void Start()
