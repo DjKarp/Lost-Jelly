@@ -5,8 +5,7 @@ using R3;
 
 public class JellyBox : MonoBehaviour
 {
-    private Player m_Player;
-    //private JellyBox _prevJellyBox;    
+    private Player m_Player;   
     private CompositeDisposable _disposables = new CompositeDisposable();
     private Transform m_Transform;
     private int _number;
@@ -17,18 +16,10 @@ public class JellyBox : MonoBehaviour
         m_Player = player;
         _number = number;
 
-        //m_Transform.position = m_Player.ge;
-
         subject
             .Subscribe(_ => NewPositionMove(_))
             .AddTo(_disposables);
     }
-
-    /*public void AttachNewJellyBox(JellyBox jellyBox, Vector2 position)
-    {
-        _prevJellyBox = jellyBox;
-        transform.position = position;
-    }*/
 
     private void NewPositionMove(Vector2 vector2)
     {

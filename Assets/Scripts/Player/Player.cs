@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private JellyBox _tempJellyBox;
     private List<JellyBox> _jellyBoxes = new List<JellyBox>();
     private List<Vector2> _positionsList = new List<Vector2>();
+    private Transform _jellyBoxParent;
 
     private int _jellyBoxCount = 0;
 
@@ -32,8 +33,9 @@ public class Player : MonoBehaviour
 
         _positionsList.Add(transform.position);
 
+        _jellyBoxParent = new GameObject("JellyBoxParent").transform;
         _jellyBoxPrefab = Resources.Load<JellyBox>("BoxWhitJelly");
-        _tempJellyBox = Instantiate(_jellyBoxPrefab, transform.position + new Vector3((MovementHandler._snapValue * (isLeftDirection ? 1 : -1)), 0.0f, 0.0f), Quaternion.identity);
+        _tempJellyBox = Instantiate(_jellyBoxPrefab, transform.position + new Vector3((MovementHandler._snapValue * (isLeftDirection ? 1 : -1)), 0.0f, 0.0f), Quaternion.identity, _jellyBoxParent);
         _tempJellyBox.Initialize(this, _moveSubject, _jellyBoxCount);
         _jellyBoxes.Add(_tempJellyBox);
 
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
     private void CreateAndInitializeJellyBox()
     {
         _jellyBoxCount++;
-        _tempJellyBox = Instantiate(_jellyBoxPrefab, GetNewPositionJellyBox(_jellyBoxCount), Quaternion.identity);
+        _tempJellyBox = Instantiate(_jellyBoxPrefab, GetNewPositionJellyBox(_jellyBoxCount), Quaternion.identity, _jellyBoxParent);
         _tempJellyBox.Initialize(this, _moveSubject, _jellyBoxCount);
         _jellyBoxes.Add(_tempJellyBox);
     }

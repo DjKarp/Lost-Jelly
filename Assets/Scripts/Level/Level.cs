@@ -16,6 +16,8 @@ public class Level : MonoBehaviour
     
     private int _jellyCount = 0;
 
+    private Subject<bool> playGameSubject = new Subject<bool>();
+
     public Transform StartPosition
     {
         get => _startPositionTR;
@@ -44,16 +46,18 @@ public class Level : MonoBehaviour
     {
         _jellyCount = JellyListOnLevel.Count;
 
+        EventManager.PlayerMove.AddListener(StartStopGameplay);
+
         m_Player = player;
         m_Player.ReplaySubjectJellyCatch
             .Subscribe(_ => CatchJelly())
             .AddTo(_disposable);
 
         _FlyLeaves = new FlyLeaves();
-        _FlyLeaves.Initialize();
+        _FlyLeaves.Initialize(null, playGameSubject);
 
         _Blicker = new Blicker();
-        _Blicker.Initialize(JellyListOnLevel);
+        _Blicker.Initialize(JellyListOnLevel, playGameSubject);
     }
 
     private void Start()
@@ -73,8 +77,14 @@ public class Level : MonoBehaviour
         }
     }
 
+    private void StartStopGameplay(bool isStart)
+    {
+        playGameSubject?.OnNext(isStart);
+    }
+
     private void OnDestroy()
     {
         _disposable.Dispose();
+        EventManager.PlayerMove.RemoveListener(StartStopGameplay);
     }
 }

@@ -23,6 +23,7 @@ public class MovieController : MonoBehaviour
 
         isStartMovie = true;
 
+        //  нопка во весь экран, без картинки. имитируем щелчЄк по экрану
         buttonClickSubject
             .Subscribe(_ => StartMovie())
             .AddTo(_disposables);

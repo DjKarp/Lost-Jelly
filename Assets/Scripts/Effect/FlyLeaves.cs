@@ -4,58 +4,54 @@ using UnityEngine;
 using R3;
 using System.Linq;
 
-public class FlyLeaves : MonoBehaviour
+// Ёффект летающих листьев на уровне
+public class FlyLeaves : LevelEffects
 {
-    public CompositeDisposable _disposables = new CompositeDisposable();
-
     private List<Sprite> _leavesSprite = new List<Sprite>();
-    private Leaves _leavesPrefab;
-
-    private List<Leaves> _leavesPool = new List<Leaves>();
-
     private float _startCreateX = 10.0f;
-    private float _maxStartCreateY = 6.0f;
-    private Transform _leavesParent;
+    private float _maxStartCreateY = 5.0f;
 
-    public void Initialize()
+    public override void Initialize(List<Jelly> jellies = null, Subject<bool> playGameSubject = null)
     {
+        _leavesSprite.Clear();
         _leavesSprite.AddRange(Resources.LoadAll<Sprite>("Fly"));
-        _leavesPrefab = Resources.Load<Leaves>("Leaves");
+        _effectPrefab = Resources.Load<Effect>("Leaves");
+        _timer = Random.Range(1.0f, 8.0f);
 
-        _leavesParent = new GameObject("LeavesParent").transform;
-
-        Observable
-            .Interval(System.TimeSpan.FromSeconds(Random.Range(1.0f, 10.0f)))
-            .Subscribe(_ => StartLeaves())
-            .AddTo(_disposables);
+        base.Initialize(jellies, playGameSubject);
+    }
+    private void Start()
+    {
+        EventManager.PlayerMove.AddListener(StartStopLevelEffect);
     }
 
-    private void StartLeaves()
+    protected override void StartLevelEffects()
     {
         Leaves tempLeaves = null;
 
-        foreach (Leaves leaves in _leavesPool)
+        foreach (Leaves leaves in _effectPool)
             if (!leaves.gameObject.activeSelf)
-                tempLeaves = leaves;
+            { tempLeaves = leaves; break; }
 
         if (tempLeaves == null)
-            AddedNewLeavesToPool();
+            AddedNewLevelEffectsToPool();
         else
-            InitializeLeaves(tempLeaves);
+            InitializeEffect(tempLeaves);
     }
 
-    private Leaves AddedNewLeavesToPool()
+    protected override Effect AddedNewLevelEffectsToPool(bool isPrewarm = false)
     {
-        Leaves leaves = Instantiate(_leavesPrefab, new Vector3(_startCreateX, 0.0f, 0.0f), Quaternion.identity, _leavesParent);
-        InitializeLeaves(leaves);
-        _leavesPool.Add(leaves);
-        return _leavesPool.LastOrDefault();
+        Leaves leaves = Instantiate(_effectPrefab, new Vector3(_startCreateX, 0.0f, 0.0f), Quaternion.identity, _effectParent) as Leaves;
+        InitializeEffect(leaves);
+        leaves.gameObject.SetActive(!isPrewarm);
+        _effectPool.Add(leaves);
+        return _effectPool.LastOrDefault();
     }
 
-    private void InitializeLeaves(Leaves leaves)
+    protected override void InitializeEffect(Effect effect)
     {
-        leaves.gameObject.SetActive(true);
-        leaves.Initialize(GetNewStartPositionForLeaves(), _leavesSprite[Random.Range(0, _leavesSprite.Count)]);
+        base.InitializeEffect(effect);
+        effect.Initialize(GetNewStartPositionForLeaves(), _leavesSprite[Random.Range(0, _leavesSprite.Count)]);
     }
 
     private Vector2 GetNewStartPositionForLeaves()

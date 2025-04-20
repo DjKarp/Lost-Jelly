@@ -4,67 +4,62 @@ using UnityEngine;
 using System.Linq;
 using R3;
 
-public class Blicker : MonoBehaviour
+// Ёффект блика на cолнце в уголке Jelly
+public class Blicker : LevelEffects
 {
-    public CompositeDisposable _disposables = new CompositeDisposable();
-
-    private List<Jelly> _jellies;
+    private List<Jelly> _jellies = new List<Jelly>();
     private List<Jelly> _jelliesActive = new List<Jelly>();
-    private Blick _blickPrefab;
-    private List<Blick> _blicks = new List<Blick>();
-    private Transform _blicksParent;
 
-    public void Initialize(List<Jelly> jellies)
+    public override void Initialize(List<Jelly> jellies = null, Subject<bool> playGameSubject = null)
     {
+        _jellies.Clear();
         _jellies = jellies;
-        _blickPrefab = Resources.Load<Blick>("Blick");
-        _blicksParent = new GameObject("BlicksParent").transform;
+        _effectPrefab = Resources.Load<Blick>("Blick");
+        _timer = Random.Range(1.0f, 4.0f);
 
-        Observable
-            .Interval(System.TimeSpan.FromSeconds(Random.Range(1.0f, 4.0f)))
-            .Subscribe(_ => ShowBlick())
-            .AddTo(_disposables);
+        base.Initialize(jellies, playGameSubject);
     }
 
-    private void ShowBlick()
+    private void Start()
+    {
+        EventManager.PlayerMove.AddListener(StartStopLevelEffect);
+    }
+
+    protected override void StartLevelEffects()
     {
         _jelliesActive.Clear();
-        _jelliesActive = _jellies.Where(j => j.gameObject.activeSelf).ToList();
+        _jelliesActive = _jellies.Where(j => j.isActiveAndEnabled).ToList();
 
-        Jelly jelly = _jelliesActive[Random.Range(0, _jelliesActive.Count)];
-
-        if (jelly != null)
-        {
-            GetBlick().transform.position = jelly.BlickPosition;
-        }
+        if (_jelliesActive.Count > 0)
+            GetBlick().transform.position = _jelliesActive[Random.Range(0, _jelliesActive.Count)].BlickPosition;
     }
 
-    private Blick CreateNewBlick()
+    protected override Effect AddedNewLevelEffectsToPool(bool isPrewarm = false)
     {
-        Blick blick = Instantiate(_blickPrefab, _blicksParent);
-        blick.Initialize();
-        _blicks.Add(blick);
+        Blick blick = Instantiate(_effectPrefab, _effectParent) as Blick;
+        blick.Initialize(new Vector2(), null);
+        blick.gameObject.SetActive(!isPrewarm);
+        _effectPool.Add(blick);
 
-        return _blicks.LastOrDefault();
+        return _effectPool.LastOrDefault();
     }
 
     private Blick GetBlick()
     {
         Blick blick = null;
-        foreach (Blick blick1 in _blicks)
-            if (!blick1.gameObject.activeSelf)
-            { blick = blick1; blick.gameObject.SetActive(true); }
+        foreach (Blick blick1 in _effectPool)
+            if (!blick1.gameObject.activeSelf)            
+            { 
+                blick = blick1; 
+                blick.gameObject.SetActive(true);
+                break;
+            }
 
         if (blick == null)
-            blick = CreateNewBlick();
+            blick = AddedNewLevelEffectsToPool() as Blick;
         else
-            blick.Initialize();
+            blick.Initialize(new Vector2(), null);
 
         return blick;
-    }
-
-    private void OnDisable()
-    {
-        _disposables.Dispose();
-    }
+    }    
 }

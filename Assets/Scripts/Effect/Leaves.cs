@@ -1,20 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using R3;
-using UnityEngine.UI;
 
-public class Leaves : MonoBehaviour
+public class Leaves : Effect
 {
     private SpriteRenderer _SpriteRenderer;
-
-    public CompositeDisposable _disposables = new CompositeDisposable();
     private Vector2 _startPosition;
     private Transform _transform;
     private float _speed = 5.0f;
     private float _startSpeed = 3.0f;
 
-    public void Initialize(Vector2 startPosition, Sprite sprite)
+    public override void Initialize(Vector2 startPosition, Sprite sprite)
     {
         _transform = gameObject.transform;
         _SpriteRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -25,13 +20,14 @@ public class Leaves : MonoBehaviour
 
         _speed = Random.Range(_startSpeed - (_startSpeed / 1.2f), _startSpeed + _startSpeed);
 
+        _timer = 0.01f;
         Observable
             .EveryUpdate()
-            .Subscribe(_ => Fly())
+            .Subscribe(_ => Action())
             .AddTo(_disposables);
     }
 
-    public void Fly()
+    protected override void Action()
     {
         if (Time.timeScale > 0)
             _transform.position = new Vector3(_transform.position.x - (_speed * Time.deltaTime), _transform.position.y + Mathf.Sin(Time.time * Mathf.Clamp(Random.Range(1.0f, 30.0f) * 0.01f, 1.0f, 3.0f)) * 0.01f, 0.0f);
@@ -42,10 +38,5 @@ public class Leaves : MonoBehaviour
     {
         if (Vector2.Distance(_startPosition, transform.position) > 50.0f)
             gameObject.SetActive(false);
-    }
-
-    private void OnDisable()
-    {
-        _disposables.Dispose();
     }
 }

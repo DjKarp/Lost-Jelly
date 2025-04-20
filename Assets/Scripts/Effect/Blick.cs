@@ -1,26 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using R3;
-
-public class Blick : MonoBehaviour
+public class Blick : Effect
 {
-    public CompositeDisposable _disposables = new CompositeDisposable();
-    public void Initialize()
+    public override void Initialize(Vector2 vector2, Sprite sprite = null)
     {
-        Observable
-            .Timer(System.TimeSpan.FromSeconds(2.0f))
-            .Subscribe(_ => Disable())
-            .AddTo(_disposables);
+        _timer = 2.0f;
+        base.Initialize(vector2, sprite);
     }
-
-    private void Disable()
+    protected override void Action()
     {
         gameObject.SetActive(false);
-    }
-
-    private void OnDisable()
-    {
-        _disposables.Dispose();
     }
 }
