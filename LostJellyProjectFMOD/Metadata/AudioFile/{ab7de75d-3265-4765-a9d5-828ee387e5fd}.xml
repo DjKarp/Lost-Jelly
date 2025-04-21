@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.00.00">
+	<object class="AudioFile" id="{ab7de75d-3265-4765-a9d5-828ee387e5fd}">
+		<property name="assetPath">
+			<value>Sound/Gameplay/CollisionBad.mp3</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.8285714285714285</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{d2562254-9c06-4d83-91b2-14c52724fd2f}</destination>
+		</relationship>
+	</object>
+</objects>
