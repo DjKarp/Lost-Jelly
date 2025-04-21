@@ -1,10 +1,17 @@
 using UnityEngine;
+using R3;
 public class Blick : Effect
 {
-    public override void Initialize(Vector2 vector2, Sprite sprite = null)
+    protected float _timer;
+
+    public new void Initialize()
     {
         _timer = 2.0f;
-        base.Initialize(vector2, sprite);
+
+        Observable
+            .Timer(System.TimeSpan.FromSeconds(_timer))
+            .Subscribe(_ => Action())
+            .AddTo(_disposables);
     }
     protected override void Action()
     {

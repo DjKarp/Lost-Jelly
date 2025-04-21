@@ -20,7 +20,6 @@ public class Leaves : Effect
 
         _speed = Random.Range(_startSpeed - (_startSpeed / 1.2f), _startSpeed + _startSpeed);
 
-        _timer = 0.01f;
         Observable
             .EveryUpdate()
             .Subscribe(_ => Action())

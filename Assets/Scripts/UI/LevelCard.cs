@@ -25,7 +25,7 @@ public class LevelCard : MonoBehaviour
         SetNumberSprite(levelNumber + 1);
 
         m_Button = gameObject.GetComponent<Button>();
-        m_Button.onClick.AddListener(() =>
+        m_Button.Add(() =>
         {
             GameEntryPoint._instance.NextLevel(levelNumber);
         });
@@ -54,5 +54,10 @@ public class LevelCard : MonoBehaviour
             _firstNumberImage.sprite = _numberSprite[0];
         
         _secondNumberImage.sprite = _numberSprite[digit[0]];
+    }
+
+    private void OnDisable()
+    {
+        m_Button.RemoveAll();
     }
 }

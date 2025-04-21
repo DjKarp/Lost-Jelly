@@ -37,9 +37,14 @@ public class LevelSelect : MonoBehaviour
             }            
         }
 
-        _closeButton.onClick.AddListener(() =>
+        _closeButton.Add(() =>
         {
             m_MainMenu.SwitchWindows(false);
         });
+    }
+
+    private void OnDisable()
+    {
+        _closeButton.RemoveAll();
     }
 }

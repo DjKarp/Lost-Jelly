@@ -21,7 +21,7 @@ public class MainMenu : MonoBehaviour
         if (isLevelSelect)
             m_LevelSelect.Initialize(this);
 
-        _levelSelectButton.onClick.AddListener(() =>
+        _levelSelectButton.Add(() =>
         {
             m_LevelSelect.Initialize(this);
             SwitchWindows(true);
@@ -50,5 +50,10 @@ public class MainMenu : MonoBehaviour
         bool isShowedTitle = m_Title.gameObject.activeSelf;
         m_Title.gameObject.SetActive(!isShowedTitle);
         _fonImg.sprite = !isShowedTitle ? _levelSelectImage : _mainMenuImage;
+    }
+
+    private void OnDisable()
+    {
+        _levelSelectButton.RemoveAll();
     }
 }

@@ -10,6 +10,7 @@ public class MovieEntryPoint : MonoBehaviour
     [SerializeField] private MovieController _movieControllerPrefab;
 
     private UIMovieRootBinder _UIMovieRootBinder;
+    private Button _nextSceneButton;
     private MainMenuEnterParams _mainMenuEnterParams;
     private GamePlayExitParams _gamePlayExitParams;
     private MovieController _movieController;
@@ -18,13 +19,15 @@ public class MovieEntryPoint : MonoBehaviour
     private Subject<Unit> _goToMainMenuSubject = new Subject<Unit>();
     public CompositeDisposable _disposables = new CompositeDisposable();
 
+
     public Observable<GamePlayExitParams> Run(UIMainView uIMainView, MainMenuEnterParams mainMenuEnterParams)
     {
         Debug.LogError("Movie Scene Load");
 
         _UIMovieRootBinder = Instantiate(_UIMovieRootPrefab);
         uIMainView.AttachSceneUI(_UIMovieRootBinder.gameObject);
-        _UIMovieRootBinder.GetComponentInChildren<Button>().onClick.AddListener(() =>
+        _nextSceneButton = _UIMovieRootBinder.GetComponentInChildren<Button>();
+        _nextSceneButton.Add(() =>
         {
             _buttonClickSubject?.OnNext(Unit.Default);
         });
@@ -48,5 +51,6 @@ public class MovieEntryPoint : MonoBehaviour
     private void OnDestroy()
     {
         _disposables.Dispose();
+        _nextSceneButton.RemoveAll();
     }
 }

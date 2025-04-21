@@ -37,7 +37,7 @@ public class Blicker : LevelEffects
     protected override Effect AddedNewLevelEffectsToPool(bool isPrewarm = false)
     {
         Blick blick = Instantiate(_effectPrefab, _effectParent) as Blick;
-        blick.Initialize(new Vector2(), null);
+        blick.Initialize();
         blick.gameObject.SetActive(!isPrewarm);
         _effectPool.Add(blick);
 
@@ -58,7 +58,7 @@ public class Blicker : LevelEffects
         if (blick == null)
             blick = AddedNewLevelEffectsToPool() as Blick;
         else
-            blick.Initialize(new Vector2(), null);
+            blick.Initialize();
 
         return blick;
     }    

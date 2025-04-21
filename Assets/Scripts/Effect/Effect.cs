@@ -6,15 +6,10 @@ using R3;
 public abstract class Effect : MonoBehaviour
 {
     public CompositeDisposable _disposables = new CompositeDisposable();
-    protected float _timer;
 
-    public virtual void Initialize(Vector2 startPosition, Sprite sprite = null)
-    {
-        Observable
-            .Timer(System.TimeSpan.FromSeconds(_timer))
-            .Subscribe(_ => Action())
-            .AddTo(_disposables);
-    }
+    public void Initialize() { }
+
+    public virtual void Initialize(Vector2 startPosition, Sprite sprite) { }
 
     protected abstract void Action();
 

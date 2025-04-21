@@ -20,6 +20,7 @@ public class PressAnyKeyToStart : MonoBehaviour
     {
         screenButton.RemoveAll();
         OnGameplayStart.OnNext(Unit.Default);
+        OnGameplayStart.Dispose();
         gameObject.SetActive(false);
     }
 }
