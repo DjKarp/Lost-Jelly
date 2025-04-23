@@ -6,7 +6,9 @@ using Unity.VisualScripting;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
-
+/// <summary>
+/// An extension script for searching for all the Jellies at the created level and putting them in the list. It also searches for the player's starting position, as it can be in different places.
+/// </summary> 
 #if UNITY_EDITOR
 [RequireComponent(typeof (Level))]
 [ExecuteInEditMode]

@@ -13,7 +13,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     private MainMenuExitParams _mainMenuExitParams;
     private MainMenu m_MainMenu;
 
-    public Observable<MainMenuExitParams> Run(UIMainView uiMainView, MainMenuEnterParams mainMenuEnterParams, bool isLevelSelect = false)
+    public Observable<MainMenuExitParams> Run(UIMainView uiMainView, MainMenuEnterParams mainMenuEnterParams, bool isLevelSelect = false, SaveLoadData saveLoadData = null)
     {
         Debug.LogError("Load Main Menu Scene");
 
@@ -23,7 +23,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         var exitSignalSubject = new Subject<Unit>();
         _UIMainMenuRootBinder.Bind(exitSignalSubject);
 
-        int levelNumber = mainMenuEnterParams != null ? mainMenuEnterParams.LevelNumber : new SaveLoadData().GetLastOpenLevel();
+        int levelNumber = mainMenuEnterParams != null ? mainMenuEnterParams.LevelNumber : saveLoadData.GetLastOpenLevel();
 
         _gamePlayEnterParams = new GamePlayEnterParams(levelNumber);
         _mainMenuExitParams = new MainMenuExitParams(_gamePlayEnterParams, levelNumber);
@@ -40,5 +40,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     {
         m_MainMenu = _UIMainMenuRootBinder.gameObject.GetComponent<MainMenu>();
         m_MainMenu.Initialize(isLevelSelect);
+
+        AudioManager.Instance.PlayAudio(true);
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Linq;
 using R3;
 
-// Ёффект блика на cолнце в уголке Jelly
+// The effect of glare on the sun in the Jelly corner
 public class Blicker : LevelEffects
 {
     private List<Jelly> _jellies = new List<Jelly>();

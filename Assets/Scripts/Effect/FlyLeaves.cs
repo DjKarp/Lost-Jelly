@@ -4,7 +4,7 @@ using UnityEngine;
 using R3;
 using System.Linq;
 
-// Ёффект летающих листьев на уровне
+// The effect of flying leaves on the level
 public class FlyLeaves : LevelEffects
 {
     private List<Sprite> _leavesSprite = new List<Sprite>();

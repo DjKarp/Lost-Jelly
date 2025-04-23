@@ -51,6 +51,27 @@ public class SaveLoadData
         PlayerPrefs.SetInt("Level_" + levelNumber + "_stars", starsCount);
     }
 
+    public void SetVolumeData(float volumeMusik, float volumeFX)
+    {
+        Debug.LogError("Save Musik Volume = " + volumeMusik + "\n Save FX Volume = " + volumeFX);
+        PlayerPrefs.SetFloat("VolumeMusik", volumeMusik);
+        PlayerPrefs.SetFloat("VolumeFX", volumeFX);
+    }
+
+    public float GetVolumeMusik()
+    {
+        float musikVolume = PlayerPrefs.HasKey("VolumeMusik") ? PlayerPrefs.GetFloat("VolumeMusik") : 0.8f;
+        Debug.LogError("Load Musik Volume = " + musikVolume);
+        return musikVolume;
+    }
+
+    public float GetVolumeFX()
+    {
+        float FXVolume = PlayerPrefs.HasKey("VolumeFX") ? PlayerPrefs.GetFloat("VolumeFX") : 0.8f;
+        Debug.LogError("Load FX Volume = " + FXVolume);
+        return FXVolume;
+    }
+
 
     public void SavedOpenLavelRandom()
     {

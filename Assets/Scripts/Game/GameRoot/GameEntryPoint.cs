@@ -4,14 +4,18 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using R3;
 
+/// <summary>
+/// A common entry point to the project.
+/// </summary> 
 public class GameEntryPoint 
 {
     public static GameEntryPoint _instance;
-    private Coroutines m_Coroutines;
-    private UIMainView m_UIMainView;
+    private Coroutines _Coroutines;
+    private UIMainView _UIMainView;
+    private AudioManager _AudioManager;
+    private SaveLoadData _SaveLoadData;
 
     private GamePlayEnterParams _lastGamePlayEnterParams;
-    private MainMenuEnterParams _lastMainMenuEnterParams;
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void AutoStartGame()
@@ -25,12 +29,19 @@ public class GameEntryPoint
 
     private GameEntryPoint()
     {
-        m_Coroutines = new GameObject("[Coroutines]").AddComponent<Coroutines>();
-        Object.DontDestroyOnLoad(m_Coroutines.gameObject);
+        _SaveLoadData = new SaveLoadData();
+
+        var prefabAudioManager = Resources.Load<AudioManager>("AudioManager");
+        _AudioManager = Object.Instantiate(prefabAudioManager);
+        Object.DontDestroyOnLoad(_AudioManager.gameObject);
+        _AudioManager.Initialization(_SaveLoadData);
+
+        _Coroutines = new GameObject("[Coroutines]").AddComponent<Coroutines>();
+        Object.DontDestroyOnLoad(_Coroutines.gameObject);
 
         var prefabUImain = Resources.Load<UIMainView>("UIMain");
-        m_UIMainView = Object.Instantiate(prefabUImain);
-        Object.DontDestroyOnLoad(m_UIMainView.gameObject);
+        _UIMainView = Object.Instantiate(prefabUImain);
+        Object.DontDestroyOnLoad(_UIMainView.gameObject);        
     }
 
     private void StartGame()
@@ -41,17 +52,17 @@ public class GameEntryPoint
         switch(sceneName)
         {
             case Scenes.GAME:
-                var enterParams = new GamePlayEnterParams(new SaveLoadData().GetLastOpenLevel());
-                m_Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
+                var enterParams = new GamePlayEnterParams(_SaveLoadData.GetLastOpenLevel());
+                _Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
                 return;
 
             case Scenes.MOVIE:
-                m_Coroutines.StartCoroutine(LoadAndStartMovie());
+                _Coroutines.StartCoroutine(LoadAndStartMovie());
                 return;
 
             //case Scenes.BOOTSTRAP:                                  // Added for Srtart from Boostrap
             case Scenes.MAIN_MENU:
-                m_Coroutines.StartCoroutine(LoadAndStartMainMenu());
+                _Coroutines.StartCoroutine(LoadAndStartMainMenu());
                 return;
 
             case Scenes.BOOTSTRAP:
@@ -69,47 +80,47 @@ public class GameEntryPoint
 
     public void RestartGameScene()
     {
-        m_Coroutines.StartCoroutine(LoadAndStartGame(_lastGamePlayEnterParams));
+        _Coroutines.StartCoroutine(LoadAndStartGame(_lastGamePlayEnterParams));
     }
 
     public void NextLevel(int levelNumber)
     {
-        m_Coroutines.StartCoroutine(LoadAndStartGame(new GamePlayEnterParams(levelNumber)));
+        _Coroutines.StartCoroutine(LoadAndStartGame(new GamePlayEnterParams(levelNumber)));
     }
 
     private IEnumerator LoadAndStartGame(GamePlayEnterParams gamePlayEnterParams)
     {
         _lastGamePlayEnterParams = gamePlayEnterParams;
 
-        m_UIMainView.ShowLoadingScreen();
+        _UIMainView.ShowLoadingScreen();
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return LoadScene(Scenes.GAME);
 
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView, gamePlayEnterParams)
+        sceneEntryPoint.Run(_UIMainView, gamePlayEnterParams)
             .Subscribe(gamePlayExitParams =>
         {
-            m_Coroutines.StartCoroutine(LoadAndStartMainMenu(gamePlayExitParams.MainMenuEnterParams));
+            _Coroutines.StartCoroutine(LoadAndStartMainMenu(gamePlayExitParams.MainMenuEnterParams));
         });
 
-        m_UIMainView.HideLoadingScreen();
+        _UIMainView.HideLoadingScreen();
     }
 
     public void LoadLevelSelect()
     {
-        m_Coroutines.StartCoroutine(LoadAndStartMainMenu(isLevelSelect: true));
+        _Coroutines.StartCoroutine(LoadAndStartMainMenu(isLevelSelect: true));
     }
 
     private IEnumerator LoadAndStartMainMenu(MainMenuEnterParams mainMenuEnterParams = null, bool isLevelSelect = false)
     {
-        m_UIMainView.ShowLoadingScreen();
+        _UIMainView.ShowLoadingScreen();
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return LoadScene(Scenes.MAIN_MENU);
 
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
-        sceneEntryPoint.Run(m_UIMainView, mainMenuEnterParams, isLevelSelect)
+        sceneEntryPoint.Run(_UIMainView, mainMenuEnterParams, isLevelSelect, _SaveLoadData)
             .Subscribe(mainMenuExitParams =>
         {
             var targetSceneName = mainMenuExitParams.SceneEnterParams.SceneName;
@@ -117,31 +128,31 @@ public class GameEntryPoint
             switch (targetSceneName)
             {
                 case (Scenes.GAME):
-                    m_Coroutines.StartCoroutine(LoadAndStartGame(mainMenuExitParams.SceneEnterParams.As<GamePlayEnterParams>()));
+                    _Coroutines.StartCoroutine(LoadAndStartGame(mainMenuExitParams.SceneEnterParams.As<GamePlayEnterParams>()));
                     break;
             }
         });
 
         
 
-        m_UIMainView.HideLoadingScreen();
+        _UIMainView.HideLoadingScreen();
     }
 
     private IEnumerator LoadAndStartMovie(MainMenuEnterParams mainMenuEnterParams = null)
     {
-        m_UIMainView.ShowLoadingScreen();
+        _UIMainView.ShowLoadingScreen();
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return LoadScene(Scenes.MOVIE);
 
         MovieEntryPoint sceneMovieEntryPoint = Object.FindObjectOfType<MovieEntryPoint>();
 
-        sceneMovieEntryPoint.Run(m_UIMainView, mainMenuEnterParams)
+        sceneMovieEntryPoint.Run(_UIMainView, mainMenuEnterParams)
             .Subscribe(gameplayExitParams =>
             {
-                m_Coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.MainMenuEnterParams));
+                _Coroutines.StartCoroutine(LoadAndStartMainMenu(gameplayExitParams.MainMenuEnterParams));
             });
 
-        m_UIMainView.HideLoadingScreen();
+        _UIMainView.HideLoadingScreen();
     }
 }

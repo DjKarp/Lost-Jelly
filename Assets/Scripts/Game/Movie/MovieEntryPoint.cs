@@ -15,7 +15,7 @@ public class MovieEntryPoint : MonoBehaviour
     private GamePlayExitParams _gamePlayExitParams;
     private MovieController _movieController;
 
-    private Subject<Unit> _buttonClickSubject = new Subject<Unit>();
+    private Subject<int> _buttonClickSubject = new Subject<int>();
     private Subject<Unit> _goToMainMenuSubject = new Subject<Unit>();
     public CompositeDisposable _disposables = new CompositeDisposable();
 
@@ -27,9 +27,13 @@ public class MovieEntryPoint : MonoBehaviour
         _UIMovieRootBinder = Instantiate(_UIMovieRootPrefab);
         uIMainView.AttachSceneUI(_UIMovieRootBinder.gameObject);
         _nextSceneButton = _UIMovieRootBinder.GetComponentInChildren<Button>();
+        int clickCount = 0;
         _nextSceneButton.Add(() =>
         {
-            _buttonClickSubject?.OnNext(Unit.Default);
+            clickCount++;
+            if (clickCount > 1)
+                _nextSceneButton.RemoveAll();
+            _buttonClickSubject?.OnNext(clickCount);
         });
 
         _movieController = Instantiate(_movieControllerPrefab);
@@ -51,6 +55,5 @@ public class MovieEntryPoint : MonoBehaviour
     private void OnDestroy()
     {
         _disposables.Dispose();
-        _nextSceneButton.RemoveAll();
     }
 }

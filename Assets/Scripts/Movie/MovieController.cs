@@ -14,7 +14,7 @@ public class MovieController : MonoBehaviour
     private CompositeDisposable _disposables = new CompositeDisposable();
     private Subject<Unit> _goToMainMenuSubject = new Subject<Unit>();
 
-    public Subject<Unit> Initialize(Subject<Unit> buttonClickSubject)
+    public Subject<Unit> Initialize(Subject<int> buttonClickSubject)
     {
         _playableDirectorMovie.gameObject.SetActive(false);
 
@@ -25,17 +25,17 @@ public class MovieController : MonoBehaviour
 
         //  нопка во весь экран, без картинки. имитируем щелчЄк по экрану
         buttonClickSubject
-            .Subscribe(_ => StartMovie())
+            .Subscribe(_ => StartMovie(_))
             .AddTo(_disposables);
 
         return _goToMainMenuSubject;
     }
 
-    public void StartMovie()
+    public void StartMovie(int clickCount)
     {
-        if (isStartMovie)
+        if (clickCount == 1/*isStartMovie*/)
         {
-            isStartMovie = false;
+            //isStartMovie = false;
             _playableDirectorLogo.Deactivate();
             _playableDirectorMovie.gameObject.SetActive(true);
             _playableDirectorMovie.Play();

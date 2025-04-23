@@ -48,9 +48,6 @@ public class FinishScreen : MonoBehaviour
 
     private void ActivateFinishScreen(bool isWinner)
     {
-        //float starsKoef = _allJelly / _jellyCount;
-        //_starsImage.sprite = _starsSprite[starsKoef == 1 ? 3 : starsKoef > 0.7f ? 2 : starsKoef > 0.3f ? 1 : 0];
-
         _hideGO.SetActive(true);
 
         int timer = m_CountTime.GetTimerValue();
@@ -63,7 +60,7 @@ public class FinishScreen : MonoBehaviour
             
             SaveLoadData saveLoadData = new SaveLoadData(_levelNumber, starsCount);
 
-            _nextLevelButton.onClick.AddListener(() =>
+            _nextLevelButton.Add(() =>
             {
                 saveLoadData.SetLastOpenLevel(++_levelNumber);
                 GameEntryPoint._instance.NextLevel(_levelNumber);
@@ -74,5 +71,6 @@ public class FinishScreen : MonoBehaviour
     private void OnDisable()
     {
         _disposable.Dispose();
+        _nextLevelButton.RemoveAll();
     }
 }

@@ -18,9 +18,9 @@ public abstract class LevelEffects : MonoBehaviour
     {
         _effectPool.Clear();
 
-        // Создание пустого парента, чтобы Rooy сцены не заполнять объектами
+        // Creating an empty parent so that the Root scenes are not filled with objects
         _effectParent = new GameObject(GetType().Name).transform;
-        // Создание при инициализации, чтобы не делать Instantiate во время выполнения
+        // Creation At initialization, so as not to do Instantiate during execution
         for (int i = 10; i > 0; i--)
             AddedNewLevelEffectsToPool(true);
 

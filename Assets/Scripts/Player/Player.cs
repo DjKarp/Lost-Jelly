@@ -66,6 +66,8 @@ public class Player : MonoBehaviour
                     }
                 }
             });
+
+        AudioManager.Instance.SetPlayerSound(ReplaySubjectJellyCatch, FinishLevel);
     }
 
     public void CatchJelly(Jelly jelly)

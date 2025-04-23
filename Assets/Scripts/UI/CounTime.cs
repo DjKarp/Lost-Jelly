@@ -31,13 +31,7 @@ public class CountTime : MonoBehaviour
     private void SetTimerValueOnUI()
     {
         _countTimeText.text = _timer.ToString();
-    }
-
-    private void OnDisable()
-    {
-        EventManager.PlayerMove.RemoveListener(ChangeStateTimer);
-        _disposable.Dispose();
-    }
+    }    
 
     private void StartTimer()
     {
@@ -60,5 +54,11 @@ public class CountTime : MonoBehaviour
     public int GetTimerValue()
     {
         return (int)_timer;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.PlayerMove.RemoveListener(ChangeStateTimer);
+        _disposable.Dispose();
     }
 }
