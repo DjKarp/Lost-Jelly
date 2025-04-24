@@ -16,6 +16,7 @@ public class GameEntryPoint
     private SaveLoadData _SaveLoadData;
 
     private GamePlayEnterParams _lastGamePlayEnterParams;
+    private Subject<float> _loadSceneSubject = new Subject<float>();
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void AutoStartGame()
@@ -41,7 +42,8 @@ public class GameEntryPoint
 
         var prefabUImain = Resources.Load<UIMainView>("UIMain");
         _UIMainView = Object.Instantiate(prefabUImain);
-        Object.DontDestroyOnLoad(_UIMainView.gameObject);        
+        Object.DontDestroyOnLoad(_UIMainView.gameObject);
+        _UIMainView.Initialization();
     }
 
     private void StartGame()
@@ -75,7 +77,14 @@ public class GameEntryPoint
 
     private IEnumerator LoadScene(string sceneName)
     {
-        yield return SceneManager.LoadSceneAsync(sceneName);
+        AsyncOperation LoadAsync =  SceneManager.LoadSceneAsync(sceneName);
+
+        while(!LoadAsync.isDone && LoadAsync.progress < 0.5f)
+        {
+            _loadSceneSubject?.OnNext(LoadAsync.progress);
+        }
+
+        yield return LoadAsync;
     }
 
     public void RestartGameScene()
@@ -91,8 +100,6 @@ public class GameEntryPoint
     private IEnumerator LoadAndStartGame(GamePlayEnterParams gamePlayEnterParams)
     {
         _lastGamePlayEnterParams = gamePlayEnterParams;
-
-        _UIMainView.ShowLoadingScreen();
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return LoadScene(Scenes.GAME);
@@ -114,10 +121,14 @@ public class GameEntryPoint
 
     private IEnumerator LoadAndStartMainMenu(MainMenuEnterParams mainMenuEnterParams = null, bool isLevelSelect = false)
     {
-        _UIMainView.ShowLoadingScreen();
+        _UIMainView.ShowLoadingScreen(_loadSceneSubject);
 
         yield return LoadScene(Scenes.BOOTSTRAP);
+
+        yield return new WaitForSeconds(2.0f);
+
         yield return LoadScene(Scenes.MAIN_MENU);
+
 
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
         sceneEntryPoint.Run(_UIMainView, mainMenuEnterParams, isLevelSelect, _SaveLoadData)
@@ -140,11 +151,10 @@ public class GameEntryPoint
 
     private IEnumerator LoadAndStartMovie(MainMenuEnterParams mainMenuEnterParams = null)
     {
-        _UIMainView.ShowLoadingScreen();
+        _UIMainView.ShowLoadingScreen(_loadSceneSubject);
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return LoadScene(Scenes.MOVIE);
-
         MovieEntryPoint sceneMovieEntryPoint = Object.FindObjectOfType<MovieEntryPoint>();
 
         sceneMovieEntryPoint.Run(_UIMainView, mainMenuEnterParams)

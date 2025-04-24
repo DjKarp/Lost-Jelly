@@ -361,6 +361,7 @@ GameObject:
   - component: {fileID: 6202353669345570202}
   - component: {fileID: 4412587584147391143}
   - component: {fileID: 1790269887274265849}
+  - component: {fileID: 8740391949375314435}
   m_Layer: 0
   m_Name: ButtonPause
   m_TagString: Untagged
@@ -482,6 +483,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _pauseScreen: {fileID: 5133798440848397541}
+--- !u!114 &8740391949375314435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506892702524455133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2013373796726139629
 GameObject:
   m_ObjectHideFlags: 0
@@ -530,6 +562,7 @@ GameObject:
   - component: {fileID: 5870005664362549964}
   - component: {fileID: 3906640346431032284}
   - component: {fileID: 15747813128968821}
+  - component: {fileID: 6046051678856341448}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -638,6 +671,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6046051678856341448
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2690615018017756458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2920831120327419003
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +715,7 @@ GameObject:
   - component: {fileID: 5771730118106915561}
   - component: {fileID: 2249879700555456619}
   - component: {fileID: 3531482619151540462}
+  - component: {fileID: 4820341382212041153}
   m_Layer: 0
   m_Name: LevelSelectOnPayseScreen
   m_TagString: Untagged
@@ -771,6 +836,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4820341382212041153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2920831120327419003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3046021598519778926
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +961,7 @@ GameObject:
   - component: {fileID: 9100224471787951484}
   - component: {fileID: 7325044500881664524}
   - component: {fileID: 4896160289124912608}
+  - component: {fileID: 3835150345611580604}
   m_Layer: 0
   m_Name: ReplayOnPayseScreen
   m_TagString: Untagged
@@ -985,6 +1082,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33d7808a3b04674688dc8f91f628741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &3835150345611580604
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3213131528909871224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &4121677125801383857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1338,6 +1466,7 @@ GameObject:
   - component: {fileID: 4608860270566799201}
   - component: {fileID: 4920976316184714720}
   - component: {fileID: 317404694756329935}
+  - component: {fileID: 8959688298023048063}
   m_Layer: 0
   m_Name: ExitOnPayseScreen
   m_TagString: Untagged
@@ -1459,6 +1588,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _closeScreen: {fileID: 5133798440848397541}
+--- !u!114 &8959688298023048063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5194041524495854142}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5293466605414395298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,6 +1844,7 @@ GameObject:
   - component: {fileID: 4796935298309705677}
   - component: {fileID: 5050640613187909383}
   - component: {fileID: 459839223290641520}
+  - component: {fileID: 333992277031563496}
   m_Layer: 0
   m_Name: NextLevel
   m_TagString: Untagged
@@ -1816,6 +1977,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &333992277031563496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5480025694213748005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5941831490409614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -1829,6 +2021,7 @@ GameObject:
   - component: {fileID: 6632964405586294133}
   - component: {fileID: 7303074727310929075}
   - component: {fileID: 6707793495276909615}
+  - component: {fileID: 7662330349580577936}
   m_Layer: 0
   m_Name: ReplayOnPayseScreen
   m_TagString: Untagged
@@ -1949,6 +2142,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33d7808a3b04674688dc8f91f628741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7662330349580577936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5941831490409614163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6165928894541546346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2261,7 @@ GameObject:
   - component: {fileID: 5208469178735615984}
   - component: {fileID: 907200157906991469}
   - component: {fileID: 3559039023263584783}
+  - component: {fileID: 4602566138438634923}
   m_Layer: 0
   m_Name: LevelSelectOnPayseScreen
   m_TagString: Untagged
@@ -2157,6 +2382,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &4602566138438634923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6277863802604898744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &6390989180412664371
 GameObject:
   m_ObjectHideFlags: 0

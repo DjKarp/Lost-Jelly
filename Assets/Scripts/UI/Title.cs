@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Title : MonoBehaviour
+public class Title : DifferentWindowOnMainMenu
 {
-    // Start is called before the first frame update
-    void Start()
+    protected new void OnEnable()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        base.OnEnable();
+        Debug.LogError("Title Open!");
     }
 }

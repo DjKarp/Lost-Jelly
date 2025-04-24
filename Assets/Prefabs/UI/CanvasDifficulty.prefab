@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2030807186557576979}
   - component: {fileID: 2532688310468055514}
   - component: {fileID: 7745430896742614430}
+  - component: {fileID: 6320295125916535637}
   m_Layer: 0
   m_Name: ButtonExit
   m_TagString: Untagged
@@ -120,6 +121,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &6320295125916535637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596753410816479089}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &732608409777934541
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +164,7 @@ GameObject:
   - component: {fileID: 1114310286276786966}
   - component: {fileID: 2714814642911047440}
   - component: {fileID: 894156189354670849}
+  - component: {fileID: 1651868152525695575}
   m_Layer: 0
   m_Name: ButtonInsane
   m_TagString: Untagged
@@ -240,6 +273,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1651868152525695575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732608409777934541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &2040293568311554849
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,6 +382,7 @@ GameObject:
   - component: {fileID: 6128746713698322929}
   - component: {fileID: 1780435811669516718}
   - component: {fileID: 4265655983418370642}
+  - component: {fileID: 5469976103331901085}
   m_Layer: 0
   m_Name: ButtonHard
   m_TagString: Untagged
@@ -426,6 +491,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5469976103331901085
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130437493978410287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &3962954853192279284
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,6 +534,7 @@ GameObject:
   - component: {fileID: 8201496024009266148}
   - component: {fileID: 1924760264266910554}
   - component: {fileID: 5246469506963249206}
+  - component: {fileID: 7260740561145889596}
   m_Layer: 0
   m_Name: ButtonMedium
   m_TagString: Untagged
@@ -546,6 +643,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7260740561145889596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3962954853192279284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &5059486043333641454
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,7 +739,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 87c076e18b946be45a6782bef31058a9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 552dd7201772e814386940a7bace10f8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -633,6 +761,7 @@ GameObject:
   - component: {fileID: 1107513388884012910}
   - component: {fileID: 5863275557699055453}
   - component: {fileID: 9090806787108821231}
+  - component: {fileID: 2527967628199474926}
   m_Layer: 0
   m_Name: ButtonEasy
   m_TagString: Untagged
@@ -741,6 +870,37 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2527967628199474926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6000023713641271555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CollisionTag: 
+  EventReference:
+    Guid:
+      Data1: 1732715392
+      Data2: 1217388875
+      Data3: 1268662402
+      Data4: -1804075884
+    Path: event:/UIFX/ButtonClick
+  Event: 
+  EventPlayTrigger: 19
+  EventStopTrigger: 12
+  AllowFadeout: 1
+  TriggerOnce: 0
+  Preload: 0
+  NonRigidbodyVelocity: 0
+  Params: []
+  OverrideAttenuation: 0
+  OverrideMinDistance: 1
+  OverrideMaxDistance: 20
 --- !u!1 &7456484662528622362
 GameObject:
   m_ObjectHideFlags: 0

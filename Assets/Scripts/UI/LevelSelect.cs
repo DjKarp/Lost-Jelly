@@ -4,19 +4,16 @@ using UnityEngine;
 using UnityEngine.UI;
 using R3;
 
-public class LevelSelect : MonoBehaviour
+public class LevelSelect : DifferentWindowOnMainMenu
 {
     [SerializeField] private Transform _rootCreateLevelCard;
     [SerializeField] private LevelCard _levelCardPrefab;
     private int _lastOpenlevel;
     private List<LevelCard> _levelCards = new List<LevelCard>();
 
-    [SerializeField] private Button _closeButton;
-    private MainMenu m_MainMenu;
-
-    public void Initialize(MainMenu mainMenu)
+    public new void Initialize()
     {
-        m_MainMenu = mainMenu;
+        base.Initialize();
 
         SaveLoadData saveLoadData = new SaveLoadData();
         _lastOpenlevel = saveLoadData.GetLastOpenLevel();
@@ -36,15 +33,15 @@ public class LevelSelect : MonoBehaviour
                 _levelCards.Add(levelCard);
             }            
         }
-
-        _closeButton.Add(() =>
-        {
-            m_MainMenu.SwitchWindows(false);
-        });
+    }
+    protected new void OnEnable()
+    {
+        base.OnEnable();
+        Debug.LogError("Level Select Open!");
     }
 
-    private void OnDisable()
+    protected new void OnDisable()
     {
-        _closeButton.RemoveAll();
+        base.OnDisable();
     }
 }

@@ -53,7 +53,7 @@ public class SaveLoadData
 
     public void SetVolumeData(float volumeMusik, float volumeFX)
     {
-        Debug.LogError("Save Musik Volume = " + volumeMusik + "\n Save FX Volume = " + volumeFX);
+        Debug.LogError("Save Musik Volume = " + volumeMusik + "<==> Save FX Volume = " + volumeFX);
         PlayerPrefs.SetFloat("VolumeMusik", volumeMusik);
         PlayerPrefs.SetFloat("VolumeFX", volumeFX);
     }
@@ -61,14 +61,12 @@ public class SaveLoadData
     public float GetVolumeMusik()
     {
         float musikVolume = PlayerPrefs.HasKey("VolumeMusik") ? PlayerPrefs.GetFloat("VolumeMusik") : 0.8f;
-        Debug.LogError("Load Musik Volume = " + musikVolume);
         return musikVolume;
     }
 
     public float GetVolumeFX()
     {
         float FXVolume = PlayerPrefs.HasKey("VolumeFX") ? PlayerPrefs.GetFloat("VolumeFX") : 0.8f;
-        Debug.LogError("Load FX Volume = " + FXVolume);
         return FXVolume;
     }
 

@@ -10,10 +10,12 @@ public abstract class ButtonsUI : MonoBehaviour
 
     protected void Awake()
     {
+        Initialization();
         m_Button = gameObject.GetComponent<Button>();
         m_Button.Add(ButtonClick);
     }
 
+    public abstract void Initialization();
     protected abstract void ButtonClick();
 
     private void OnDestroy()

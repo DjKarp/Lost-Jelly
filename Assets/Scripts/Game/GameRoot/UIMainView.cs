@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class UIMainView : MonoBehaviour
 {
-    [SerializeField] private GameObject _loadingScreen;
+    [SerializeField] private GameObject _loadingScreenGO;
     [SerializeField] private Transform _UISceneContainerTR;
+    private LoadingScreen _loadingScreen;
 
-    public void ShowLoadingScreen()
+    public void Initialization()
     {
-        _loadingScreen.SetActive(true);
+        _loadingScreen = _loadingScreenGO.GetComponent<LoadingScreen>();
+        _loadingScreen.Initialization();
+    }
+
+    public void ShowLoadingScreen(R3.Subject<float> loadingSceneSubject)
+    {
+        _loadingScreen.ShowLoadingScreen(loadingSceneSubject);
     }
 
     public void HideLoadingScreen()
     {
-        _loadingScreen.SetActive(false);
+        _loadingScreen.HideLoadingScreen();
     }
 
     public void AttachSceneUI(GameObject sceneUI)
