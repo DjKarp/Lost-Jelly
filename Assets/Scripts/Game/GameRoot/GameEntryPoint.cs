@@ -99,9 +99,11 @@ public class GameEntryPoint
 
     private IEnumerator LoadAndStartGame(GamePlayEnterParams gamePlayEnterParams)
     {
+        _UIMainView.ShowLoadingScreen(_loadSceneSubject);
         _lastGamePlayEnterParams = gamePlayEnterParams;
 
         yield return LoadScene(Scenes.BOOTSTRAP);
+        yield return new WaitForSeconds(0.5f);
         yield return LoadScene(Scenes.GAME);
 
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
@@ -125,7 +127,7 @@ public class GameEntryPoint
 
         yield return LoadScene(Scenes.BOOTSTRAP);
 
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(0.5f);
 
         yield return LoadScene(Scenes.MAIN_MENU);
 
@@ -154,6 +156,7 @@ public class GameEntryPoint
         _UIMainView.ShowLoadingScreen(_loadSceneSubject);
 
         yield return LoadScene(Scenes.BOOTSTRAP);
+        yield return new WaitForSeconds(0.5f);
         yield return LoadScene(Scenes.MOVIE);
         MovieEntryPoint sceneMovieEntryPoint = Object.FindObjectOfType<MovieEntryPoint>();
 
