@@ -41,6 +41,7 @@ public abstract class LevelEffects : MonoBehaviour
     }
 
     protected abstract void StartLevelEffects();
+    protected abstract void StartEffect();
     protected abstract Effect AddedNewLevelEffectsToPool(bool isPrewarm = false);
 
     protected virtual void InitializeEffect(Effect effect)

@@ -7,8 +7,8 @@ using R3;
 // The effect of glare on the sun in the Jelly corner
 public class Blicker : LevelEffects
 {
-    private List<Jelly> _jellies = new List<Jelly>();
-    private List<Jelly> _jelliesActive = new List<Jelly>();
+    protected List<Jelly> _jellies = new List<Jelly>();
+    protected List<Jelly> _jelliesActive = new List<Jelly>();
 
     public override void Initialize(List<Jelly> jellies = null, Subject<bool> playGameSubject = null)
     {
@@ -31,7 +31,12 @@ public class Blicker : LevelEffects
         _jelliesActive = _jellies.Where(j => j.isActiveAndEnabled).ToList();
 
         if (_jelliesActive.Count > 0)
-            GetBlick().transform.position = _jelliesActive[Random.Range(0, _jelliesActive.Count)].BlickPosition;
+            StartEffect();
+    }
+
+    protected override void StartEffect()
+    {
+        GetBlick().transform.position = _jelliesActive[Random.Range(0, _jelliesActive.Count)].BlickPosition;
     }
 
     protected override Effect AddedNewLevelEffectsToPool(bool isPrewarm = false)

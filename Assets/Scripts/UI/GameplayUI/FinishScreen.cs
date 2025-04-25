@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using R3;
 using UnityEngine.UI;
+using DG.Tweening;
 
-public class FinishScreen : MonoBehaviour
+public class FinishScreen : DifferentWindowOnMainMenu
 {
-    [SerializeField] private GameObject _hideGO;
     [SerializeField] private Image _starsImage;
     [SerializeField] private CountTime m_CountTime;
     [SerializeField] private Button _nextLevelButton;
@@ -19,7 +19,7 @@ public class FinishScreen : MonoBehaviour
 
 
     private Player m_Player;
-    private CompositeDisposable _disposable = new();
+    private CompositeDisposable _disposable = new CompositeDisposable();
     public void Initialize(Player player, int allJelly, int[] starsTime, int levelNumber)
     {
         m_Player = player;
@@ -38,7 +38,7 @@ public class FinishScreen : MonoBehaviour
 
         _nextLevelButton.gameObject.SetActive(false);
 
-        _hideGO.SetActive(false);
+        Hide();
     }
 
     private void SetJellyCount(int jelly)
@@ -48,11 +48,12 @@ public class FinishScreen : MonoBehaviour
 
     private void ActivateFinishScreen(bool isWinner)
     {
-        _hideGO.SetActive(true);
+        Show();
 
         int timer = m_CountTime.GetTimerValue();
         int starsCount = !isWinner ? 0 : timer < _starsTime[0] ? 3 : timer <= _starsTime[1] ? 2 : 1;
         _starsImage.sprite = _starsSprite[starsCount];
+        _starsImage.transform.DOScale(_starsImage.transform.localScale.x, 0.5f).From(0.0f).SetEase(Ease.InOutBounce);
 
         if (isWinner)
         {
@@ -62,14 +63,17 @@ public class FinishScreen : MonoBehaviour
 
             _nextLevelButton.Add(() =>
             {
+                Hide();
                 saveLoadData.SetLastOpenLevel(++_levelNumber);
                 GameEntryPoint._instance.NextLevel(_levelNumber);
             });
         }        
     }
 
-    private void OnDisable()
+    private new void OnDisable()
     {
+        base.OnDisable();
+
         _disposable.Dispose();
         _nextLevelButton.RemoveAll();
     }

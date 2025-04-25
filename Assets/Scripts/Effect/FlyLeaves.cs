@@ -11,6 +11,8 @@ public class FlyLeaves : LevelEffects
     private float _startCreateX = 10.0f;
     private float _maxStartCreateY = 5.0f;
 
+    protected Effect _effect;
+
     public override void Initialize(List<Jelly> jellies = null, Subject<bool> playGameSubject = null)
     {
         _leavesSprite.Clear();
@@ -38,6 +40,15 @@ public class FlyLeaves : LevelEffects
         else
             InitializeEffect(tempLeaves);
     }
+    protected override void InitializeEffect(Effect effect)
+    {
+        base.InitializeEffect(effect);
+        _effect = effect;
+    }
+    protected override void StartEffect()
+    {
+        _effect.Initialize(GetNewStartPositionForLeaves(), _leavesSprite[Random.Range(0, _leavesSprite.Count)]);
+    }
 
     protected override Effect AddedNewLevelEffectsToPool(bool isPrewarm = false)
     {
@@ -46,16 +57,10 @@ public class FlyLeaves : LevelEffects
         leaves.gameObject.SetActive(!isPrewarm);
         _effectPool.Add(leaves);
         return _effectPool.LastOrDefault();
-    }
-
-    protected override void InitializeEffect(Effect effect)
-    {
-        base.InitializeEffect(effect);
-        effect.Initialize(GetNewStartPositionForLeaves(), _leavesSprite[Random.Range(0, _leavesSprite.Count)]);
-    }
+    }    
 
     private Vector2 GetNewStartPositionForLeaves()
     {
         return new Vector2(_startCreateX, Random.Range(-1.0f * _maxStartCreateY, _maxStartCreateY));
-    }
+    }    
 }

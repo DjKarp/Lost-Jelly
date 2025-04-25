@@ -13,6 +13,7 @@ public class Level : MonoBehaviour
     private Player m_Player;
     private FlyLeaves _FlyLeaves;
     private Blicker _Blicker;
+    private Shaker _Shaker;
     
     private int _jellyCount = 0;
 
@@ -53,11 +54,15 @@ public class Level : MonoBehaviour
             .Subscribe(_ => CatchJelly())
             .AddTo(_disposable);
 
+        // Effect on Level
         _FlyLeaves = new FlyLeaves();
         _FlyLeaves.Initialize(null, playGameSubject);
 
+        // Effect on Jelly
         _Blicker = new Blicker();
         _Blicker.Initialize(JellyListOnLevel, playGameSubject);
+        _Shaker = new Shaker();
+        _Shaker.Initialize(JellyListOnLevel, playGameSubject);
     }
 
     private void Start()

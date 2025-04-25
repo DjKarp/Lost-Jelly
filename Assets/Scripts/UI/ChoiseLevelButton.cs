@@ -6,7 +6,6 @@ public class ChoiseLevelButton : ButtonsUI
 {
     public override void Initialization()
     {
-        
     }
 
     protected override void ButtonClick()

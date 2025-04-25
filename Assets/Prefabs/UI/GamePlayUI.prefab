@@ -87,6 +87,7 @@ RectTransform:
   - {fileID: 8493509973228513579}
   - {fileID: 8962966925976566576}
   - {fileID: 8526735519982236960}
+  - {fileID: 1728980393416203047}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -361,7 +362,7 @@ GameObject:
   - component: {fileID: 6202353669345570202}
   - component: {fileID: 4412587584147391143}
   - component: {fileID: 1790269887274265849}
-  - component: {fileID: 8740391949375314435}
+  - component: {fileID: 8715695543152569134}
   m_Layer: 0
   m_Name: ButtonPause
   m_TagString: Untagged
@@ -378,14 +379,14 @@ RectTransform:
   m_GameObject: {fileID: 1506892702524455133}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8, y: 0.8, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7212269614639247506}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.9067918, y: 0.8367742}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -6.499878, y: -11}
+  m_AnchoredPosition: {x: 7, y: 4}
   m_SizeDelta: {x: -38.428566, y: -32.571426}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1888401752642449192
@@ -482,8 +483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abfc36f9d1857a349ba9d99ee26d554c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pauseScreen: {fileID: 5133798440848397541}
---- !u!114 &8740391949375314435
+  _pauseScreen: {fileID: 4821371583288509012}
+--- !u!114 &8715695543152569134
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,28 +493,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1506892702524455133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &2013373796726139629
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +545,7 @@ GameObject:
   - component: {fileID: 5870005664362549964}
   - component: {fileID: 3906640346431032284}
   - component: {fileID: 15747813128968821}
-  - component: {fileID: 6046051678856341448}
+  - component: {fileID: 3154897891564008680}
   m_Layer: 0
   m_Name: Button
   m_TagString: Untagged
@@ -671,7 +654,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &6046051678856341448
+--- !u!114 &3154897891564008680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -680,28 +663,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2690615018017756458}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &2920831120327419003
 GameObject:
   m_ObjectHideFlags: 0
@@ -715,7 +680,7 @@ GameObject:
   - component: {fileID: 5771730118106915561}
   - component: {fileID: 2249879700555456619}
   - component: {fileID: 3531482619151540462}
-  - component: {fileID: 4820341382212041153}
+  - component: {fileID: 7884458575986835414}
   m_Layer: 0
   m_Name: LevelSelectOnPayseScreen
   m_TagString: Untagged
@@ -737,9 +702,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5558636319502343140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 229.03947, y: -65.61245}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 97.1831, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8921674333703336692
@@ -836,7 +801,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4820341382212041153
+--- !u!114 &7884458575986835414
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -845,28 +810,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 2920831120327419003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &3046021598519778926
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,7 +908,7 @@ GameObject:
   - component: {fileID: 9100224471787951484}
   - component: {fileID: 7325044500881664524}
   - component: {fileID: 4896160289124912608}
-  - component: {fileID: 3835150345611580604}
+  - component: {fileID: 7103639677705686274}
   m_Layer: 0
   m_Name: ReplayOnPayseScreen
   m_TagString: Untagged
@@ -1082,7 +1029,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33d7808a3b04674688dc8f91f628741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &3835150345611580604
+  _hideUIBefore: {fileID: 1894796619146696226}
+--- !u!114 &7103639677705686274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1091,28 +1039,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3213131528909871224}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &4121677125801383857
 GameObject:
   m_ObjectHideFlags: 0
@@ -1308,6 +1238,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8526735519982236960}
   - component: {fileID: 759621491948927130}
+  - component: {fileID: 1693755325613881149}
   m_Layer: 0
   m_Name: FinishScreen
   m_TagString: Untagged
@@ -1347,10 +1278,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c3da11f7dfb2164c99503593db4331a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideGO: {fileID: 6390989180412664371}
   _starsImage: {fileID: 2918064405415646216}
   m_CountTime: {fileID: 2897788788934685108}
   _nextLevelButton: {fileID: 5050640613187909383}
+--- !u!225 &1693755325613881149
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5027621425054451540}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5054178884240550800
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,8 +1355,8 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
-  m_ChildScaleWidth: 1
-  m_ChildScaleHeight: 1
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
 --- !u!1 &5133798440848397541
 GameObject:
@@ -1425,13 +1367,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8962966925976566576}
+  - component: {fileID: 4821371583288509012}
+  - component: {fileID: 1233879925360661761}
   m_Layer: 0
   m_Name: PauseScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8962966925976566576
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1453,6 +1397,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4821371583288509012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133798440848397541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 21289c0a8a8de744e8bc1cfc14a4d137, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!225 &1233879925360661761
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133798440848397541}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5194041524495854142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1466,7 +1434,7 @@ GameObject:
   - component: {fileID: 4608860270566799201}
   - component: {fileID: 4920976316184714720}
   - component: {fileID: 317404694756329935}
-  - component: {fileID: 8959688298023048063}
+  - component: {fileID: 7205559298706371096}
   m_Layer: 0
   m_Name: ExitOnPayseScreen
   m_TagString: Untagged
@@ -1488,9 +1456,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5558636319502343140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 382.42664, y: -65.61245}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 98.571434, y: 101.42857}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8695989871702637638
@@ -1587,8 +1555,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88f92a8d279216d4f96b67565c71ac80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _closeScreen: {fileID: 5133798440848397541}
---- !u!114 &8959688298023048063
+  _pauseScreen: {fileID: 4821371583288509012}
+  _pauseButton: {fileID: 4412587584147391143}
+--- !u!114 &7205559298706371096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1597,28 +1566,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5194041524495854142}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &5293466605414395298
 GameObject:
   m_ObjectHideFlags: 0
@@ -1844,14 +1795,14 @@ GameObject:
   - component: {fileID: 4796935298309705677}
   - component: {fileID: 5050640613187909383}
   - component: {fileID: 459839223290641520}
-  - component: {fileID: 333992277031563496}
+  - component: {fileID: 8671296915635985423}
   m_Layer: 0
   m_Name: NextLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1121982190498385484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1868,7 +1819,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 344.60046, y: -65.61245}
+  m_AnchoredPosition: {x: 382.8894, y: -65.61245}
   m_SizeDelta: {x: 97.1831, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4570446467717251213
@@ -1977,7 +1928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &333992277031563496
+--- !u!114 &8671296915635985423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1986,28 +1937,98 @@ MonoBehaviour:
   m_GameObject: {fileID: 5480025694213748005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
+--- !u!1 &5736463339533072096
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1728980393416203047}
+  - component: {fileID: 8258369821364693852}
+  - component: {fileID: 7617374778810338610}
+  - component: {fileID: 1894796619146696226}
+  m_Layer: 0
+  m_Name: ImageOnLoadScene
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1728980393416203047
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736463339533072096}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5978363780468856657}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3.0435, y: 0.0001}
+  m_SizeDelta: {x: 1980.889, y: 1140.8804}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8258369821364693852
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736463339533072096}
+  m_CullTransparentMesh: 1
+--- !u!114 &7617374778810338610
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736463339533072096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_RaycastTarget: 0
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 552dd7201772e814386940a7bace10f8, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!114 &1894796619146696226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5736463339533072096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ee78cdac0da04e4c90b8c55a3d522b5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5941831490409614163
 GameObject:
   m_ObjectHideFlags: 0
@@ -2021,7 +2042,7 @@ GameObject:
   - component: {fileID: 6632964405586294133}
   - component: {fileID: 7303074727310929075}
   - component: {fileID: 6707793495276909615}
-  - component: {fileID: 7662330349580577936}
+  - component: {fileID: 656317351672696679}
   m_Layer: 0
   m_Name: ReplayOnPayseScreen
   m_TagString: Untagged
@@ -2043,9 +2064,9 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 5558636319502343140}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 76.3465, y: -65.61245}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 97.1831, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2703377635913881235
@@ -2142,7 +2163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33d7808a3b04674688dc8f91f628741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &7662330349580577936
+  _hideUIBefore: {fileID: 1894796619146696226}
+--- !u!114 &656317351672696679
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2151,28 +2173,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5941831490409614163}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &6165928894541546346
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,7 +2265,7 @@ GameObject:
   - component: {fileID: 5208469178735615984}
   - component: {fileID: 907200157906991469}
   - component: {fileID: 3559039023263584783}
-  - component: {fileID: 4602566138438634923}
+  - component: {fileID: 7760386059344389725}
   m_Layer: 0
   m_Name: LevelSelectOnPayseScreen
   m_TagString: Untagged
@@ -2382,7 +2386,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fead02260cf1a4b9f50511efebdd20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4602566138438634923
+--- !u!114 &7760386059344389725
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2391,28 +2395,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6277863802604898744}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
+  m_Script: {fileID: 11500000, guid: 21251e34fc0a484419655e523213446c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CollisionTag: 
-  EventReference:
-    Guid:
-      Data1: 1732715392
-      Data2: 1217388875
-      Data3: 1268662402
-      Data4: -1804075884
-    Path: event:/UIFX/ButtonClick
-  Event: 
-  EventPlayTrigger: 19
-  EventStopTrigger: 12
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  NonRigidbodyVelocity: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
+  _handleEvent: 
 --- !u!1 &6390989180412664371
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,7 +2409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5858975939757960681}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Window
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PauseButton : ButtonsUI
 {
-    [SerializeField] private GameObject _pauseScreen;
+    [SerializeField] private PauseWindow _pauseScreen;
 
     public override void Initialization()
     {
@@ -12,7 +13,8 @@ public class PauseButton : ButtonsUI
 
     protected override void ButtonClick()
     {
+        TweensAnimationHide();
         EventManager.GameStartStop(false);
-        _pauseScreen.SetActive(true);
+        _pauseScreen.Show(m_Button);
     }
 }

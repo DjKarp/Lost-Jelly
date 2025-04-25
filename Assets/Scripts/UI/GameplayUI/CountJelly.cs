@@ -2,6 +2,7 @@
 using UnityEngine;
 using TMPro;
 using R3;
+using DG.Tweening;
 
 public class CountJelly : MonoBehaviour
 {

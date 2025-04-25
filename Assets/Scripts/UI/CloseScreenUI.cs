@@ -1,19 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CloseScreenUI : ButtonsUI
 {
-    [SerializeField] private GameObject _closeScreen;
+    [SerializeField] private PauseWindow _pauseScreen;
+    [SerializeField] private Button _pauseButton;
 
     public override void Initialization()
     {
-        
     }
 
     protected override void ButtonClick()
     {
         EventManager.GameStartStop(true);
-        _closeScreen.SetActive(false);
+        _pauseScreen.Hide(_pauseButton);
     }
 }
