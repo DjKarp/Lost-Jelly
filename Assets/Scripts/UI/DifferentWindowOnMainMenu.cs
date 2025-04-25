@@ -30,7 +30,7 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
         }
     }
 
-    public void Show(Button button = null)
+    public Sequence Show(Button button = null)
     {
         gameObject.SetActive(true);
 
@@ -42,7 +42,9 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
 
         _tween
             .Append(gameObject.transform.DOMoveY(_startPosition.y, 0.5f).From(_endPosition.y).SetEase(Ease.Linear))
-            .Join(_canvasGroup.DOFade(1.0f, 0.5f).From(0.0f).SetEase(Ease.InExpo));     
+            .Join(_canvasGroup.DOFade(1.0f, 0.5f).From(0.0f).SetEase(Ease.InExpo));
+
+        return _tween;
     }
 
     public void Hide(Button button = null, Action callback = null)

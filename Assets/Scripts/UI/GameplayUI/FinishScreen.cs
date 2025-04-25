@@ -19,19 +19,16 @@ public class FinishScreen : DifferentWindowOnMainMenu
 
 
     private Player m_Player;
+    private Sequence _sequence;
     private CompositeDisposable _disposable = new CompositeDisposable();
     public void Initialize(Player player, int allJelly, int[] starsTime, int levelNumber)
     {
         m_Player = player;
         _allJelly = allJelly;
         _starsTime = starsTime;
-        _levelNumber = levelNumber;
+        _levelNumber = levelNumber;        
 
-        player.FinishLevel
-            .Subscribe(_ => ActivateFinishScreen(_))
-            .AddTo(_disposable);
-
-        for (int i = 1; i <= 3; i++)
+        for (int i = 0; i <= 3; i++)
             _starsSprite.Add(Resources.Load<Sprite>("stars_revard_" + i));
 
         EventManager.JellyCount.AddListener(SetJellyCount);
@@ -39,6 +36,10 @@ public class FinishScreen : DifferentWindowOnMainMenu
         _nextLevelButton.gameObject.SetActive(false);
 
         Hide();
+
+        player.FinishLevel
+            .Subscribe(_ => ActivateFinishScreen(_))
+            .AddTo(_disposable);
     }
 
     private void SetJellyCount(int jelly)
@@ -48,22 +49,29 @@ public class FinishScreen : DifferentWindowOnMainMenu
 
     private void ActivateFinishScreen(bool isWinner)
     {
-        Show();
-
         int timer = m_CountTime.GetTimerValue();
         int starsCount = !isWinner ? 0 : timer < _starsTime[0] ? 3 : timer <= _starsTime[1] ? 2 : 1;
         _starsImage.sprite = _starsSprite[starsCount];
-        _starsImage.transform.DOScale(_starsImage.transform.localScale.x, 0.5f).From(0.0f).SetEase(Ease.InOutBounce);
+
+        _sequence = DOTween.Sequence();
+
+        _sequence
+            .Append(Show());        
+
+        _sequence
+            .Append(_starsImage.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce));
 
         if (isWinner)
         {
             _nextLevelButton.gameObject.SetActive(true);
+            _sequence
+                .Append(_nextLevelButton.gameObject.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce));
             
             SaveLoadData saveLoadData = new SaveLoadData(_levelNumber, starsCount);
 
             _nextLevelButton.Add(() =>
             {
-                Hide();
+                Hide(_nextLevelButton, () => _nextLevelButton.gameObject.SetActive(false));
                 saveLoadData.SetLastOpenLevel(++_levelNumber);
                 GameEntryPoint._instance.NextLevel(_levelNumber);
             });
@@ -76,5 +84,6 @@ public class FinishScreen : DifferentWindowOnMainMenu
 
         _disposable.Dispose();
         _nextLevelButton.RemoveAll();
+        _sequence.Kill(true);
     }
 }

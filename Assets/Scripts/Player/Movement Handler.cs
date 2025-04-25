@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using R3;
+using DG.Tweening;
 
 public class MovementHandler : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class MovementHandler : MonoBehaviour
 
             Vector2 offset = _playerDirection * _snapValue;
             Transform.position = Transform.position + new Vector3(offset.x, offset.y, 0.0f);
+            //Transform.DOMove(Transform.position + new Vector3(offset.x, offset.y, 0.0f), PlayerSpeedOnSecond).SetEase(Ease.OutExpo);
 
             if (offset != Vector2.zero)
                 NewPositionSubject?.OnNext(new Vector2(Transform.position.x, Transform.position.y));

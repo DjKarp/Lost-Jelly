@@ -42,7 +42,12 @@ public class GameplayEntryPoint : MonoBehaviour
         var inputUI = Instantiate(_InputManagerPrefab);
         inputUI.transform.SetParent(_UIGameplayRootBinder.transform, false);
         inputUI.transform.SetSiblingIndex(0);
-        inputUI.SwitchOffPanel(false);
+        bool isMobileInput = Application.platform == RuntimePlatform.Android || Application.platform == RuntimePlatform.IPhonePlayer;
+        inputUI.Initialize(isMobileInput);
+        if (isMobileInput)
+            inputUI.SwitchOffPanel(false);
+        else
+            inputUI.HideMobileInputOnDevice();
 
         var pressStart = _UIGameplayRootBinder.GetComponentInChildren<PressAnyKeyToStart>();
         inputUI.SubscribeOnStart(pressStart);              

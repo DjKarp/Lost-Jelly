@@ -43,4 +43,12 @@ public class ButtonOnScreen : MonoBehaviour
         _downButton.RemoveAll();
         _disposable.Dispose();
     }
+
+    public void HideInputOnDevice()
+    {
+        _leftButton.gameObject.SetActive(false);
+        _rightButton.gameObject.SetActive(false);
+        _upButton.gameObject.SetActive(false);
+        _downButton.gameObject.SetActive(false);
+    }
 }

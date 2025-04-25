@@ -10,6 +10,7 @@ public class Level : MonoBehaviour
     [SerializeField] private Transform _startPositionTR;
     [SerializeField] private bool _spriteDirectionOnLeft = true;
     [SerializeField] public int[] _starsTime = new int[2];
+    private FinishLevel m_FinishLevel;
     private Player m_Player;
     private FlyLeaves _FlyLeaves;
     private Blicker _Blicker;
@@ -45,9 +46,13 @@ public class Level : MonoBehaviour
 
     public void Initialize(Player player)
     {
+        m_FinishLevel = gameObject.GetComponentInChildren<FinishLevel>();
+        m_FinishLevel.gameObject.SetActive(false);
+
         _jellyCount = JellyListOnLevel.Count;
 
         EventManager.PlayerMove.AddListener(StartStopGameplay);
+        EventManager.AllJellyCatched.AddListener(Finish);
 
         m_Player = player;
         m_Player.ReplaySubjectJellyCatch
@@ -87,9 +92,15 @@ public class Level : MonoBehaviour
         playGameSubject?.OnNext(isStart);
     }
 
+    private void Finish()
+    {
+        m_FinishLevel.gameObject.SetActive(true);
+    }
+
     private void OnDestroy()
     {
         _disposable.Dispose();
         EventManager.PlayerMove.RemoveListener(StartStopGameplay);
+        EventManager.AllJellyCatched.RemoveListener(Finish);
     }
 }

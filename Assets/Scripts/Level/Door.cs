@@ -6,9 +6,13 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     private Animator m_Animator;
+    private PolygonCollider2D _PolygonCollider2D;
 
     private void Start()
     {
+        _PolygonCollider2D = GetComponent<PolygonCollider2D>();
+        _PolygonCollider2D.isTrigger = true;
+
         m_Animator = gameObject.GetComponent<Animator>();
         EventManager.AllJellyCatched.AddListener(OpenDoor);
     }

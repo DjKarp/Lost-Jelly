@@ -9,7 +9,7 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
 {
     [SerializeField] private Image _joystickTapArea;
     [SerializeField] private Image _joystickFon;
-    [SerializeField] private Image _joystick;    
+    [SerializeField] private Image _joystick;
 
     [SerializeField] private Color _colorInactiveJoystick;
     [SerializeField] private Color _colorActiveJoystick;
@@ -24,11 +24,16 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
     private CompositeDisposable _disposable = new CompositeDisposable();
     public Subject<Unit> _subjectJoystick = new();
 
+    private bool _isActive = true;
+
     private void Start()
     {
-        SwitchJoysticSettings();
+        if (_isActive)
+        {
+            SwitchJoysticSettings();
 
-        _joystickFonStartPosition = _joystickFon.rectTransform.anchoredPosition;
+            _joystickFonStartPosition = _joystickFon.rectTransform.anchoredPosition;
+        }
     }
 
     private void SwitchJoysticSettings()
@@ -47,10 +52,10 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
         }
     }
 
-    
+
     public void OnDrag(PointerEventData eventData)
     {
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickFon.rectTransform, eventData.position, null, out joystickFonPosition))
+        if (_isActive && RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickFon.rectTransform, eventData.position, null, out joystickFonPosition))
         {
             joystickFonPosition.x = (joystickFonPosition.x * 2.0f) / _joystickFon.rectTransform.sizeDelta.x;
             joystickFonPosition.y = (joystickFonPosition.y * 2.0f) / _joystickFon.rectTransform.sizeDelta.y;
@@ -66,22 +71,36 @@ public abstract class Joystick : MonoBehaviour, IDragHandler, IPointerDownHandle
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        SwitchJoysticSettings();
-
-        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickTapArea.rectTransform, eventData.position, null, out joystickFonPosition))
+        if (_isActive)
         {
-            _joystickFon.rectTransform.anchoredPosition = new Vector2(joystickFonPosition.x, joystickFonPosition.y);
+            SwitchJoysticSettings();
+
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(_joystickTapArea.rectTransform, eventData.position, null, out joystickFonPosition))
+            {
+                _joystickFon.rectTransform.anchoredPosition = new Vector2(joystickFonPosition.x, joystickFonPosition.y);
+            }
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        _joystickFon.rectTransform.anchoredPosition = _joystickFonStartPosition;
+        if (_isActive)
+        {
+            _joystickFon.rectTransform.anchoredPosition = _joystickFonStartPosition;
 
-        SwitchJoysticSettings();
+            SwitchJoysticSettings();
 
-        _joystickDirection = Vector2.zero;
-        _joystick.rectTransform.anchoredPosition = Vector2.zero;
+            _joystickDirection = Vector2.zero;
+            _joystick.rectTransform.anchoredPosition = Vector2.zero;
+        }
+    }
+
+    public void HideInputOnDevice()
+    {
+        _isActive = false;
+        _joystickTapArea.gameObject.SetActive(false);
+        _joystickFon.gameObject.SetActive(false);
+        _joystick.gameObject.SetActive(false);
     }
 
     private void OnDestroy()

@@ -23,9 +23,15 @@ public class MovieController : MonoBehaviour
 
         isStartMovie = true;
 
-        //  нопка во весь экран, без картинки. имитируем щелчЄк по экрану
+        // The button is full-screen, without a picture. we simulate clicking on the screen
         buttonClickSubject
             .Subscribe(_ => StartMovie(_))
+            .AddTo(_disposables);
+
+        Observable
+            .EveryUpdate()
+            .Where(_ => Input.anyKey)
+            .Subscribe(_ => StartMovie(_playableDirectorMovie.gameObject.activeSelf ? 1 : 2))
             .AddTo(_disposables);
 
         return _goToMainMenuSubject;
@@ -33,9 +39,8 @@ public class MovieController : MonoBehaviour
 
     public void StartMovie(int clickCount)
     {
-        if (clickCount == 1/*isStartMovie*/)
+        if (clickCount == 1)
         {
-            //isStartMovie = false;
             _playableDirectorLogo.Deactivate();
             _playableDirectorMovie.gameObject.SetActive(true);
             _playableDirectorMovie.Play();

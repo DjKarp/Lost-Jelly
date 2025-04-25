@@ -19,9 +19,14 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private Title m_Title;
 
     protected Sequence _tween;
+    protected UIMainMenuRootBinder _UIMainMenuRootBinder;
+
+    private CompositeDisposable _disposables = new CompositeDisposable();
 
     public void Initialize(bool isLevelSelect = false)
     {
+        _UIMainMenuRootBinder = gameObject.GetComponent<UIMainMenuRootBinder>();
+
         _fonImageTr = _fonImage.gameObject.transform;
         _tween
             .Append(_fonImageTr.DOMoveX(_fonImageTr.position.x, 0.25f).From(_fonImageTr.position.x + (Screen.width * 2.0f)).SetEase(Ease.Linear))
@@ -33,6 +38,8 @@ public class MainMenu : MonoBehaviour
         m_LevelSelect.Initialize();
         m_Settings.Initialize();
         m_Title.Initialize();
+
+        ButtonControlInitialize();
 
         _levelSelectButton.Add(() =>
         {
@@ -68,7 +75,39 @@ public class MainMenu : MonoBehaviour
 
     private void OnDisable()
     {
+        _disposables.Dispose();
         _tween.Kill(true);
         _levelSelectButton.RemoveAll();
+    }
+
+    private void ButtonControlInitialize()
+    {
+        Observable
+            .EveryUpdate()
+            .Where(_ => Input.GetAxis("Fire2") != 0.0f)
+            .Take(1)
+            .Subscribe(_ => _UIMainMenuRootBinder.HandleGoToGamePlayButtonClick())
+            .AddTo(_disposables);
+
+        Observable
+            .EveryUpdate()
+            .Where(_ => Input.GetAxis("Fire1") != 0.0f)
+            .Take(1)
+            .Subscribe(_ => SwitchWindows(!m_LevelSelect.isActiveAndEnabled))
+            .AddTo(_disposables);
+
+        Observable
+            .EveryUpdate()
+            .Where(_ => Input.GetAxis("Fire3") != 0.0f)
+            .Take(1)
+            .Subscribe(_ => ShowHideSettings())
+            .AddTo(_disposables);
+
+        Observable
+            .EveryUpdate()
+            .Where(_ => Input.GetAxis("Jump") != 0.0f)
+            .Take(1)
+            .Subscribe(_ => ShowHideTitle())
+            .AddTo(_disposables);
     }
 }

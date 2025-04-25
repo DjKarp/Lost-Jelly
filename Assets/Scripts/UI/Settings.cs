@@ -11,7 +11,7 @@ public class Settings : DifferentWindowOnMainMenu
         Debug.LogError("Settings Open!");
 
         // Test
-        //SaveLoadData saveLoadData = new SaveLoadData();
-        //saveLoadData.SavedOpenLavelRandom();
+        SaveLoadData saveLoadData = new SaveLoadData();
+        saveLoadData.SavedOpenLavelRandom();
     }
 }

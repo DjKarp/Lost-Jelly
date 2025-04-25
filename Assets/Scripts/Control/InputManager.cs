@@ -17,28 +17,37 @@ public class InputManager : MonoBehaviour
     private CompositeDisposable _disposable = new CompositeDisposable();
     public Subject<Vector2> SubjectInputManager = new();
 
-    private void Start()
-    {
-        m_JoystickMove._subjectJoystick
-            .Subscribe(_ => OnButtonOrJoystickPressed())
-            .AddTo(_disposable);
+    private bool isMobileInput = true;
 
-        m_ButtonOnScreen._subjectButtonOnScreen
-            .Subscribe(_ => OnButtonOrJoystickPressed())
-            .AddTo(_disposable);
+    public void Initialize(bool isMobileInput = true)
+    {
+        if (isMobileInput)
+        {
+            m_JoystickMove._subjectJoystick
+                .Subscribe(_ => OnButtonOrJoystickPressed())
+                .AddTo(_disposable);
+
+            m_ButtonOnScreen._subjectButtonOnScreen
+                .Subscribe(_ => OnButtonOrJoystickPressed())
+                .AddTo(_disposable);
+        }
 
         Observable
             .EveryUpdate()
-            .Where(_ => (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f))
+            .Where(_ => (Input.GetAxis("Horizontal") != 0.0f || Input.GetAxis("Vertical") != 0.0f || Input.GetAxis("HorizontalDPAD") != 0.0f || Input.GetAxis("VerticalDPAD") != 0.0f))
             .Subscribe(_ => OnButtonOrJoystickPressed())
             .AddTo(_disposable);
     }
-
     public Vector2 GetMoveDirection()
     {
+        Debug.LogError("Fire1 = " + Input.GetAxis("Fire1") + " => Fire2 = " + Input.GetAxis("Fire2") + " => Fire3 = " + Input.GetAxis("Fire3") + " => Jump = " + Input.GetAxis("Jump") 
+            + " => HorizontalDPAD = " + Input.GetAxis("HorizontalDPAD") + " => VerticalDPAD = " + Input.GetAxis("VerticalDPAD"));
+
         _tempInputDirection = _tempJoystickDirection = Vector2.zero;
         _tempInputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        _tempJoystickDirection = m_JoystickMove.GetMoveDirection();
+        Vector2 dpadInputDirection = new Vector2(Input.GetAxis("HorizontalDPAD"), Input.GetAxis("VerticalDPAD"));
+        _tempInputDirection = dpadInputDirection == Vector2.zero ? _tempInputDirection : dpadInputDirection;
+        _tempJoystickDirection = isMobileInput ? m_JoystickMove.GetMoveDirection() : Vector2.zero;
 
         if (_tempInputDirection == Vector2.zero && _tempJoystickDirection == Vector2.zero)
         {
@@ -76,5 +85,12 @@ public class InputManager : MonoBehaviour
     public void SwitchOffPanel(bool isShow)
     {
         m_JoystickMove.GetComponent<Image>().raycastTarget = isShow;
+    }
+
+    public void HideMobileInputOnDevice()
+    {
+        isMobileInput = false;
+        m_JoystickMove.HideInputOnDevice();
+        m_ButtonOnScreen.HideInputOnDevice();
     }
 }
