@@ -14,13 +14,16 @@ public abstract class ButtonsUI : MonoBehaviour
     protected void Awake()
     {
         Initialization();
+    }
+
+    protected void Initialization()
+    {
         m_Button = gameObject.GetComponent<Button>();
         m_Button.Add(ButtonClick);
 
         TweensAnimationShow();
     }
 
-    public abstract void Initialization();
     protected abstract void ButtonClick();
 
     protected void TweensAnimationHide()

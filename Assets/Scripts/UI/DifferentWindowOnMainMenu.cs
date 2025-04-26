@@ -5,6 +5,10 @@ using DG.Tweening;
 using UnityEngine.UI;
 using System;
 
+/// <summary>
+/// The parent script for any window in the MainMenu has methods for appearing and disappearing. And everything you need to complete subscriptions correctly.
+/// </summary>
+
 public class DifferentWindowOnMainMenu : MonoBehaviour
 {
     protected CanvasGroup _canvasGroup;

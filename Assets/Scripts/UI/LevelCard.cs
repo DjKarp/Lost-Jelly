@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+/// <summary>
+/// A card to create in the level selection menu.
+/// </summary>
 
 public class LevelCard : MonoBehaviour
 {
-    [SerializeField] private Image _fonImage;
-    [SerializeField] private Sprite _openlevelSprite;
-    [SerializeField] private Sprite _closelevelSprite;
+    [SerializeField] private Image _fonImageOpen;
+    [SerializeField] private Image _fonImageClosed;
 
     [SerializeField] private Image _starsImage;
     [SerializeField] private List<Sprite> _starsSprite = new List<Sprite>();
@@ -20,7 +22,9 @@ public class LevelCard : MonoBehaviour
 
     public void Initialize(int levelNumber = 0, bool isOpenLevel = true, int starsLevel = 0)
     {
-        _fonImage.sprite = isOpenLevel ? _openlevelSprite : _closelevelSprite;
+        _fonImageOpen.gameObject.SetActive(isOpenLevel);
+        _fonImageClosed.gameObject.SetActive(!isOpenLevel);
+
         _starsImage.sprite = _starsSprite[starsLevel];
         SetNumberSprite(levelNumber + 1);
 
@@ -47,13 +51,14 @@ public class LevelCard : MonoBehaviour
 
         if (digit.Count > 1)
         {
-            _firstNumberImage.sprite = _numberSprite[digit[0]];
-            digit.Remove(0);
+            _firstNumberImage.sprite = _numberSprite[digit[1]];
+            _secondNumberImage.sprite = _numberSprite[digit[0]];
         }
         else
+        {
             _firstNumberImage.sprite = _numberSprite[0];
-        
-        _secondNumberImage.sprite = _numberSprite[digit[0]];
+            _secondNumberImage.sprite = _numberSprite[digit[0]];
+        }
     }
 
     private void OnDisable()

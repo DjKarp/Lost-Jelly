@@ -2,14 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FMODUnity;
+/// <summary>
+/// The script is attached to any one. press the button so that the sound is played when pressed.
+/// </summary>
 
 public class ButtonClickSound : ButtonsUI
 {
     [SerializeField] private string _handleEvent;
     private string _buttonClick = "event:/UIFX/ButtonClick";
     private Camera _camera;
-    public override void Initialization()
+    public new void Initialization()
     {
+        base.Initialization();
+
         _camera = FindAnyObjectByType<Camera>();
 
         if (_handleEvent.Length > 0)

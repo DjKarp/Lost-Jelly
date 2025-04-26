@@ -17,21 +17,23 @@ public class LevelSelect : DifferentWindowOnMainMenu
 
         SaveLoadData saveLoadData = new SaveLoadData();
         _lastOpenlevel = saveLoadData.GetLastOpenLevel();
+        var levelsPrefab = Resources.LoadAll<Level>("Levels/");
 
-        for (int i = 0; i <= _lastOpenlevel; i++)
+        for (int i = 0; i < levelsPrefab.Length; i++)
         {
             LevelCard levelCard;
+            bool isLevelOpen = i <= _lastOpenlevel || i < 10;
             if (i < _levelCards.Count)
             {
                 levelCard = _levelCards[i];
-                levelCard.Initialize(i, i <= _lastOpenlevel, saveLoadData.GetStarsCount(i));
             }
             else
             {
                 levelCard = Instantiate(_levelCardPrefab, _rootCreateLevelCard);
-                levelCard.Initialize(i, i <= _lastOpenlevel, saveLoadData.GetStarsCount(i));
                 _levelCards.Add(levelCard);
-            }            
+            }
+
+            levelCard.Initialize(i, isLevelOpen, i <= _lastOpenlevel ? saveLoadData.GetStarsCount(i) : 0);
         }
     }
     protected new void OnEnable()
