@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using R3;
+using DG.Tweening;
 
 public class PressAnyKeyToStart : MonoBehaviour
 {
@@ -10,10 +11,17 @@ public class PressAnyKeyToStart : MonoBehaviour
 
     public Subject<Unit> OnGameplayStart = new();
     private CompositeDisposable _disposable = new CompositeDisposable();
+    private CanvasGroup _canvasGroup;
+    private Tween _tween;
 
     private void Awake()
     {
         gameObject.SetActive(true);
+
+        _canvasGroup = gameObject.GetComponent<CanvasGroup>();
+
+        _tween = _canvasGroup.DOFade(1.0f, 0.2f).From(0.0f);
+
         screenButton.Add(() => HideStartGameplayScreen());
 
         Observable
@@ -27,13 +35,13 @@ public class PressAnyKeyToStart : MonoBehaviour
     private void HideStartGameplayScreen()
     {
         screenButton.RemoveAll();
-        OnGameplayStart.OnNext(Unit.Default);
-        OnGameplayStart.Dispose();
-        gameObject.SetActive(false);
+        OnGameplayStart?.OnNext(Unit.Default);
+        _tween = _canvasGroup.DOFade(0.0f, 0.2f).From(1.0f).OnComplete(() => gameObject.SetActive(false));
     }
 
     private void OnDisable()
     {
+        OnGameplayStart.Dispose();
         _disposable.Dispose();
     }
 }

@@ -13,25 +13,21 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
 {
     protected CanvasGroup _canvasGroup;
     protected Transform _transform;
-    protected Vector2 _startPosition = Vector2.zero;
     protected Sequence _tween;
-    protected Vector2 _endPosition;
-    protected float _maxScale = 1.5f;
+    protected float _maxScale = 1.0f;
+    protected Vector2 _endPosition = Vector2.zero;
+    protected Vector2 _startPosition = Vector2.zero;
 
     public void Initialize()
     {
         gameObject.SetActive(true);
+        _transform = gameObject.transform;
+        _endPosition = new Vector2(Screen.width / 2.0f, -Screen.height);
+        _startPosition = new Vector2(Screen.width / 2.0f, Screen.height / 2.0f);
+        _transform.position = _endPosition;
 
         _canvasGroup = gameObject.GetComponent<CanvasGroup>();
-        _canvasGroup.alpha = 0.0f;
-
-        if (_transform == null)
-        {
-            _transform = gameObject.transform;
-            _startPosition = _endPosition = _transform.position;
-            _endPosition.y = _startPosition.y - Screen.height;
-            _transform.position = _endPosition;
-        }
+        _canvasGroup.alpha = 0.0f;        
     }
 
     public Sequence Show(Button button = null)
@@ -46,7 +42,7 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
 
         _tween
             .Append(gameObject.transform.DOMoveY(_startPosition.y, 0.5f).From(_endPosition.y).SetEase(Ease.Linear))
-            .Join(_canvasGroup.DOFade(1.0f, 0.5f).From(0.0f).SetEase(Ease.InExpo));
+            .Join(_canvasGroup.DOFade(_maxScale, 0.5f).From(0.0f).SetEase(Ease.InExpo));
 
         return _tween;
     }
@@ -62,8 +58,8 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
                     .Append(button.gameObject.transform.DOScale(_maxScale, 0.2f).From(0.0f).SetEase(Ease.OutBounce));
 
             _tween
-                .Append(gameObject.transform.DOMoveY(_endPosition.y, 0.5f).From(_startPosition.y).SetEase(Ease.Linear))
-                .Join(_canvasGroup.DOFade(0.0f, 0.5f).From(1.0f))
+                .Append(gameObject.transform.DOMoveY(_endPosition.y, 0.5f).SetEase(Ease.Linear))
+                .Join(_canvasGroup.DOFade(0.0f, 0.5f).From(_maxScale))
                 .OnComplete(() => callback?.Invoke());
         }
     }

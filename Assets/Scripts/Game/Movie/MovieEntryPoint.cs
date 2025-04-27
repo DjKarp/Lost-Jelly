@@ -22,8 +22,6 @@ public class MovieEntryPoint : MonoBehaviour
 
     public Observable<GamePlayExitParams> Run(UIMainView uIMainView, MainMenuEnterParams mainMenuEnterParams)
     {
-        Debug.LogError("Movie Scene Load");
-
         _UIMovieRootBinder = Instantiate(_UIMovieRootPrefab);
         uIMainView.AttachSceneUI(_UIMovieRootBinder.gameObject);
         _nextSceneButton = _UIMovieRootBinder.GetComponentInChildren<Button>();

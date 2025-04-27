@@ -39,7 +39,6 @@ public class LevelSelect : DifferentWindowOnMainMenu
     protected new void OnEnable()
     {
         base.OnEnable();
-        Debug.LogError("Level Select Open!");
     }
 
     protected new void OnDisable()

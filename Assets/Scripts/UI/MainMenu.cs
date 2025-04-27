@@ -30,10 +30,10 @@ public class MainMenu : MonoBehaviour
         _fonImageTr = _fonImage.gameObject.transform;
         _tween
             .Append(_fonImageTr.DOMoveX(_fonImageTr.position.x, 0.25f).From(_fonImageTr.position.x + (Screen.width * 2.0f)).SetEase(Ease.Linear))
-            .Append(_playGameButton.gameObject.transform.DOScale(1.5f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
-            .Append(_levelSelectButton.gameObject.transform.DOScale(1.5f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
-            .Join(_settingsButton.gameObject.transform.DOScale(1.5f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
-            .Join(_titleButton.gameObject.transform.DOScale(1.5f, 0.5f).From(0.0f).SetEase(Ease.OutBounce));
+            .Append(_playGameButton.gameObject.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
+            .Append(_levelSelectButton.gameObject.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
+            .Join(_settingsButton.gameObject.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce))
+            .Join(_titleButton.gameObject.transform.DOScale(1.0f, 0.5f).From(0.0f).SetEase(Ease.OutBounce));
 
         m_LevelSelect.Initialize();
         m_Settings.Initialize();

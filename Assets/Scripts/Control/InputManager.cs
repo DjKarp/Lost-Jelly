@@ -40,8 +40,8 @@ public class InputManager : MonoBehaviour
     }
     public Vector2 GetMoveDirection()
     {
-        Debug.LogError("Fire1 = " + Input.GetAxis("Fire1") + " => Fire2 = " + Input.GetAxis("Fire2") + " => Fire3 = " + Input.GetAxis("Fire3") + " => Jump = " + Input.GetAxis("Jump") 
-            + " => HorizontalDPAD = " + Input.GetAxis("HorizontalDPAD") + " => VerticalDPAD = " + Input.GetAxis("VerticalDPAD"));
+        /*Debug.LogError("Fire1 = " + Input.GetAxis("Fire1") + " => Fire2 = " + Input.GetAxis("Fire2") + " => Fire3 = " + Input.GetAxis("Fire3") + " => Jump = " + Input.GetAxis("Jump") 
+            + " => HorizontalDPAD = " + Input.GetAxis("HorizontalDPAD") + " => VerticalDPAD = " + Input.GetAxis("VerticalDPAD"));*/
 
         _tempInputDirection = _tempJoystickDirection = Vector2.zero;
         _tempInputDirection = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));

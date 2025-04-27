@@ -50,7 +50,7 @@ public class GameplayEntryPoint : MonoBehaviour
             inputUI.HideMobileInputOnDevice();
 
         var pressStart = _UIGameplayRootBinder.GetComponentInChildren<PressAnyKeyToStart>();
-        inputUI.SubscribeOnStart(pressStart);              
+        inputUI.SubscribeOnStart(pressStart);
 
         if (_jellyImageList.Count == 0)
             _jellyImageList.AddRange(Resources.LoadAll<Sprite>("Jelly"));

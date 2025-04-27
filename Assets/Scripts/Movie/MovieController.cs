@@ -5,11 +5,15 @@ using UnityEngine.Playables;
 using R3;
 using System;
 
+/// <summary>
+/// There are 2 videos in the game at launch. 
+/// The first video is the Red Leg Games logo
+/// The second video is a cartoon story about a ship flying with Jelly. Along the way, he had a breakdown and all the Jelly scattered. now the Nimble robot needs to collect them all.
+/// </summary>
 public class MovieController : MonoBehaviour
 {
     [SerializeField] private PlayableDirector _playableDirectorLogo;
     [SerializeField] private PlayableDirector _playableDirectorMovie;
-    public bool isStartMovie = true;
 
     private CompositeDisposable _disposables = new CompositeDisposable();
     private Subject<Unit> _goToMainMenuSubject = new Subject<Unit>();
@@ -21,8 +25,6 @@ public class MovieController : MonoBehaviour
         _playableDirectorLogo.gameObject.SetActive(true);
         _playableDirectorLogo.Play();
 
-        isStartMovie = true;
-
         // The button is full-screen, without a picture. we simulate clicking on the screen
         buttonClickSubject
             .Subscribe(_ => StartMovie(_))
@@ -31,7 +33,8 @@ public class MovieController : MonoBehaviour
         Observable
             .EveryUpdate()
             .Where(_ => Input.anyKey)
-            .Subscribe(_ => StartMovie(_playableDirectorMovie.gameObject.activeSelf ? 1 : 2))
+            .Take(2)
+            .Subscribe(_ => StartMovie(_playableDirectorMovie.gameObject.activeSelf ? 2 : 1))
             .AddTo(_disposables);
 
         return _goToMainMenuSubject;

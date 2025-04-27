@@ -18,6 +18,8 @@ public class GameEntryPoint
     private GamePlayEnterParams _lastGamePlayEnterParams;
     private Subject<float> _loadSceneSubject = new Subject<float>();
 
+    private int _level;
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     public static void AutoStartGame()
     {
@@ -31,6 +33,7 @@ public class GameEntryPoint
     private GameEntryPoint()
     {
         _SaveLoadData = new SaveLoadData();
+        _level = _SaveLoadData.GetLastOpenLevel();
 
         var prefabAudioManager = Resources.Load<AudioManager>("AudioManager");
         _AudioManager = Object.Instantiate(prefabAudioManager);
@@ -48,13 +51,13 @@ public class GameEntryPoint
 
     private void StartGame()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         var sceneName = SceneManager.GetActiveScene().name;
 
         switch(sceneName)
         {
             case Scenes.GAME:
-                var enterParams = new GamePlayEnterParams(_SaveLoadData.GetLastOpenLevel());
+                var enterParams = new GamePlayEnterParams(_level);
                 _Coroutines.StartCoroutine(LoadAndStartGame(enterParams));
                 return;
 
@@ -72,7 +75,7 @@ public class GameEntryPoint
 
             default: return;
         }
-#endif
+//#endif
     }    
 
     private IEnumerator LoadScene(string sceneName)
@@ -101,6 +104,7 @@ public class GameEntryPoint
     {
         _UIMainView.ShowLoadingScreen(_loadSceneSubject);
         _lastGamePlayEnterParams = gamePlayEnterParams;
+        _level = gamePlayEnterParams.LevelNumber;
 
         yield return LoadScene(Scenes.BOOTSTRAP);
         yield return new WaitForSeconds(0.5f);
@@ -167,5 +171,10 @@ public class GameEntryPoint
             });
 
         _UIMainView.HideLoadingScreen();
+    }
+
+    public int GetLevelChoised()
+    {
+        return _level;
     }
 }
