@@ -23,6 +23,9 @@ public class Player : MonoBehaviour
     private List<Vector2> _positionsList = new List<Vector2>();
     private Transform _jellyBoxParent;
 
+    private GameObject _exploPrefab;
+    private GameObject _explo;
+
     private int _jellyBoxCount = 0;
 
     public void Initialize(bool isLeftDirection, Subject<Vector2> subject)
@@ -35,9 +38,14 @@ public class Player : MonoBehaviour
 
         _jellyBoxParent = new GameObject("JellyBoxParent").transform;
         _jellyBoxPrefab = Resources.Load<JellyBox>("BoxWhitJelly");
+        
         _tempJellyBox = Instantiate(_jellyBoxPrefab, transform.position + new Vector3((MovementHandler._snapValue * (isLeftDirection ? 1 : -1)), 0.0f, 0.0f), Quaternion.identity, _jellyBoxParent);
         _tempJellyBox.Initialize(this, _moveSubject, _jellyBoxCount);
         _jellyBoxes.Add(_tempJellyBox);
+
+        _exploPrefab = Resources.Load<GameObject>("Explo");
+        _explo = Instantiate(_exploPrefab);
+        _explo.SetActive(false);
 
         subject
             .Subscribe(_ => _positionsList.Insert(0, _))
@@ -60,9 +68,7 @@ public class Player : MonoBehaviour
                     }
                     else
                     {
-                        EventManager.GameStartStop(false);
-                        FinishLevel?.OnNext(false);
-                        Debug.LogError("Game Over!");
+                        GameOver();
                     }
                 }
             });
@@ -93,6 +99,17 @@ public class Player : MonoBehaviour
     public Vector2 GetNewPositionJellyBox(int number)
     {
         return _positionsList[number];
+    }
+
+    private void GameOver()
+    {
+        _explo.transform.position = transform.position;
+        _explo.SetActive(true);
+        gameObject.SetActive(false);
+
+        EventManager.GameStartStop(false);
+        FinishLevel?.OnNext(false);
+        Debug.LogError("Game Over!");
     }
 
     private void OnDestroy()

@@ -44,6 +44,7 @@ public class FlyLeaves : LevelEffects
     {
         base.InitializeEffect(effect);
         _effect = effect;
+        StartEffect();
     }
     protected override void StartEffect()
     {

@@ -42,6 +42,13 @@ public class FinishScreen : DifferentWindowOnMainMenu
             .AddTo(_disposable);
     }
 
+    protected override void StartEndPositionInitialize()
+    {
+        _endPosition = new Vector2(0.0f, -Screen.height);
+        _startPosition = new Vector2(0.0f, Screen.height / 2.0f);
+        _transform.position = _endPosition;
+    }
+
     private void SetJellyCount(int jelly)
     {
         _jellyCount = jelly;

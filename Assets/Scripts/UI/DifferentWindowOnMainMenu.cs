@@ -22,12 +22,18 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
     {
         gameObject.SetActive(true);
         _transform = gameObject.transform;
-        _endPosition = new Vector2(Screen.width / 2.0f, -Screen.height);
-        _startPosition = new Vector2(Screen.width / 2.0f, Screen.height / 2.0f);
-        _transform.position = _endPosition;
+
+        StartEndPositionInitialize();
 
         _canvasGroup = gameObject.GetComponent<CanvasGroup>();
         _canvasGroup.alpha = 0.0f;        
+    }
+
+    protected virtual void StartEndPositionInitialize()
+    {
+        _endPosition = new Vector2(Screen.width / 2.0f, -Screen.height);
+        _startPosition = new Vector2(Screen.width / 2.0f, Screen.height / 2.0f);
+        _transform.position = _endPosition;
     }
 
     public Sequence Show(Button button = null)
