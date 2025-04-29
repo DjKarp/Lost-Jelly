@@ -38,7 +38,7 @@ public class CountTime : MonoBehaviour
         isTimerWork = true;
 
         Observable
-            .Interval(System.TimeSpan.FromSeconds(1.0f))
+            .Interval(System.TimeSpan.FromSeconds(1))
             .Subscribe(_ => AddTickOnTimer())
             .AddTo(_disposable);
     }

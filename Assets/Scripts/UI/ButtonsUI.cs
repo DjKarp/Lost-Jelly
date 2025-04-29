@@ -8,7 +8,7 @@ using DG.Tweening;
 public abstract class ButtonsUI : MonoBehaviour
 {
     protected Button m_Button;
-    private Sequence _tween;
+    private Tween _tween;
     protected float _maxScale = 1.0f;
 
     protected void Awake()
@@ -28,17 +28,23 @@ public abstract class ButtonsUI : MonoBehaviour
 
     protected void TweensAnimationHide()
     {
-        _tween.Append(transform.DOScale(0.0f, 0.2f).From(_maxScale).SetEase(Ease.InBounce));
+        _tween = transform.DOScale(0.0f, 0.2f).From(_maxScale).SetEase(Ease.InBounce);
     }
 
     protected void TweensAnimationShow()
     {
-        _tween.Append(transform.DOScale(_maxScale, 0.2f).From(0.0f).SetEase(Ease.OutBounce));
+        _tween = transform.DOScale(_maxScale, 0.2f).From(0.0f).SetEase(Ease.OutBounce);
     }
 
     protected void TweensAnimationBounce()
     {
-        _tween.Append(transform.DOScale(transform.localScale, 0.2f).From(transform.localScale.x * _maxScale).SetEase(Ease.InOutBounce));
+        _tween = transform.DOScale(transform.localScale, 0.2f).From(transform.localScale.x * _maxScale).SetEase(Ease.InOutBounce);
+    }
+
+    private void OnDisable()
+    {
+        _tween.Kill(true);
+        m_Button.RemoveAll();
     }
 
     private void OnDestroy()

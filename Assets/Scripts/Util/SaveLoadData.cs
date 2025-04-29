@@ -70,6 +70,16 @@ public class SaveLoadData
         return FXVolume;
     }
 
+    public void SetLanguageindex(int index)
+    {
+        PlayerPrefs.SetInt("Localization", index);
+    }
+
+    public int GetLanguageIndex()
+    {
+        return PlayerPrefs.GetInt("Localization");
+    }
+
 
     public void SavedOpenLavelRandom()
     {

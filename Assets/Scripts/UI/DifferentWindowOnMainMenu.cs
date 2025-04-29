@@ -23,6 +23,8 @@ public class DifferentWindowOnMainMenu : MonoBehaviour
         gameObject.SetActive(true);
         _transform = gameObject.transform;
 
+        _tween = DOTween.Sequence();
+
         StartEndPositionInitialize();
 
         _canvasGroup = gameObject.GetComponent<CanvasGroup>();

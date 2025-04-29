@@ -14,6 +14,7 @@ public class GameEntryPoint
     private UIMainView _UIMainView;
     private AudioManager _AudioManager;
     private SaveLoadData _SaveLoadData;
+    private LocalizeManager _LocalizeManager;
 
     private GamePlayEnterParams _lastGamePlayEnterParams;
     private Subject<float> _loadSceneSubject = new Subject<float>();
@@ -39,6 +40,11 @@ public class GameEntryPoint
         _AudioManager = Object.Instantiate(prefabAudioManager);
         Object.DontDestroyOnLoad(_AudioManager.gameObject);
         _AudioManager.Initialization(_SaveLoadData);
+
+        var localizeManager = Resources.Load<LocalizeManager>("LocalizeManager");
+        _LocalizeManager = Object.Instantiate(localizeManager);
+        Object.DontDestroyOnLoad(_LocalizeManager);
+        _LocalizeManager.Init();
 
         _Coroutines = new GameObject("[Coroutines]").AddComponent<Coroutines>();
         Object.DontDestroyOnLoad(_Coroutines.gameObject);

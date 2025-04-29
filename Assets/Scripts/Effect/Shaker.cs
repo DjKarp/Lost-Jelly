@@ -17,6 +17,7 @@ public class Shaker : Blicker
 
     protected override void StartEffect()
     {
-        _jelliesActive[Random.Range(0, _jelliesActive.Count)].transform.DOShakeRotation(0.5f);
+        _jelliesActive[Random.Range(0, _jelliesActive.Count)].transform
+            .DOShakeRotation(0.2f, strength: 35.0f, vibrato: 0, randomness: 45.0f, fadeOut: true, ShakeRandomnessMode.Harmonic);
     }
 }

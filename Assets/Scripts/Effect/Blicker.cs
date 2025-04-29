@@ -12,7 +12,6 @@ public class Blicker : LevelEffects
 
     public override void Initialize(List<Jelly> jellies = null, Subject<bool> playGameSubject = null)
     {
-        _jellies.Clear();
         _jellies = jellies;
         _effectPrefab = Resources.Load<Blick>("Blick");
         _timer = Random.Range(1.0f, 4.0f);

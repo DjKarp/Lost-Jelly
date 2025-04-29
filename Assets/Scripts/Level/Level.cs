@@ -60,13 +60,13 @@ public class Level : MonoBehaviour
             .AddTo(_disposable);
 
         // Effect on Level
-        _FlyLeaves = new FlyLeaves();
+        _FlyLeaves = gameObject.AddComponent<FlyLeaves>();
         _FlyLeaves.Initialize(null, playGameSubject);
 
         // Effect on Jelly
-        _Blicker = new Blicker();
+        _Blicker = gameObject.AddComponent<Blicker>();
         _Blicker.Initialize(JellyListOnLevel, playGameSubject);
-        _Shaker = new Shaker();
+        _Shaker = gameObject.AddComponent<Shaker>();
         _Shaker.Initialize(JellyListOnLevel, playGameSubject);
     }
 

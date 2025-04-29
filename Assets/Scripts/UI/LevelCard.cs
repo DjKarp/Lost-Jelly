@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 /// <summary>
 /// A card to create in the level selection menu.
 /// </summary>
@@ -19,6 +20,7 @@ public class LevelCard : MonoBehaviour
     [SerializeField] private List<Sprite> _numberSprite = new List<Sprite>();
 
     private Button m_Button;
+    private Tween _buttonClickEffeck;
 
     public void Initialize(int levelNumber = 0, bool isOpenLevel = true, int starsLevel = 0)
     {
@@ -31,7 +33,9 @@ public class LevelCard : MonoBehaviour
         m_Button = gameObject.GetComponent<Button>();
         m_Button.Add(() =>
         {
-            GameEntryPoint._instance.NextLevel(levelNumber);
+            m_Button.gameObject.transform
+                .DOShakeRotation(0.2f, strength: 45.0f, vibrato: 3, randomness: 60.0f, fadeOut: true, ShakeRandomnessMode.Harmonic)
+                .OnComplete(() => GameEntryPoint._instance.NextLevel(levelNumber));
         });
     }
 
@@ -63,6 +67,7 @@ public class LevelCard : MonoBehaviour
 
     private void OnDisable()
     {
+        _buttonClickEffeck.Kill();
         m_Button.RemoveAll();
     }
 }
