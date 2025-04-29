@@ -82,10 +82,9 @@
 <p align="center">
 <b>Смотреть видео на RuTube - Кликни по картинке</b><br/>
   </p>
-<p align="center">
-  
-   [![Смотреть видео](https://redleggames.com/images/Games/LostJellyRemaster/Logo_FullHD_02.jpg)](https://rutube.ru/video/83e5ec23f5d8a6155cf67753b6c98d11/)
-   
+<p align="center">  
+   [![Смотреть Видеотрейлер](https://redleggames.com/images/Games/LostJellyRemaster/Logo_Zastavka_764l.png)](https://rutube.ru/video/83e5ec23f5d8a6155cf67753b6c98d11/)
+   [![Смотреть Gameplay видео](https://redleggames.com/images/Games/LostJellyRemaster/Logo_Gameplay_764.png)](https://rutube.ru/video/868f60dc7475d1665849b1e4b1f0920d/)  
 </p>
 
 ---
@@ -135,7 +134,7 @@ https://docs.google.com/spreadsheets/d/186HGaP3WarD9TXPc7AeHO3YbiBnRSAJu3xWMji8g
 
 ## 🧾 Как запустить
 Скачай архив, распакуй и запусти LostJellyRemaster.exe:
-https://redleggames.com/Games/LostJellyRemaster/Lost_Jelly_Remastered_v008.zip
+https://disk.yandex.ru/d/tDmhVfp5ieDd7Q
 
 Склонируй проект:
 bash
