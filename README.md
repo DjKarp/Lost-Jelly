@@ -80,10 +80,16 @@
 ## 🎥 Демонстрация
 
 <p align="center">
-<b>Смотреть видео на RuTube - Кликни по картинке</b><br/>
+<b>Смотреть Видеотрейлер на RuTube - Кликни по картинке</b><br/>
   </p>
 <p align="center">  
-   [![Смотреть Видеотрейлер](https://redleggames.com/images/Games/LostJellyRemaster/Logo_Zastavka_764l.png)](https://rutube.ru/video/83e5ec23f5d8a6155cf67753b6c98d11/)
+   [![Смотреть Видеотрейлер](https://redleggames.com/images/Games/LostJellyRemaster/Logo_Zastavka_764l.png)](https://rutube.ru/video/83e5ec23f5d8a6155cf67753b6c98d11/) 
+</p>
+
+<p align="center">
+<b>Смотреть Gameplay видео на RuTube - Кликни по картинке</b><br/>
+  </p>
+<p align="center">
    [![Смотреть Gameplay видео](https://redleggames.com/images/Games/LostJellyRemaster/Logo_Gameplay_764.png)](https://rutube.ru/video/868f60dc7475d1665849b1e4b1f0920d/)  
 </p>
 
