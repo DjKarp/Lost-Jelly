@@ -31,6 +31,8 @@ public class LocalizeManager : MonoBehaviour
     public static readonly string DefaultLanguageName = "English";
     public int CurrentLanguageIndex = 0;
 
+    private SaveLoadData _saveLoadData;
+
     public static string[] OfficialSupportedLanguages = new string[]
     {
         "English",
@@ -49,21 +51,10 @@ public class LocalizeManager : MonoBehaviour
     {
         ReadLanguagesList();
 
-        CurrentLanguageIndex = 0;
+        _saveLoadData = new SaveLoadData();
+        CurrentLanguageIndex = _saveLoadData.GetLanguageIndex();
         CurrentLanguage = _languagesList[CurrentLanguageIndex];
-
-        if (PlayerPrefs.HasKey("LanguageSelectedManually"))
-        {
-            CurrentLanguageIndex = new SaveLoadData().GetLanguageIndex();
-            if (CurrentLanguageIndex < 0 || CurrentLanguageIndex >= _languagesList.Count)
-            {
-                CurrentLanguageIndex = 0;
-            }
-
-            CurrentLanguage = _languagesList[CurrentLanguageIndex];
-        }
-
-        ReadCurrentLanguage();
+        ReadCurrentLanguage();        
     }
 
 
@@ -82,14 +73,6 @@ public class LocalizeManager : MonoBehaviour
         for (int i = 0; i < sortedLanguages.Length; i++)
         {
             var friendlyLangName = Path.GetFileNameWithoutExtension(sortedLanguages[i]);
-            _languagesList.Add(friendlyLangName);
-        }
-
-        var customLanguages = Directory.GetFiles(Path.Combine(Application.persistentDataPath, "Languages"), "*.lng");
-        var sortedCustomLanguages = customLanguages.OrderBy(File.GetCreationTimeUtc).ToArray();
-        for (int i = 0; i < sortedCustomLanguages.Length; i++)
-        {
-            var friendlyLangName = Path.GetFileNameWithoutExtension(sortedCustomLanguages[i]);
             _languagesList.Add(friendlyLangName);
         }
     }
@@ -235,7 +218,6 @@ public class LocalizeManager : MonoBehaviour
             langIdx = 0;
 
         CurrentLanguageIndex = langIdx;
-        string prevLanguage = CurrentLanguage;
         CurrentLanguage = _languagesList[CurrentLanguageIndex];
 
         ReadCurrentLanguage();
@@ -244,6 +226,8 @@ public class LocalizeManager : MonoBehaviour
         {
             l.UpdateLocalization();
         }
+
+        _saveLoadData.SetLanguageindex(langIdx);
     }
 
     // LocalizeManager.Localize("$Ui_")
@@ -332,7 +316,7 @@ public class LocalizeManager : MonoBehaviour
         if (!_language._data.TryGetValue(tag, out opts))
         {
 #if !UNITY_EDITOR
-            DefaultLanguage.Data.TryGetValue(tag, out opts);
+            _defaultLanguage._data.TryGetValue(tag, out opts);
 #endif
         }
 

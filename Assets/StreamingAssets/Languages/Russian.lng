@@ -1,6 +1,9 @@
 $Settings_Sound;Звук эффектов
 $Settings_Musik;Музыка
-$Title_Redleggames;РАЗРАБОТЧИК /n "Red Leg Games"
+$Title_Redleggames;РАЗРАБОТЧИК \n "Red Leg Games"
 $Title_AllRight;Карпуша Николай Сергеевич \n Все права защищены
-$Title_Thanks;Спасибо за некоторую графику и музыку: /n /n Kenny Vleugels /n GameArtForge /n Rezoner /n Millionthvector /n
+$Title_Thanks;Спасибо за некоторую графику и музыку: \n\n Kenny Vleugels \n GameArtForge \n Rezoner \n Millionthvector\n
 $Gameplay_PressAnyKey;Нажмите любую кнопку для старта игры
+$Gameplay_StartTip_0;В этой игре надо собрать всех потерявшихся Jelly. \nИзменяй направление робота Nimble, используя клавиши направления. 
+$Gameplay_StartTip_4;Будьте осторожны! \n Желе часто прячутся там, где их не видно, например, за деревьями или мельницей.
+$Gameplay_StartTip_15;Всегда думай, прежде чем сделать первый шаг. \n Рассчитай маршрут!  Будь осторожен!

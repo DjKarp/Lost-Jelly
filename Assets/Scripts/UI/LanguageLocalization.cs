@@ -11,14 +11,16 @@ public class LanguageLocalization : MonoBehaviour
     {
         for (int i = 0; i < _buttons.Count; i++)
         {
-            _buttons[i].Activate();
-            _buttons[i].Add(() => SetLanguage(i));
+            _buttons[i].enabled = true;
+            int index = i;
+            _buttons[i].Add(() => SetLanguage(index));
         }
-        _buttons[LocalizeManager.Instance.CurrentLanguageIndex].Deactivate();
+        _buttons[LocalizeManager.Instance.CurrentLanguageIndex].enabled = false;
     }
 
     private void SetLanguage(int locIndex)
     {
         LocalizeManager.Instance.ChangeLanguage(locIndex);
+        OnEnable();
     }
 }

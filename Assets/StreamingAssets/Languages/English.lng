@@ -1,6 +1,9 @@
 $Settings_Sound;Sound
 $Settings_Musik;Musik
-$Title_Redleggames;DEVELOPER /n "Red Leg Games"
+$Title_Redleggames;DEVELOPER \n "Red Leg Games"
 $Title_AllRight;Karpusha Nikolay Sergeevich \n All Right Reserved
-$Title_Thanks;Thank for some Graphics and Musik: /n /n Kenny Vleugels /n GameArtForge /n Rezoner /n Millionthvector /n
+$Title_Thanks;Thank for some Graphics and Musik: \n\n Kenny Vleugels\n GameArtForge \n Rezoner \n Millionthvector \n
 $Gameplay_PressAnyKey;Press Any Key To Start
+$Gameplay_StartTip_0;This is a game to collect all the lost Jelly. \n Control the Nimble robot using the directional keys.
+$Gameplay_StartTip_4;Be careful! \n Jelly often hide where they cannot be seen, such as trees or mill.
+$Gameplay_StartTip_15;Always think before you make the first step. \n Everywhere whether You will be able to pick up Jelly?  Be careful!

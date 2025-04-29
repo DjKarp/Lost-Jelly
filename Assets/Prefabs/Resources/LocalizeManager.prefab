@@ -44,9 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e25ce6fd2edafc4ba09c982c2e99fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _FontReplacements: []
-  _FontMeshProReplacements: []
-  _activeLocalizeFonts: []
   _languagesList:
   - English
   - Russian
+  CurrentLanguage: English
+  CurrentLanguageIndex: 0

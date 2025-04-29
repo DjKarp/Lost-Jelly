@@ -49,7 +49,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playableDirectorLogo: {fileID: 4384937666512044357}
   _playableDirectorMovie: {fileID: 3944061663867876514}
-  isStartMovie: 0
 --- !u!114 &7931843661928856610
 MonoBehaviour:
   m_ObjectHideFlags: 0

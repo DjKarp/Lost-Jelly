@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TextColorGradientOnGameplay
   m_EditorClassIdentifier: 
   colorMode: 3
-  topLeft: {r: 1, g: 0.023584902, b: 0.032593157, a: 0.4745098}
-  topRight: {r: 1, g: 0, b: 0.046545982, a: 0.6745098}
-  bottomLeft: {r: 0.5566038, g: 0.22532192, b: 0.19691172, a: 0.7176471}
+  topLeft: {r: 1, g: 1, b: 1, a: 0.4745098}
+  topRight: {r: 1, g: 0.9292453, b: 0.9325749, a: 0.6745098}
+  bottomLeft: {r: 0.9622642, g: 0.84903634, b: 0.83971167, a: 0.7176471}
   bottomRight: {r: 0.21693665, g: 0.36755392, b: 0.7075472, a: 1}
