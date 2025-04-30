@@ -47,5 +47,11 @@ MonoBehaviour:
   _languagesList:
   - English
   - Russian
+  - German
+  - Spanish
+  - French
+  - Japanese
+  - Chinese
+  - Korean
   CurrentLanguage: English
   CurrentLanguageIndex: 0

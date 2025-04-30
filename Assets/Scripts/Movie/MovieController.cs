@@ -20,9 +20,9 @@ public class MovieController : MonoBehaviour
 
     public Subject<Unit> Initialize(Subject<int> buttonClickSubject)
     {
-        _playableDirectorMovie.gameObject.SetActive(false);
+        _playableDirectorMovie.Deactivate();
 
-        _playableDirectorLogo.gameObject.SetActive(true);
+        _playableDirectorLogo.Activate();
         _playableDirectorLogo.Play();
 
         // The button is full-screen, without a picture. we simulate clicking on the screen
@@ -45,7 +45,7 @@ public class MovieController : MonoBehaviour
         if (clickCount == 1)
         {
             _playableDirectorLogo.Deactivate();
-            _playableDirectorMovie.gameObject.SetActive(true);
+            _playableDirectorMovie.Activate();
             _playableDirectorMovie.Play();
         }
         else
@@ -54,6 +54,9 @@ public class MovieController : MonoBehaviour
 
     private void GoToMainMenu()
     {
+        _disposables.Dispose();
+        _playableDirectorMovie.Stop();
+
         _goToMainMenuSubject?.OnNext(Unit.Default);
     }
 

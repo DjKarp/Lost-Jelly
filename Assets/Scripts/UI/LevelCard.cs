@@ -67,7 +67,11 @@ public class LevelCard : MonoBehaviour
 
     private void OnDisable()
     {
-        _buttonClickEffeck.Kill();
+        _buttonClickEffeck.Kill();        
+    }
+
+    private void OnDestroy()
+    {
         m_Button.RemoveAll();
     }
 }

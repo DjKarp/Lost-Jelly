@@ -37,12 +37,12 @@ public class LocalizeManager : MonoBehaviour
     {
         "English",
         "Russian",
-        /*"German",
-        "French",
+        "German",        
         "Spanish",
+        "French",
         "Japanese",
         "Chinese",
-        "Korean"  */      
+        "Korean"      
     };
 
     private bool debugMode = true;

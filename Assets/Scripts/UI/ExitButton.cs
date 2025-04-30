@@ -6,6 +6,7 @@ public class ExitButton : ButtonsUI
 {
     protected override void ButtonClick()
     {
+        AudioManager.Instance.StopMusic();
         Application.Quit();
     }
 }
