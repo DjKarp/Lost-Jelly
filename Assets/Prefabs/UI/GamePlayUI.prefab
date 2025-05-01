@@ -76,6 +76,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5978363780468856657}
   - component: {fileID: 1404599243318629552}
+  - component: {fileID: 4216924722856365596}
   m_Layer: 0
   m_Name: GamePlayUI
   m_TagString: Untagged
@@ -118,6 +119,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5816518122d6984bbc3e30488798baa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!225 &4216924722856365596
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244830454229719310}
+  m_Enabled: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &299921135344958779
 GameObject:
   m_ObjectHideFlags: 0

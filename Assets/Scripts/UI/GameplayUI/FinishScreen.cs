@@ -78,9 +78,12 @@ public class FinishScreen : DifferentWindowOnMainMenu
 
             _nextLevelButton.Add(() =>
             {
-                Hide(_nextLevelButton, () => _nextLevelButton.gameObject.SetActive(false));
                 saveLoadData.SetLastOpenLevel(++_levelNumber);
-                GameEntryPoint._instance.NextLevel(_levelNumber);
+                Hide(_nextLevelButton, () => 
+                { 
+                    _nextLevelButton.gameObject.SetActive(false); 
+                    GameEntryPoint._instance.NextLevel(_levelNumber); 
+                } );                
             });
         }        
     }

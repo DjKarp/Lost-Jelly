@@ -6,11 +6,11 @@ using DG.Tweening;
 
 public class ReplayButton : ButtonsUI
 {
-    //[SerializeField] private HideUIBeforeLoadScene _hideUIBefore;
+    private UIGameplayRootBinder _UIGameplayRootBinder;
 
     protected override void ButtonClick()
     {
-        GameEntryPoint._instance.RestartGameScene();
-        //_hideUIBefore.Hide(() =>  GameEntryPoint._instance.RestartGameScene());
+        _UIGameplayRootBinder = FindAnyObjectByType<UIGameplayRootBinder>();
+        _UIGameplayRootBinder?.HandleRebootGameplayScene();
     }
 }

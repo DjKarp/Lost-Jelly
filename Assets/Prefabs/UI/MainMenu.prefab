@@ -4262,6 +4262,7 @@ GameObject:
   - component: {fileID: 6220318387079435968}
   - component: {fileID: 1474629548486666795}
   - component: {fileID: 7038565786257927316}
+  - component: {fileID: 6341938100939065517}
   m_Layer: 0
   m_Name: MainMenu
   m_TagString: Untagged
@@ -4325,6 +4326,18 @@ MonoBehaviour:
   m_LevelSelect: {fileID: 4227635774782381820}
   m_Settings: {fileID: 6296848396854619804}
   m_Title: {fileID: 8492430135254519338}
+--- !u!225 &6341938100939065517
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7158760770785104885}
+  m_Enabled: 0
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &7241605592853484480
 GameObject:
   m_ObjectHideFlags: 0
