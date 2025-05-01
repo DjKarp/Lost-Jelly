@@ -8,7 +8,7 @@ public class CountTime : MonoBehaviour
 {
     private TMP_Text _countTimeText;
     private float _timer = 0.0f;
-    private bool isTimerWork = false;
+    private bool _isTimerWork = false;
     private CompositeDisposable _disposable = new CompositeDisposable();
     [SerializeField] private PressAnyKeyToStart m_PressAnyKeyToStart;
 
@@ -19,13 +19,14 @@ public class CountTime : MonoBehaviour
         EventManager.PlayerMove.AddListener(ChangeStateTimer);
 
         m_PressAnyKeyToStart.OnGameplayStart
-            .Subscribe(_ => StartTimer())
+            .Take(1)
+            .Subscribe(_ => StartCoroutine(Timer()))
             .AddTo(_disposable);
     }
 
     private void ChangeStateTimer(bool isStart)
     {
-        isTimerWork = isStart;
+        _isTimerWork = isStart;
     }
 
     private void SetTimerValueOnUI()
@@ -33,21 +34,20 @@ public class CountTime : MonoBehaviour
         _countTimeText.text = _timer.ToString();
     }    
 
-    private void StartTimer()
+    public IEnumerator Timer()
     {
-        isTimerWork = true;
+        _timer = 0.0f;
+        SetTimerValueOnUI();
 
-        Observable
-            .Interval(System.TimeSpan.FromSeconds(1))
-            .Subscribe(_ => AddTickOnTimer())
-            .AddTo(_disposable);
-    }
-    private void AddTickOnTimer()
-    {
-        if (isTimerWork)
+        while (true)
         {
-            _timer++;
-            SetTimerValueOnUI();
+            if (_isTimerWork)
+            {
+                _timer += 1.0f;
+                SetTimerValueOnUI();
+            }
+
+            yield return new WaitForSeconds(1.0f);
         }
     }
 

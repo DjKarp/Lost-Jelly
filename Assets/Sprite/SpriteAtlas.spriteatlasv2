@@ -62,13 +62,13 @@ SpriteAtlasAsset:
     - {fileID: -1989430717, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
     - {fileID: 2800000, guid: 999cbe0d941a6d4439935a6356b3cef3, type: 3}
     - {fileID: 2800000, guid: cb263d389dfe89f438b4f32616e07c84, type: 3}
+    - {fileID: 2800000, guid: 49f23a47f2ea82946bcb1aec3f69a628, type: 3}
     - {fileID: 2800000, guid: 46a9bda51fa53b34eba139f83d15eeca, type: 3}
+    - {fileID: 2800000, guid: 4b145793fd8214c42989177c17da15b2, type: 3}
     - {fileID: 2800000, guid: e5f563d2ed485c5479b9e3f3c33ca724, type: 3}
+    - {fileID: 2800000, guid: 1f49e93aac130df4587e5be2e823cd89, type: 3}
     - {fileID: 2800000, guid: 45c932b9ea55741499b3edd17cc74bcd, type: 3}
     - {fileID: 2800000, guid: 84be0b1f5cceaaf4bb0b6054e8450465, type: 3}
-    - {fileID: 2800000, guid: 49f23a47f2ea82946bcb1aec3f69a628, type: 3}
-    - {fileID: 2800000, guid: 4b145793fd8214c42989177c17da15b2, type: 3}
-    - {fileID: 2800000, guid: 1f49e93aac130df4587e5be2e823cd89, type: 3}
     - {fileID: 2800000, guid: 1de90420e57af0943830c69eb6ce3679, type: 3}
     - {fileID: 2800000, guid: a1a8bff00a6e6b04494f01e36146de89, type: 3}
     - {fileID: 2800000, guid: 997a7a86b416d154c870ef3234b2487e, type: 3}
@@ -117,11 +117,11 @@ SpriteAtlasAsset:
     - {fileID: 2800000, guid: 802aba7d391b91f42aecbad6c69c7eaf, type: 3}
     - {fileID: 1261090893, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
     - {fileID: -1593147884, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
-    - {fileID: -760703945, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
     - {fileID: -890387280, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
     - {fileID: -1989379732, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
     - {fileID: 1361925194, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
     - {fileID: -1663396104, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
+    - {fileID: -760703945, guid: bb8d3fc432740b748a48f6ee44fb7005, type: 3}
     - {fileID: -280337295, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
     - {fileID: -1725506918, guid: af0e1db338c11d3489b763fde795a95a, type: 3}
   m_IsVariant: 0
