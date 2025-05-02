@@ -42,7 +42,6 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     //Melody
     private string _Gameplay_Musik = "event:/Musik/Gameplay_Musik_ok";
-    private string _MainMenu_Musik = "event:/Musik/MainMenu_Musik";
 
     //Gameplay
     private string _CollisionBad = "event:/Gameplay/CollisionBad";
@@ -132,13 +131,15 @@ public class AudioManager : MonoBehaviour
     {
         if (GetMusicPath() != null) StopMusic();
 
-        _musicEvent = RuntimeManager.CreateInstance(isMainMenu ? _MainMenu_Musik : _Gameplay_Musik);
+        _musicEvent = RuntimeManager.CreateInstance(_Gameplay_Musik);
         _musicEvent.set3DAttributes(RuntimeUtils.To3DAttributes(Camera));
         _musicEvent.start();
 
         _musicDes = RuntimeManager.GetEventDescription(_Gameplay_Musik);
         _musicDes.getParameterDescriptionByName("GameplayMusik", out _musicPD);
         _musicPiD = _musicPD.id;
+
+        SetMusiñParameter(isMainMenu ? 0.0f : 0.65f);
     }
 
     public string GetMusicPath()
@@ -174,7 +175,7 @@ public class AudioManager : MonoBehaviour
     /// We set the music event parameter, which, depending on the number of Jelly collected, switches the track to a more aggressive and faster one.
     /// </summary>
     /// <param name="param">From 0 to 1</param>
-    public void SetMusikParameter(float param)
+    public void SetMusiñParameter(float param)
     {
         param = Mathf.Clamp(param, 0.0f, 1.0f);
         _musicEvent.setParameterByID(_musicPiD, param);
@@ -202,7 +203,9 @@ public class AudioManager : MonoBehaviour
     private void CalculateJellysKoefficientOnLevel()
     {
         Play_Nimble_Am();
-        SetMusikParameter(1.0f - (_maxJelly / _currentJellyCount));
+        _currentJellyCount--;
+        if (_currentJellyCount < 0.3f * _maxJelly)
+            SetMusiñParameter(1.0f);
     }
 
     private void OnDestroy()
