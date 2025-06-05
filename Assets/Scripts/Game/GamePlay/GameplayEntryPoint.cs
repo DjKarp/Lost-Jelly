@@ -16,6 +16,7 @@ public class GameplayEntryPoint : MonoBehaviour
     private Player m_Player;    
     private MovementHandler _MovementHandler;
     private UIGameplayRootBinder _UIGameplayRootBinder;
+    private PostProcessingService _postProcessingService;
 
     public Observable<GamePlayExitParams> Run(UIMainView uiMainView, GamePlayEnterParams gamePlayEnterParams)
     {
@@ -71,5 +72,8 @@ public class GameplayEntryPoint : MonoBehaviour
 
         AudioManager.Instance.PlayAudio(false);
         AudioManager.Instance.SetJellyCount(_levelPrefab.JellyCount);
+
+        _postProcessingService = GetComponent<PostProcessingService>();
+        _postProcessingService.SetEnabledChromatic(m_Player.FinishLevel);
     }
 }
