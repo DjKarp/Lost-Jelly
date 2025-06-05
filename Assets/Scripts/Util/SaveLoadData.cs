@@ -53,7 +53,6 @@ public class SaveLoadData
 
     public void SetVolumeData(float volumeMusik, float volumeFX)
     {
-        Debug.LogError("Save Musik Volume = " + volumeMusik + "<==> Save FX Volume = " + volumeFX);
         PlayerPrefs.SetFloat("VolumeMusik", volumeMusik);
         PlayerPrefs.SetFloat("VolumeFX", volumeFX);
     }

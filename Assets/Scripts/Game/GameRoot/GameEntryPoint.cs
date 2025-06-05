@@ -71,13 +71,13 @@ public class GameEntryPoint
                 _Coroutines.StartCoroutine(LoadAndStartMovie());
                 return;
 
-            //case Scenes.BOOTSTRAP:                                  // Added for Srtart from Boostrap
+            case Scenes.BOOTSTRAP:                                  // Added for Start from Boostrap
             case Scenes.MAIN_MENU:
                 _Coroutines.StartCoroutine(LoadAndStartMainMenu());
                 return;
-
+                /*
             case Scenes.BOOTSTRAP:
-                return;
+                return;*/
 
             default: return;
         }
