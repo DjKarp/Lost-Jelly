@@ -30,15 +30,6 @@ public class LoadingScreen : MonoBehaviour
             .AddTo(_disposables);
 
         _moweAnimationDO = _transform.DOMoveY(_startPosition.y, 0.5f).From(_startPosition.y + (Screen.height * 2.0f)).SetEase(Ease.Linear);
-
-        StartCoroutine(ShowAnimationCorutine());
-    }
-    private IEnumerator ShowAnimationCorutine()
-    {
-        while(_moweAnimationDO.active)
-        {
-            yield return new WaitForEndOfFrame();
-        }
     }
 
     public void HideLoadingScreen()

@@ -53,7 +53,10 @@ public class MainMenu : MonoBehaviour
     public void SwitchWindows(bool isLevelSelect = false)
     {
         if (isLevelSelect)
+        {
             m_LevelSelect.Show(_levelSelectButton);
+            m_LevelSelect.Initialize();
+        }
         else
             m_LevelSelect.Hide(_levelSelectButton, () => m_LevelSelect.gameObject.SetActive(false));
     }
@@ -72,9 +75,9 @@ public class MainMenu : MonoBehaviour
             m_Title.Hide(_titleButton, () => m_Title.gameObject.SetActive(false));
         else
             m_Title.Show(_titleButton);
-    }   
+    }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         _disposables.Dispose();
         _tween.Kill(true);

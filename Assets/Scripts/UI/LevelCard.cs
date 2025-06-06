@@ -30,13 +30,16 @@ public class LevelCard : MonoBehaviour
         _starsImage.sprite = _starsSprite[starsLevel];
         SetNumberSprite(levelNumber + 1);
 
-        m_Button = gameObject.GetComponent<Button>();
-        m_Button.Add(() =>
+        if (m_Button == null)
         {
-            m_Button.gameObject.transform
-                .DOShakeRotation(0.2f, strength: 45.0f, vibrato: 3, randomness: 60.0f, fadeOut: true, ShakeRandomnessMode.Harmonic)
-                .OnComplete(() => GameEntryPoint._instance.NextLevel(levelNumber));
-        });
+            m_Button = gameObject.GetComponent<Button>();
+            m_Button.Add(() =>
+            {
+                _buttonClickEffeck = m_Button.gameObject.transform
+                    .DOShakeRotation(0.2f, strength: 45.0f, vibrato: 3, randomness: 60.0f, fadeOut: true, ShakeRandomnessMode.Harmonic)
+                    .OnComplete(() => GameEntryPoint._instance.NextLevel(levelNumber));
+            });
+        }
     }
 
     List<int> digit = new List<int>();
@@ -65,13 +68,9 @@ public class LevelCard : MonoBehaviour
         }
     }
 
-    private void OnDisable()
-    {
-        _buttonClickEffeck.Kill();        
-    }
-
     private void OnDestroy()
     {
+        _buttonClickEffeck.Kill(true);
         m_Button.RemoveAll();
     }
 }

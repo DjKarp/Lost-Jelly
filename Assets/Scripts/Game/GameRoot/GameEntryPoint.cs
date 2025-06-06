@@ -88,7 +88,7 @@ public class GameEntryPoint
     private IEnumerator LoadScene(string sceneName)
     {
         AsyncOperation LoadAsync =  SceneManager.LoadSceneAsync(sceneName);
-
+        
         while(!LoadAsync.isDone && LoadAsync.progress < 0.5f)
         {
             _loadSceneSubject?.OnNext(LoadAsync.progress);
@@ -117,6 +117,7 @@ public class GameEntryPoint
         yield return new WaitForSeconds(0.5f);
         yield return LoadScene(Scenes.GAME);
 
+
         var sceneEntryPoint = Object.FindObjectOfType<GameplayEntryPoint>();
         sceneEntryPoint.Run(_UIMainView, gamePlayEnterParams)
             .Subscribe(gamePlayExitParams =>
@@ -137,9 +138,7 @@ public class GameEntryPoint
         _UIMainView.ShowLoadingScreen(_loadSceneSubject);
 
         yield return LoadScene(Scenes.BOOTSTRAP);
-
         yield return new WaitForSeconds(0.5f);
-
         yield return LoadScene(Scenes.MAIN_MENU);
 
 
