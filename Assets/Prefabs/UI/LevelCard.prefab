@@ -122,10 +122,10 @@ MonoBehaviour:
   _fonImageClosed: {fileID: 6950930806462352669}
   _starsImage: {fileID: 944739685834443166}
   _starsSprite:
-  - {fileID: 21300000, guid: 56576341990a33744bd7aef698b8b608, type: 3}
-  - {fileID: 21300000, guid: dd8ff19777bc5df4097d65fbc23a1abc, type: 3}
-  - {fileID: 21300000, guid: 60593238fbed9a2488ec31a1edfa2c59, type: 3}
-  - {fileID: 21300000, guid: 623d9e8af095d7444b07ef3a31650c2b, type: 3}
+  - {fileID: 21300000, guid: 49f23a47f2ea82946bcb1aec3f69a628, type: 3}
+  - {fileID: 21300000, guid: 4b145793fd8214c42989177c17da15b2, type: 3}
+  - {fileID: 21300000, guid: 1f49e93aac130df4587e5be2e823cd89, type: 3}
+  - {fileID: 21300000, guid: 1de90420e57af0943830c69eb6ce3679, type: 3}
   _firstNumberImage: {fileID: 3084052191853598321}
   _secondNumberImage: {fileID: 7291019020719416759}
   _numberSprite:
@@ -522,7 +522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 56576341990a33744bd7aef698b8b608, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49f23a47f2ea82946bcb1aec3f69a628, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
